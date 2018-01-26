@@ -1,8 +1,65 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Node2D
+
+export(NodePath) var terrain_path
+export(NodePath) var debug_path
+var debug_node
+var debug = false
+var current_level
+var path
+var nav_2d
+var speed = 100
+
+func _ready():
+	debug_node = get_node(debug_path)
+	current_level = get_node(terrain_path)
+	nav_2d = current_level.get_node(\"Navigation2D\")
+	set_process_input(true)
+	set_fixed_process(true)
+	pass
+	
+func _fixed_process(delta):
+	var effective_speed = speed * delta
+	if (path != null and path.size() > 1):
+		var source = get_global_pos()
+		var target = path[1]
+		var direction = Vector2(target - source)
+		var new_pos = direction.normalized()*effective_speed
+		if (source.distance_to(target) < effective_speed):
+			path.remove(0)
+			new_pos = direction
+		translate(new_pos)
+		update_scale()
+
+func _input(event):
+	if (event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_LEFT):
+		path = nav_2d.get_simple_path(get_global_pos(), event.global_pos)
+		path = Array(path)
+		if (debug):
+			print(path)
+			debug_node.draw_points(path)
+
+func update_scale():
+	#var z = (1 - get_global_pos().y / Globals.get(\"display/height\")) * 100
+	var z = 1 - get_global_pos().y / Globals.get(\"display/height\")
+	var minS = current_level.min_scale
+	var maxS = current_level.max_scale
+	#var z_ratio = (1+(log(z)/log(10)))/3
+	#var scale_ratio = maxS - z_ratio*(maxS-minS)
+	var scale_ratio = minS + z*(maxS-minS)
+	set_scale(Vector2(maxS,maxS).linear_interpolate(Vector2(minS,minS), z))
+	#print(z_ratio)"
+
 [node name="Player" type="Node2D"]
+
+script/script = SubResource( 1 )
+terrain_path = NodePath("")
+debug_path = null
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
 

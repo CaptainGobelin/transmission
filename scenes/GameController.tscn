@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://levels/level00/Level00.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "
+extends Node2D
+
+
+var points = null
+
+func draw_points(points):
+	self.points = points
+	update() # updates the state of this node, _draw() gets called
+
+func _draw():
+	if points != null:
+		for i in range(0, points.size()): # loop over the points
+			draw_circle(points[i], 10.0, Color(i*0.1+0.3, 0, 0)) # draw circle
+			if i > 0:
+				draw_line(points[i-1], points[i], Color(i*0.1, 0, 0)) # draw lines"
+
+[node name="GameController" type="Node2D"]
+
+[node name="DebugNode" type="Node2D" parent="."]
+
+script/script = SubResource( 1 )
+
+[node name="Level00" parent="." instance=ExtResource( 1 )]
+
+min_scale = 0.01
+max_scale = 1.0
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 1200.29, 1067.07 )
+terrain_path = NodePath("../Level00")
+debug_path = NodePath("../DebugNode")
+
+
