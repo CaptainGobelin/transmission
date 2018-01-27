@@ -1,3 +1,24 @@
 {
-  "text": "I am the holy computer. I am sentient. Bow before me, puny human." }
+  "text":
+  [
+    "I am the holy computer. I am sentient. Bow before me, puny human.",
+    "Yo, sup'. I am going to destroy everything you love, tiny human.",
+    "Have you read the terms and conditions?",
+    "No."
+  ],
+  "choices":
+  [
+    {
+      "label": "Kill everyone",
+      "target": "No, sorry."
+    },
+    {
+      "label": "Forgive everyone",
+      "target": "Maybe."
+    },
+    {
+      "label": "Fuck everyone",
+      "target": "Hell yeah."
+    }
+  ]
 }
