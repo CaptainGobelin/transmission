@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://levels/chap1/Chap1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/fonts/font_examine.fnt" type="BitmapFont" id=3]
 [ext_resource path="res://scenes/GUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/fonts/computer_font.fnt" type="BitmapFont" id=5]
 
 [sub_resource type="GDScript" id=1]
 
@@ -21,6 +22,47 @@ func _draw():
 			draw_circle(points[i], 10.0, Color(i*0.1+0.3, 0, 0)) # draw circle
 			if i > 0:
 				draw_line(points[i-1], points[i], Color(i*0.1, 0, 0)) # draw lines"
+
+[sub_resource type="GDScript" id=3]
+
+script/source = "extends ColorFrame
+
+func _ready():
+	get_node(\"AnimationPlayer\").play(\"fadeOut\")
+	get_node(\"../Player\").set_process_input(false)
+	get_node(\"../GUI\").set_process_input(false)
+
+func _on_AnimationPlayer_finished():
+	get_node(\"../Player\").set_process_input(true)
+	get_node(\"../GUI\").set_process_input(true)
+	hide()"
+
+[sub_resource type="Animation" id=2]
+
+resource/name = "fadeOut"
+length = 5.0
+loop = false
+step = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 3, 5 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:custom_colors/font_color")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 3, 5 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [node name="GameController" type="Node2D"]
 
@@ -55,5 +97,48 @@ lines_skipped = 0
 max_lines_visible = -1
 
 [node name="GUI" parent="." instance=ExtResource( 4 )]
+
+[node name="ColorFrame" type="ColorFrame" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1922.0
+margin/bottom = 1086.0
+color = Color( 0, 0, 0, 0 )
+script/script = SubResource( 3 )
+
+[node name="Label" type="Label" parent="ColorFrame"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 110.0
+margin/top = 501.0
+margin/right = 1838.0
+margin/bottom = 796.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 0 )
+text = "Chapitre 1: Et si je paie d'avance?"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorFrame"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/fadeOut = SubResource( 2 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[connection signal="finished" from="ColorFrame/AnimationPlayer" to="ColorFrame" method="_on_AnimationPlayer_finished"]
 
 

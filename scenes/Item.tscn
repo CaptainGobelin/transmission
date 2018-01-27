@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/feuille.png" type="Texture" id=1]
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=1]
 
 script/source = "export(String) var item_name
 
@@ -17,7 +17,7 @@ func possess():
 			show()
 			return"
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
@@ -27,7 +27,7 @@ extents = Vector2( 10, 10 )
 transform/pos = Vector2( 3.10573, -4.14764 )
 transform/scale = Vector2( 0.222184, 0.242719 )
 texture = ExtResource( 1 )
-script/script = SubResource( 2 )
+script/script = SubResource( 1 )
 item_name = null
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -35,7 +35,7 @@ item_name = null
 transform/pos = Vector2( 39.5144, -38.6876 )
 transform/scale = Vector2( 2.23483, 2.20899 )
 input/pickable = true
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 6.67137, 0, 0, 6.6298, -12.3167, 4.07838 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -47,7 +47,7 @@ angular_damp = 1.0
 
 transform/pos = Vector2( -12.3167, 4.07838 )
 transform/scale = Vector2( 6.67137, 6.6298 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 
