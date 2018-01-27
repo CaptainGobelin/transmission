@@ -176,7 +176,7 @@ json_path = "res://texts/Computer_0.json"
 
 [node name="ColorFrame" type="ColorFrame" parent="."]
 
-focus/ignore_mouse = false
+focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
@@ -208,7 +208,6 @@ centered = false
 
 [node name="Screen" type="Sprite" parent="."]
 
-visibility/visible = false
 transform/pos = Vector2( 887.038, 478.432 )
 transform/scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )
@@ -227,7 +226,6 @@ custom_styles/panel = SubResource( 3 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
-visibility/visible = false
 transform/pos = Vector2( 880.384, 409.792 )
 transform/scale = Vector2( 8.52359, 6.69559 )
 input/pickable = true
