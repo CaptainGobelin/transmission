@@ -10,6 +10,8 @@ var is_cursor_on = false
 var dialogue = null
 var next_dialogue = 0
 var take_used = false
+var first_try = true
+export(bool) var can_take
 
 func _ready():
 	gui_label = get_node("../../../Label")
@@ -44,9 +46,14 @@ func cut_dialogue():
 func _input(event):
 	if (is_cursor_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_LEFT):
 		player.go_to(get_node("goToPoint").get_global_pos(), self, false)
+		first_try = false
 	else:
 		if (is_cursor_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_RIGHT):
-			player.go_to(get_node("goToPoint").get_global_pos(), self, true)
+			if (first_try or not can_take):
+				player.go_to(get_node("goToPoint").get_global_pos(), self, false)
+				first_try = false
+			else:
+				player.go_to(get_node("goToPoint").get_global_pos(), self, true)
 
 func on_mouse_enter_object(object_name):
 	gui_label.text = object_name

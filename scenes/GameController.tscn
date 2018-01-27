@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=1]
 
-[ext_resource path="res://levels/level00/Level00.tscn" type="PackedScene" id=1]
+[ext_resource path="res://levels/chap1/Chap1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/fonts/font_examine.fnt" type="BitmapFont" id=3]
 [ext_resource path="res://scenes/GUI.tscn" type="PackedScene" id=4]
@@ -24,19 +24,19 @@ func _draw():
 
 [node name="GameController" type="Node2D"]
 
+[node name="Chap1" parent="." instance=ExtResource( 1 )]
+
+min_scale = 1.0
+max_scale = 1.5
+
 [node name="DebugNode" type="Node2D" parent="."]
 
 script/script = SubResource( 1 )
 
-[node name="Level00" parent="." instance=ExtResource( 1 )]
-
-min_scale = 0.01
-max_scale = 1.0
-
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 1200.29, 1067.07 )
-terrain_path = NodePath("../Level00")
+transform/pos = Vector2( 1297.99, 1001.18 )
+terrain_path = NodePath("../Chap1")
 debug_path = NodePath("../DebugNode")
 
 [node name="Label" type="Label" parent="."]
