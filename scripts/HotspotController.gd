@@ -28,7 +28,6 @@ func _ready():
 	connect("mouse_exit", self, "on_mouse_exit_object")
 	timer.connect("timeout", self, "play_dialogue")
 	set_process_input(true)
-	set_process_input(true)
 
 func play_dialogue(n=next_dialogue, texts=null):
 	label.text = ""
@@ -53,11 +52,15 @@ func _input(event):
 		first_try = false
 	else:
 		if (is_cursor_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_RIGHT):
-			if (first_try or not can_take):
-				player.go_to(get_node("goToPoint").get_global_pos(), self, false)
-				first_try = false
+			if (ui_path != null):
+				is_cursor_on = false
+				open_ui()
 			else:
-				player.go_to(get_node("goToPoint").get_global_pos(), self, true)
+				if (first_try or not can_take):
+					player.go_to(get_node("goToPoint").get_global_pos(), self, false)
+					first_try = false
+				else:
+					player.go_to(get_node("goToPoint").get_global_pos(), self, true)
 
 func on_mouse_enter_object(object_name):
 	gui_label.text = object_name
