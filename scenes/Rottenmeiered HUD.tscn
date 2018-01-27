@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://assets/Rottenmeierlogo hud.png" type="Texture" id=1]
+
+[node name="RottenMeiered HUD" type="Node2D"]
+
+transform/pos = Vector2( 1600, 100 )
+
+[node name="RMconnected" type="Sprite" parent="."]
+
+texture = ExtResource( 1 )
+centered = false
+
+
