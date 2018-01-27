@@ -315,17 +315,10 @@ margin/left = 638.0
 margin/top = 212.0
 margin/right = 1134.0
 margin/bottom = 800.0
-<<<<<<< HEAD
-custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-flat = false
-button/count = 0
-=======
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_selected = Color( 1, 1, 1, 1 )
 flat = true
 button/count = 4
->>>>>>> nl
 button/min_button_size = -1.0
 button/align = 0
 button/0/text = "gfdggdgfd"
