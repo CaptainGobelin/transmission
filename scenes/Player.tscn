@@ -163,7 +163,7 @@ transform/pos = Vector2( 6.03516, -179.017 )
 texture = ExtResource( 1 )
 vframes = 3
 hframes = 3
-frame = 6
+frame = 1
 
 [node name="Walk" type="AnimationPlayer" parent="KinematicBody2D"]
 
