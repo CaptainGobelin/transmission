@@ -2,14 +2,14 @@
 
 [ext_resource path="res://assets/ruelle_v1.png" type="Texture" id=1]
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=1]
 
 script/source = "extends Node2D
 
 export(float) var min_scale
 export(float) var max_scale"
 
-[sub_resource type="NavigationPolygon" id=1]
+[sub_resource type="NavigationPolygon" id=2]
 
 vertices = Vector2Array( 1961.49, 1103.37, -58.1109, 1106.16, -16.2682, 1016.89, 750.847, 1011.31, 845.69, 924.839, 1925.23, 927.628 )
 polygons = [ IntArray( 0, 1, 2, 3 ), IntArray( 0, 3, 4, 5 ) ]
@@ -18,9 +18,9 @@ outlines = [ Vector2Array( 1961.49, 1103.37, -58.1109, 1106.16, -16.2682, 1016.8
 [node name="Chap3" type="Node2D"]
 
 z/z = -1
-script/script = SubResource( 2 )
-min_scale = 0.1
-max_scale = 1.6
+script/script = SubResource( 1 )
+min_scale = 0.6
+max_scale = 1.4
 
 [node name="Sprite" type="Sprite" parent="."]
 
@@ -31,7 +31,7 @@ centered = false
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
 
-navpoly = SubResource( 1 )
+navpoly = SubResource( 2 )
 enabled = true
 
 

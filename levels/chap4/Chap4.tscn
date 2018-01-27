@@ -1,20 +1,18 @@
-[gd_scene load_steps=25 format=1]
+[gd_scene load_steps=22 format=1]
 
-[ext_resource path="res://scripts/LevelController.gd" type="Script" id=1]
-[ext_resource path="res://assets/bureau1v4.png" type="Texture" id=2]
-[ext_resource path="res://scenes/Computer.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/Doorunlock.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/newspaper.png" type="Texture" id=5]
-[ext_resource path="res://assets/fonts/font_examine.fnt" type="BitmapFont" id=6]
-[ext_resource path="res://assets/close_paper.png" type="Texture" id=7]
-[ext_resource path="res://scripts/HotspotController.gd" type="Script" id=8]
-[ext_resource path="res://scenes/NewspaperController.gd" type="Script" id=9]
+[ext_resource path="res://assets/bureau1v4.png" type="Texture" id=1]
+[ext_resource path="res://assets/newspaper.png" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/font_examine.fnt" type="BitmapFont" id=3]
+[ext_resource path="res://assets/close_paper.png" type="Texture" id=4]
+[ext_resource path="res://scripts/HotspotController.gd" type="Script" id=5]
+[ext_resource path="res://scenes/NewspaperController.gd" type="Script" id=6]
 
-[sub_resource type="NavigationPolygon" id=1]
+[sub_resource type="GDScript" id=1]
 
-vertices = Vector2Array( 1444.77, 943.73, 1423.67, 883.436, 1508.14, 886.997, 1608.11, 955.159, 1742.16, 1057.4, 423.932, 878.302, 576.547, 886.451, 538.713, 969.627, 122.665, 1048.46, 679.046, 975.384, 1286.5, 990.458 )
-polygons = [ IntArray( 0, 1, 2, 3, 4 ), IntArray( 5, 6, 7, 8 ), IntArray( 4, 8, 7, 9 ), IntArray( 4, 9, 10 ), IntArray( 4, 10, 0 ) ]
-outlines = [ Vector2Array( 1742.16, 1057.4, 1608.11, 955.159, 1508.14, 886.997, 1423.67, 883.436, 1444.77, 943.73, 1286.5, 990.458, 679.046, 975.384, 538.713, 969.627, 576.547, 886.451, 423.932, 878.302, 122.665, 1048.46 ) ]
+script/source = "extends Node2D
+
+export(float) var min_scale
+export(float) var max_scale"
 
 [sub_resource type="GDScript" id=14]
 
@@ -28,24 +26,28 @@ func _on_Area2D_mouse_exit():
 	is_cursor_on = false
 "
 
-[sub_resource type="CircleShape2D" id=15]
+[sub_resource type="GDScript" id=17]
 
-custom_solver_bias = 0.0
-radius = 10.0
+script/source = "extends LinkButton
 
-[sub_resource type="GDScript" id=16]
+onready var UI = get_node(\"..\")
+onready var player = get_node(\"../../../Player\")
 
-script/source = "func _on_newspaper1_hide():
-	set_process_input(false)
+func _ready():
+	self.connect(\"pressed\", self, \"close\")
 
-func _on_newspaper1_draw():
-	set_process_input(true)
 
-func _input(event):
-	if (event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_LEFT):
-		get_node(\"../\").hide()"
+func close():
+	UI.hide()
+	player.set_process_input(true)"
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="NavigationPolygon" id=2]
+
+vertices = Vector2Array( 423.932, 878.302, 576.547, 886.451, 525.517, 966.748, 122.665, 1048.46, 1444.77, 943.73, 1423.67, 883.436, 1508.14, 886.997, 1608.11, 955.159, 1742.16, 1057.4, 679.046, 975.384, 1286.5, 990.458 )
+polygons = [ IntArray( 0, 1, 2, 3 ), IntArray( 4, 5, 6, 7, 8 ), IntArray( 8, 3, 2, 9 ), IntArray( 8, 9, 10 ), IntArray( 8, 10, 4 ) ]
+outlines = [ Vector2Array( 1742.16, 1057.4, 1608.11, 955.159, 1508.14, 886.997, 1423.67, 883.436, 1444.77, 943.73, 1286.5, 990.458, 679.046, 975.384, 525.517, 966.748, 576.547, 886.451, 423.932, 878.302, 122.665, 1048.46 ) ]
+
+[sub_resource type="GDScript" id=3]
 
 script/source = "func _on_DoorunlockRM_draw():
 	hide()
@@ -62,112 +64,89 @@ func _on_newspaper1_hide():
 	get_node(\"../../Player\").set_process_input(true)
 	show()"
 
-[sub_resource type="ConvexPolygonShape2D" id=6]
+[sub_resource type="ConvexPolygonShape2D" id=4]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1737.62, 317.14, 1755.25, 382.596, 1752.73, 1011.98, 1664.62, 956.593, 1664.62, 541.201, 1669.65, 415.324, 1679.72, 334.763 )
 
-[sub_resource type="ConvexPolygonShape2D" id=7]
+[sub_resource type="ConvexPolygonShape2D" id=5]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 195.021, 950.27, 58.0295, 1008.49, 58.0295, 871.5, 201.871, 823.553 )
 
-[sub_resource type="ConvexPolygonShape2D" id=8]
+[sub_resource type="ConvexPolygonShape2D" id=6]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1438.22, 501.623, 1277.25, 501.623, 1277.25, 350.933, 1431.37, 347.508 )
 
-[sub_resource type="ConvexPolygonShape2D" id=9]
+[sub_resource type="ConvexPolygonShape2D" id=7]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 486.128, 354.357, 643.668, 350.933, 643.668, 511.898, 486.128, 511.898 )
 
-[sub_resource type="ConvexPolygonShape2D" id=10]
+[sub_resource type="ConvexPolygonShape2D" id=8]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 866.8, 664.096, 817.587, 664.096, 821.688, 608.731, 868.872, 610.018 )
 
-[sub_resource type="ConvexPolygonShape2D" id=11]
+[sub_resource type="ConvexPolygonShape2D" id=9]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1001.02, 435.27, 1001.84, 613.647, 868.872, 610.018, 719.161, 442.637 )
 
-[sub_resource type="ConvexPolygonShape2D" id=12]
+[sub_resource type="ConvexPolygonShape2D" id=10]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 719.161, 442.637, 868.872, 610.018, 821.688, 608.731 )
 
-[sub_resource type="ConvexPolygonShape2D" id=13]
+[sub_resource type="ConvexPolygonShape2D" id=11]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 721.211, 608.731, 719.161, 442.637, 821.688, 608.731 )
 
-[sub_resource type="ConvexPolygonShape2D" id=17]
+[sub_resource type="ConvexPolygonShape2D" id=12]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 620.735, 742.016, 699.633, 782.495, 673.07, 934.287, 569.471, 924.515, 561.269, 793.28 )
 
-[sub_resource type="ConvexPolygonShape2D" id=18]
+[sub_resource type="ConvexPolygonShape2D" id=13]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 195.021, 347.508, 297.765, 374.906, 308.039, 689.986, 195.021, 720.809 )
 
-[node name="Chap1" type="Node2D"]
+[node name="Chap4" type="Node2D"]
 
-script/script = ExtResource( 1 )
+z/z = -1
+script/script = SubResource( 1 )
 min_scale = 0.3
 max_scale = 0.5
 
 [node name="Sprite" type="Sprite" parent="."]
 
 transform/pos = Vector2( -0.0411377, -4.12289 )
-texture = ExtResource( 2 )
+texture = ExtResource( 1 )
 centered = false
-
-[node name="Navigation2D" type="Navigation2D" parent="."]
-
-editor/display_folded = true
-
-[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
-
-navpoly = SubResource( 1 )
-enabled = true
-
-[node name="Computer" parent="." instance=ExtResource( 3 )]
-
-visibility/visible = false
-z/z = 100
-z/relative = false
-
-[node name="DoorunlockRM" parent="." instance=ExtResource( 4 )]
-
-visibility/visible = false
-z/z = 1000
-z/relative = false
 
 [node name="newspaper1" type="Sprite" parent="."]
 
-editor/display_folded = true
 visibility/visible = false
 transform/pos = Vector2( 1212.69, 555.802 )
 transform/scale = Vector2( 1.35287, 1.41752 )
-z/z = 1000
-z/relative = false
-texture = ExtResource( 5 )
+z/z = 100
+texture = ExtResource( 2 )
 script/script = SubResource( 14 )
 
 [node name="ColorFrame" type="ColorFrame" parent="newspaper1"]
 
-visibility/behind_parent = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = -1223.0
-margin/top = -457.0
-margin/right = 698.0
-margin/bottom = 628.0
-color = Color( 0, 0, 0, 0.863373 )
+margin/left = -895.0
+margin/top = -391.0
+margin/right = 1030.0
+margin/bottom = 687.0
+color = Color( 0, 0, 0, 0.475412 )
 
 [node name="Label" type="Label" parent="newspaper1"]
 
@@ -179,55 +158,60 @@ margin/left = -695.0
 margin/top = -318.0
 margin/right = -230.0
 margin/bottom = 303.0
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 3 )
 align = 1
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Sprite" type="Sprite" parent="newspaper1"]
+[node name="LinkButton" type="LinkButton" parent="newspaper1"]
 
-transform/pos = Vector2( -778.723, -285.664 )
-transform/scale = Vector2( 0.537995, 0.537995 )
-texture = ExtResource( 7 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -889.0
+margin/top = -385.0
+margin/right = -772.0
+margin/bottom = -272.0
+toggle_mode = false
+enabled_focus_mode = 0
+shortcut = null
+script/script = SubResource( 17 )
 
-[node name="Area2D" type="Area2D" parent="newspaper1"]
+[node name="Sprite" type="Sprite" parent="newspaper1/LinkButton"]
 
-input/pickable = true
-shapes/0/shape = SubResource( 15 )
-shapes/0/transform = Matrix32( 7.49208, 0, 0, 6.78303, -779.596, -288.358 )
-shapes/0/trigger = false
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-script/script = SubResource( 16 )
+visibility/behind_parent = true
+transform/pos = Vector2( -9.05991e-05, -3.2867 )
+transform/scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+centered = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="newspaper1/Area2D"]
+[node name="Navigation2D" type="Navigation2D" parent="."]
 
-transform/pos = Vector2( -779.596, -288.358 )
-transform/scale = Vector2( 7.49208, 6.78303 )
-shape = SubResource( 15 )
-trigger = false
-_update_shape_index = 0
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+
+navpoly = SubResource( 2 )
+enabled = true
 
 [node name="Hotspots" type="Node2D" parent="."]
 
-script/script = SubResource( 5 )
+z/z = 5
+script/script = SubResource( 3 )
 
 [node name="door" type="Area2D" parent="Hotspots"]
 
 input/pickable = true
-shapes/0/shape = SubResource( 6 )
+shapes/0/shape = SubResource( 4 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
-json_path = "res://texts/ch1_door01.json"
+script/script = ExtResource( 5 )
+json_path = "res://texts/ch4_door01.json"
 ui_path = NodePath("../../DoorunlockRM")
 can_take = true
 
@@ -257,7 +241,7 @@ margin/left = 1120.0
 margin/top = 346.0
 margin/right = 1773.0
 margin/bottom = 413.0
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 3 )
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -272,17 +256,16 @@ autostart = false
 
 [node name="grid" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 7 )
+shapes/0/shape = SubResource( 5 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
-json_path = "res://texts/ch1_grid01.json"
+script/script = ExtResource( 5 )
+json_path = "res://texts/ch4_grid01.json"
 ui_path = null
 can_take = null
 
@@ -312,7 +295,7 @@ margin/left = 69.0
 margin/top = 308.0
 margin/right = 722.0
 margin/bottom = 375.0
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 3 )
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -329,15 +312,15 @@ autostart = false
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 8 )
+shapes/0/shape = SubResource( 6 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
-json_path = "res://texts/ch1_firstaid01.json"
+script/script = ExtResource( 5 )
+json_path = "res://texts/ch4_firstaid01.json"
 ui_path = null
 can_take = null
 
@@ -367,7 +350,7 @@ margin/left = 986.0
 margin/top = 220.0
 margin/right = 1639.0
 margin/bottom = 287.0
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 3 )
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -384,15 +367,15 @@ autostart = false
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 9 )
+shapes/0/shape = SubResource( 7 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
-json_path = "res://texts/ch1_safe01.json"
+script/script = ExtResource( 5 )
+json_path = "res://texts/ch4_safe01.json"
 ui_path = null
 can_take = null
 
@@ -422,7 +405,7 @@ margin/left = 255.0
 margin/top = 267.0
 margin/right = 908.0
 margin/bottom = 334.0
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 3 )
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -439,24 +422,24 @@ autostart = false
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 10 )
+shapes/0/shape = SubResource( 8 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 11 )
+shapes/1/shape = SubResource( 9 )
 shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/1/trigger = false
-shapes/2/shape = SubResource( 12 )
+shapes/2/shape = SubResource( 10 )
 shapes/2/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/2/trigger = false
-shapes/3/shape = SubResource( 13 )
+shapes/3/shape = SubResource( 11 )
 shapes/3/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/3/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
-json_path = "res://texts/ch1_computer01.json"
+script/script = ExtResource( 5 )
+json_path = "res://texts/ch4_computer01.json"
 ui_path = NodePath("../../Computer")
 can_take = null
 
@@ -486,7 +469,7 @@ margin/left = 255.0
 margin/top = 267.0
 margin/right = 908.0
 margin/bottom = 334.0
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 3 )
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -501,17 +484,16 @@ autostart = false
 
 [node name="trashcan" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 17 )
+shapes/0/shape = SubResource( 12 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 9 )
-json_path = "res://texts/ch1_paper1.json"
+script/script = ExtResource( 6 )
+json_path = "res://texts/ch4_paper1.json"
 sprite = NodePath("../../newspaper1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/trashcan"]
@@ -523,7 +505,7 @@ trigger = false
 
 [node name="goToPoint" type="PinJoint2D" parent="Hotspots/trashcan"]
 
-transform/pos = Vector2( 570.929, 974.573 )
+transform/pos = Vector2( 564.113, 971.358 )
 node_a = NodePath("")
 node_b = NodePath("")
 bias/bias = 0.0
@@ -534,15 +516,15 @@ softness = 0.0
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 18 )
+shapes/0/shape = SubResource( 13 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
-json_path = "res://texts/ch1_window01.json"
+script/script = ExtResource( 5 )
+json_path = "res://texts/ch4_window01.json"
 ui_path = null
 can_take = null
 
@@ -572,7 +554,7 @@ margin/left = 128.0
 margin/top = 222.0
 margin/right = 781.0
 margin/bottom = 289.0
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 3 )
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -584,23 +566,5 @@ process_mode = 1
 wait_time = 2.0
 one_shot = true
 autostart = false
-
-[connection signal="draw" from="DoorunlockRM" to="Hotspots" method="_on_DoorunlockRM_draw"]
-
-[connection signal="hide" from="DoorunlockRM" to="Hotspots" method="_on_DoorunlockRM_hide"]
-
-[connection signal="draw" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_draw"]
-
-[connection signal="draw" from="newspaper1" to="Hotspots" method="_on_newspaper1_draw"]
-
-[connection signal="hide" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_hide"]
-
-[connection signal="hide" from="newspaper1" to="Hotspots" method="_on_newspaper1_hide"]
-
-[connection signal="input_event" from="newspaper1/Area2D" to="newspaper1" method="_on_Area2D_input_event"]
-
-[connection signal="mouse_enter" from="newspaper1/Area2D" to="newspaper1" method="_on_Area2D_mouse_enter"]
-
-[connection signal="mouse_exit" from="newspaper1/Area2D" to="newspaper1" method="_on_Area2D_mouse_exit"]
 
 
