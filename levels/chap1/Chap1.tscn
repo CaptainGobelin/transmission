@@ -565,13 +565,13 @@ autostart = false
 
 [connection signal="hide" from="DoorunlockRM" to="Hotspots" method="_on_DoorunlockRM_hide"]
 
-[connection signal="draw" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_draw"]
-
 [connection signal="draw" from="newspaper1" to="Hotspots" method="_on_newspaper1_draw"]
 
-[connection signal="hide" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_hide"]
+[connection signal="draw" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_draw"]
 
 [connection signal="hide" from="newspaper1" to="Hotspots" method="_on_newspaper1_hide"]
+
+[connection signal="hide" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_hide"]
 
 [connection signal="input_event" from="newspaper1/Area2D" to="newspaper1" method="_on_Area2D_input_event"]
 

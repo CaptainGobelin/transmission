@@ -83,7 +83,7 @@ debug_path = NodePath("../DebugNode")
 
 [node name="Stanley" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 1513.76, 976.064 )
+transform/pos = Vector2( 1825.93, 1028.93 )
 
 [node name="Label" type="Label" parent="."]
 
@@ -105,6 +105,7 @@ max_lines_visible = -1
 [node name="ColorFrame" type="ColorFrame" parent="."]
 
 editor/display_folded = true
+visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
