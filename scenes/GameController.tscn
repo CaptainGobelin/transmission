@@ -76,27 +76,19 @@ func change_level(next_level_path):
 
     var level_container = get_tree().get_root().get_node(\"GameController/Chap2\")
 
-    # Clear everything under Viewport
     for i in range(level_container.get_child_count()):
         var child = level_container.get_child(i)
         child.queue_free()
 
-    # Load level under viewport
     var next_level_res = load(next_level_path)
     var next_level = next_level_res.instance()
     get_tree().get_root().get_node(\"GameController\").add_child(next_level)
 
 func testing():
 	var player = get_node(\"../Player\")
-	print(player.nav_2d.get_name())
-	print(player.nav_2d.get_path())
 	change_level(\"res://levels/chap3/Chap3.tscn\")
 	player.current_level = get_node(\"../Chap3\")
-	print(player.nav_2d.get_name())
-	print(player.nav_2d.get_path())
 	player.nav_2d = player.current_level.get_node(\"Navigation2D\")
-	print(player.nav_2d.get_name())
-	print(player.nav_2d.get_path())
 	player.update_scale()
 "
 
@@ -112,27 +104,19 @@ func change_level(next_level_path):
 
     var level_container = get_tree().get_root().get_node(\"GameController/Chap1\")
 
-    # Clear everything under Viewport
     for i in range(level_container.get_child_count()):
         var child = level_container.get_child(i)
         child.queue_free()
 
-    # Load level under viewport
     var next_level_res = load(next_level_path)
     var next_level = next_level_res.instance()
     get_tree().get_root().get_node(\"GameController\").add_child(next_level)
 
 func testing():
 	var player = get_node(\"../Player\")
-	print(player.nav_2d.get_name())
-	print(player.nav_2d.get_path())
 	change_level(\"res://levels/chap2/Chap2.tscn\")
 	player.current_level = get_node(\"../Chap2\")
-	print(player.nav_2d.get_name())
-	print(player.nav_2d.get_path())
 	player.nav_2d = player.current_level.get_node(\"Navigation2D\")
-	print(player.nav_2d.get_name())
-	print(player.nav_2d.get_path())
 	player.update_scale()
 "
 
