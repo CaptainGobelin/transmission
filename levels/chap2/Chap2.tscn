@@ -1,0 +1,272 @@
+[gd_scene load_steps=16 format=1]
+
+[ext_resource path="res://scripts/LevelController.gd" type="Script" id=1]
+[ext_resource path="res://assets/chambre_keithv2.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Computer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/newspaper.png" type="Texture" id=4]
+[ext_resource path="res://assets/fonts/font_examine.fnt" type="BitmapFont" id=5]
+[ext_resource path="res://assets/close_paper.png" type="Texture" id=6]
+[ext_resource path="res://scripts/HotspotController.gd" type="Script" id=7]
+[ext_resource path="res://scenes/NewspaperController.gd" type="Script" id=8]
+
+[sub_resource type="NavigationPolygon" id=1]
+
+vertices = Vector2Array( 1910.53, 1059.85, -4.68182, 1057.8, 637.139, 778.926, 753.636, 732.363, 916.013, 742.016, 1086.21, 684.601, 1225.06, 670.993, 1898.22, 807.634 )
+polygons = [ IntArray( 0, 1, 2, 3, 4 ), IntArray( 0, 4, 5, 6, 7 ) ]
+outlines = [ Vector2Array( 1910.53, 1059.85, 1898.22, 807.634, 1225.06, 670.993, 1086.21, 684.601, 916.013, 742.016, 753.636, 732.363, 637.139, 778.926, -4.68182, 1057.8 ) ]
+
+[sub_resource type="GDScript" id=2]
+
+script/source = "var is_cursor_on = false
+
+func _on_Area2D_mouse_enter():
+	is_cursor_on = true
+
+
+func _on_Area2D_mouse_exit():
+	is_cursor_on = false
+"
+
+[sub_resource type="CircleShape2D" id=3]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[sub_resource type="GDScript" id=4]
+
+script/source = "func _on_newspaper1_hide():
+	set_process_input(false)
+
+func _on_newspaper1_draw():
+	set_process_input(true)
+
+func _input(event):
+	if (event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_LEFT):
+		get_node(\"../\").hide()"
+
+[sub_resource type="GDScript" id=5]
+
+script/source = "func _on_DoorunlockRM_draw():
+	hide()
+
+func _on_DoorunlockRM_hide():
+	show()
+
+func _on_newspaper1_draw():
+	get_node(\"../../Player\").set_process_input(false)
+	hide()
+
+
+func _on_newspaper1_hide():
+	get_node(\"../../Player\").set_process_input(true)
+	show()"
+
+[sub_resource type="ConvexPolygonShape2D" id=13]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1580.39, 184.268, 1877.72, 182.217, 1869.52, 338.059, 1572.19, 336.008 )
+
+[sub_resource type="ConvexPolygonShape2D" id=14]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 998.035, 672.298, 1073.91, 686.652, 971.378, 717.41, 866.8, 698.955 )
+
+[node name="Chap2" type="Node2D"]
+
+z/z = -1
+script/script = ExtResource( 1 )
+min_scale = 0.2
+max_scale = 2.7
+
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/pos = Vector2( -0.0411377, -4.12289 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+
+navpoly = SubResource( 1 )
+enabled = true
+
+[node name="Computer" parent="." instance=ExtResource( 3 )]
+
+visibility/visible = false
+z/z = 100
+z/relative = false
+
+[node name="newspaper1" type="Sprite" parent="."]
+
+editor/display_folded = true
+visibility/visible = false
+transform/pos = Vector2( 1212.69, 555.802 )
+transform/scale = Vector2( 1.35287, 1.41752 )
+z/z = 1000
+z/relative = false
+texture = ExtResource( 4 )
+script/script = SubResource( 2 )
+
+[node name="ColorFrame" type="ColorFrame" parent="newspaper1"]
+
+visibility/behind_parent = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -1223.0
+margin/top = -457.0
+margin/right = 698.0
+margin/bottom = 628.0
+color = Color( 0, 0, 0, 0.863373 )
+
+[node name="Label" type="Label" parent="newspaper1"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -695.0
+margin/top = -318.0
+margin/right = -230.0
+margin/bottom = 303.0
+custom_fonts/font = ExtResource( 5 )
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Sprite" type="Sprite" parent="newspaper1"]
+
+transform/pos = Vector2( -778.723, -285.664 )
+transform/scale = Vector2( 0.537995, 0.537995 )
+texture = ExtResource( 6 )
+
+[node name="Area2D" type="Area2D" parent="newspaper1"]
+
+editor/display_folded = true
+input/pickable = true
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 7.49208, 0, 0, 6.78303, -779.596, -288.358 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = SubResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="newspaper1/Area2D"]
+
+transform/pos = Vector2( -779.596, -288.358 )
+transform/scale = Vector2( 7.49208, 6.78303 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Hotspots" type="Node2D" parent="."]
+
+script/script = SubResource( 5 )
+
+[node name="computer" type="Area2D" parent="Hotspots"]
+
+editor/display_folded = true
+input/pickable = true
+shapes/0/shape = SubResource( 13 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 7 )
+json_path = "res://texts/ch1_computer01.json"
+ui_path = NodePath("../../Computer")
+can_take = null
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/computer"]
+
+build_mode = 0
+polygon = Vector2Array( 1580.39, 184.268, 1877.72, 182.217, 1869.52, 338.059, 1572.19, 336.008 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="goToPoint" type="PinJoint2D" parent="Hotspots/computer"]
+
+transform/pos = Vector2( 540.571, 901.554 )
+node_a = NodePath("")
+node_b = NodePath("")
+bias/bias = 0.0
+collision/exclude_nodes = true
+softness = 0.0
+
+[node name="Label" type="Label" parent="Hotspots/computer"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 255.0
+margin/top = 267.0
+margin/right = 908.0
+margin/bottom = 334.0
+custom_fonts/font = ExtResource( 5 )
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Timer" type="Timer" parent="Hotspots/computer"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
+[node name="trashcan" type="Area2D" parent="Hotspots"]
+
+editor/display_folded = true
+input/pickable = true
+shapes/0/shape = SubResource( 14 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 8 )
+json_path = "res://texts/ch1_paper1.json"
+sprite = NodePath("../../newspaper1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/trashcan"]
+
+build_mode = 0
+polygon = Vector2Array( 998.035, 672.298, 1073.91, 686.652, 971.378, 717.41, 866.8, 698.955 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="goToPoint" type="PinJoint2D" parent="Hotspots/trashcan"]
+
+transform/pos = Vector2( 570.929, 962.27 )
+node_a = NodePath("")
+node_b = NodePath("")
+bias/bias = 0.0
+collision/exclude_nodes = true
+softness = 0.0
+
+[connection signal="draw" from="newspaper1" to="Hotspots" method="_on_newspaper1_draw"]
+
+[connection signal="draw" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_draw"]
+
+[connection signal="hide" from="newspaper1" to="Hotspots" method="_on_newspaper1_hide"]
+
+[connection signal="hide" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_hide"]
+
+[connection signal="input_event" from="newspaper1/Area2D" to="newspaper1" method="_on_Area2D_input_event"]
+
+[connection signal="mouse_enter" from="newspaper1/Area2D" to="newspaper1" method="_on_Area2D_mouse_enter"]
+
+[connection signal="mouse_exit" from="newspaper1/Area2D" to="newspaper1" method="_on_Area2D_mouse_exit"]
+
+
