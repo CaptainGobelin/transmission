@@ -1,0 +1,7 @@
+{
+	"name": "Un nuage",
+	"examine": ["Whoa !", "C'est un nuage", "Qu'il est blanc et duveteux !"],
+	"take": ["Je prends ce nuage dans ma poche.", "C'est tout doux"],
+	"take_used": ["Je vais en laisser pour les autres"],
+	"contains": ["nuage"]
+}

@@ -1,4 +1,7 @@
 {
 	"name": "Un arbre",
-	"examine": ["C'est un arbre classique", "Avec des feuilles et tout et tout", "Un arbre quoi"]
+	"examine": ["C'est un arbre classique", "Avec des feuilles et tout et tout", "Un arbre quoi"],
+	"take": ["C'est une feuille !", "Ramassons la !"],
+	"take_used": ["J'ai déjà toutes les feuilles", "dont j'ai besoin !"],
+	"contains": ["feuille"]
 }

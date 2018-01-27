@@ -7,7 +7,9 @@ onready var timer = get_node("Timer")
 var data = {}
 var gui_label
 var is_cursor_on = false
+var dialogue = null
 var next_dialogue = 0
+var take_used = false
 
 func _ready():
 	gui_label = get_node("../../../Label")
@@ -20,11 +22,14 @@ func _ready():
 	connect("mouse_exit", self, "on_mouse_exit_object")
 	timer.connect("timeout", self, "play_dialogue")
 	set_process_input(true)
+	set_process_input(true)
 
-func play_dialogue(n=next_dialogue):
+func play_dialogue(n=next_dialogue, texts=null):
 	label.text = ""
-	if (n < data.examine.size()):
-		label.text = data.examine[n]
+	if (texts != null):
+		dialogue = texts
+	if (n < dialogue.size()):
+		label.text = dialogue[n]
 		next_dialogue = n + 1
 		timer.set_wait_time(1.5)
 		timer.start()
@@ -38,7 +43,10 @@ func cut_dialogue():
 
 func _input(event):
 	if (is_cursor_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_LEFT):
-		player.go_to(get_node("goToPoint").get_global_pos(), self)
+		player.go_to(get_node("goToPoint").get_global_pos(), self, false)
+	else:
+		if (is_cursor_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_RIGHT):
+			player.go_to(get_node("goToPoint").get_global_pos(), self, true)
 
 func on_mouse_enter_object(object_name):
 	gui_label.text = object_name
