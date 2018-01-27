@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://scripts/LevelController.gd" type="Script" id=1]
 [ext_resource path="res://assets/bureau1.png" type="Texture" id=2]
 [ext_resource path="res://scripts/HotspotController.gd" type="Script" id=3]
 [ext_resource path="res://assets/fonts/font_examine.fnt" type="BitmapFont" id=4]
+[ext_resource path="res://scenes/Doorunlock.tscn" type="PackedScene" id=5]
 
 [sub_resource type="NavigationPolygon" id=1]
 
@@ -70,6 +71,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 3 )
 json_path = "res://texts/ch1_door01.json"
+ui_path = NodePath("../../DoorunlockRM")
 can_take = null
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/door"]
@@ -124,6 +126,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 3 )
 json_path = "res://texts/ch1_grid01.json"
+ui_path = null
 can_take = null
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/grid"]
@@ -178,6 +181,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 3 )
 json_path = "res://texts/ch1_firstaid01.json"
+ui_path = null
 can_take = null
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/firstaid"]
@@ -232,6 +236,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 3 )
 json_path = "res://texts/ch1_safe01.json"
+ui_path = null
 can_take = null
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/safe"]
@@ -285,6 +290,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 3 )
 json_path = "res://texts/ch1_window01.json"
+ui_path = null
 can_take = null
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/window"]
@@ -325,5 +331,9 @@ process_mode = 1
 wait_time = 2.0
 one_shot = true
 autostart = false
+
+[node name="DoorunlockRM" parent="." instance=ExtResource( 5 )]
+
+visibility/visible = false
 
 
