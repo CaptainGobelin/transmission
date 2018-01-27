@@ -26,6 +26,8 @@ func _ready():
 	debug_node = get_node(debug_path)
 	current_level = get_node(terrain_path)
 	nav_2d = current_level.get_node(\"Navigation2D\")
+	print(nav_2d.get_name())
+	print(nav_2d.get_path())
 	update_scale()
 	set_process_input(true)
 	set_fixed_process(true)
@@ -96,7 +98,7 @@ func update_scale():
 	set_scale(Vector2(maxS,maxS).linear_interpolate(Vector2(minS,minS), z))
 	#print(z_ratio)"
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 
 resource/name = "stand"
 length = 1.0
@@ -163,9 +165,8 @@ tracks/5/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 
-resource/name = "walkL"
 length = 0.91
 loop = true
 step = 0.13
@@ -230,7 +231,7 @@ tracks/5/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 0 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 
 length = 0.91
 loop = true
@@ -309,9 +310,9 @@ texture = ExtResource( 1 )
 playback/process_mode = 0
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/stand = SubResource( 4 )
-anims/walkL = SubResource( 2 )
-anims/walkR = SubResource( 3 )
+anims/stand = SubResource( 2 )
+anims/walkL = SubResource( 3 )
+anims/walkR = SubResource( 4 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]

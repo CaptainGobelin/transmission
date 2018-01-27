@@ -136,7 +136,7 @@ func show_next_text_page():
 		reset()
 "
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=2]
 
 script/source = "extends LinkButton
 
@@ -151,7 +151,7 @@ func close():
 	UI.hide()
 	player.set_process_input(true)"
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=3]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -164,7 +164,7 @@ border_size = 0
 border_blend = true
 draw_bg = true
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
 extents = Vector2( 8.06276, 7.64236 )
@@ -199,7 +199,7 @@ margin/bottom = 294.0
 toggle_mode = false
 enabled_focus_mode = 0
 shortcut = null
-script/script = SubResource( 4 )
+script/script = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="LinkButton"]
 
@@ -223,7 +223,7 @@ margin/left = 589.0
 margin/top = 186.0
 margin/right = 1168.0
 margin/bottom = 620.0
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 3 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -231,7 +231,7 @@ visibility/visible = false
 transform/pos = Vector2( 880.384, 409.792 )
 transform/scale = Vector2( 8.52359, 6.69559 )
 input/pickable = true
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 4 )
 shapes/0/transform = Matrix32( 4.2, 0, 0, 4.2, -0.44519, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -243,7 +243,7 @@ angular_damp = 1.0
 
 transform/pos = Vector2( -0.44519, 0 )
 transform/scale = Vector2( 4.2, 4.2 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 trigger = false
 _update_shape_index = 0
 
@@ -315,8 +315,8 @@ margin/left = 638.0
 margin/top = 212.0
 margin/right = 1134.0
 margin/bottom = 800.0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_selected = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 flat = true
 button/count = 4
 button/min_button_size = -1.0
