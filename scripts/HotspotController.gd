@@ -4,6 +4,8 @@ export(String,FILE) var json_path
 onready var player = get_node("../../../Player")
 onready var label = get_node("Label")
 onready var timer = get_node("Timer")
+export(NodePath) var ui_path
+var ui
 var data = {}
 var gui_label
 var is_cursor_on = false
@@ -14,6 +16,8 @@ var first_try = true
 export(bool) var can_take
 
 func _ready():
+	if ui_path:
+		ui = get_node(ui_path)
 	gui_label = get_node("../../../Label")
 	var file = File.new()
 	file.open(json_path, File.READ)
@@ -62,3 +66,8 @@ func on_mouse_enter_object(object_name):
 func on_mouse_exit_object():
 	gui_label.text = ""
 	is_cursor_on = false
+
+func open_ui():
+	if ui:
+		ui.show()
+		player.set_process_input(false)
