@@ -82,17 +82,17 @@ points = Vector2Array( 1438.22, 501.623, 1277.25, 501.623, 1277.25, 350.933, 143
 custom_solver_bias = 0.0
 points = Vector2Array( 486.128, 354.357, 643.668, 350.933, 643.668, 511.898, 486.128, 511.898 )
 
-[sub_resource type="ConvexPolygonShape2D" id=12]
+[sub_resource type="ConvexPolygonShape2D" id=10]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 734.68, 442.6, 1001.02, 435.27, 1001.84, 613.647, 736.309, 611.203 )
 
-[sub_resource type="ConvexPolygonShape2D" id=10]
+[sub_resource type="ConvexPolygonShape2D" id=11]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 585.79, 774.906, 699.633, 782.495, 673.07, 934.287, 604.764, 926.697 )
 
-[sub_resource type="ConvexPolygonShape2D" id=11]
+[sub_resource type="ConvexPolygonShape2D" id=12]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 195.021, 347.508, 297.765, 374.906, 308.039, 689.986, 195.021, 720.809 )
@@ -424,7 +424,7 @@ autostart = false
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 12 )
+shapes/0/shape = SubResource( 10 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -479,7 +479,7 @@ autostart = false
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 10 )
+shapes/0/shape = SubResource( 11 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -510,7 +510,7 @@ softness = 0.0
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 11 )
+shapes/0/shape = SubResource( 12 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -565,13 +565,13 @@ autostart = false
 
 [connection signal="hide" from="DoorunlockRM" to="Hotspots" method="_on_DoorunlockRM_hide"]
 
-[connection signal="draw" from="newspaper1" to="Hotspots" method="_on_newspaper1_draw"]
-
 [connection signal="draw" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_draw"]
 
-[connection signal="hide" from="newspaper1" to="Hotspots" method="_on_newspaper1_hide"]
+[connection signal="draw" from="newspaper1" to="Hotspots" method="_on_newspaper1_draw"]
 
 [connection signal="hide" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_hide"]
+
+[connection signal="hide" from="newspaper1" to="Hotspots" method="_on_newspaper1_hide"]
 
 [connection signal="input_event" from="newspaper1/Area2D" to="newspaper1" method="_on_Area2D_input_event"]
 
