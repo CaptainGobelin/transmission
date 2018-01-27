@@ -70,7 +70,9 @@ func on_mouse_exit_object():
 	gui_label.text = ""
 	is_cursor_on = false
 
-func open_ui():
+func open_ui(node = "", function = ""):
 	if ui:
+		ui.termnode = node
+		ui.termfunction = function
 		ui.show()
 		player.set_process_input(false)

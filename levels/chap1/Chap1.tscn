@@ -12,7 +12,7 @@ vertices = Vector2Array( 1444.77, 943.73, 1423.67, 883.436, 1508.14, 886.997, 16
 polygons = [ IntArray( 0, 1, 2, 3, 4 ), IntArray( 5, 6, 7, 8 ), IntArray( 8, 7, 9 ), IntArray( 4, 8, 9, 10 ), IntArray( 4, 10, 0 ) ]
 outlines = [ Vector2Array( 1742.16, 1057.4, 1608.11, 955.159, 1508.14, 886.997, 1423.67, 883.436, 1444.77, 943.73, 1286.5, 990.458, 679.046, 975.384, 596.142, 937.701, 576.547, 886.451, 423.932, 878.302, 122.665, 1048.46 ) ]
 
-[sub_resource type="GDScript" id=7]
+[sub_resource type="GDScript" id=2]
 
 script/source = "func _on_DoorunlockRM_draw():
 	hide()
@@ -20,27 +20,27 @@ script/source = "func _on_DoorunlockRM_draw():
 func _on_DoorunlockRM_hide():
 	show()"
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
+[sub_resource type="ConvexPolygonShape2D" id=3]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1737.62, 317.14, 1755.25, 382.596, 1752.73, 1011.98, 1664.62, 956.593, 1664.62, 541.201, 1669.65, 415.324, 1679.72, 334.763 )
 
-[sub_resource type="ConvexPolygonShape2D" id=3]
+[sub_resource type="ConvexPolygonShape2D" id=4]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 195.021, 950.27, 58.0295, 1008.49, 58.0295, 871.5, 201.871, 823.553 )
 
-[sub_resource type="ConvexPolygonShape2D" id=4]
+[sub_resource type="ConvexPolygonShape2D" id=5]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1438.22, 501.623, 1277.25, 501.623, 1277.25, 350.933, 1431.37, 347.508 )
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
+[sub_resource type="ConvexPolygonShape2D" id=6]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 486.128, 354.357, 643.668, 350.933, 643.668, 511.898, 486.128, 511.898 )
 
-[sub_resource type="ConvexPolygonShape2D" id=6]
+[sub_resource type="ConvexPolygonShape2D" id=7]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 195.021, 347.508, 297.765, 374.906, 308.039, 689.986, 195.021, 720.809 )
@@ -72,14 +72,13 @@ z/relative = false
 
 [node name="Hotspots" type="Node2D" parent="."]
 
-editor/display_folded = true
-script/script = SubResource( 7 )
+script/script = SubResource( 2 )
 
 [node name="door" type="Area2D" parent="Hotspots"]
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 2 )
+shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -134,7 +133,7 @@ autostart = false
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 4 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -189,7 +188,7 @@ autostart = false
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 4 )
+shapes/0/shape = SubResource( 5 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -244,7 +243,7 @@ autostart = false
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 5 )
+shapes/0/shape = SubResource( 6 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -299,7 +298,7 @@ autostart = false
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 6 )
+shapes/0/shape = SubResource( 7 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )

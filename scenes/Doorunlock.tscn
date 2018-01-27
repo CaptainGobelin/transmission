@@ -6,13 +6,19 @@
 [ext_resource path="res://assets/open.png" type="Texture" id=4]
 [ext_resource path="res://scenes/Rottenmeiered HUD.tscn" type="PackedScene" id=5]
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=1]
 
-script/source = "func _on_AnimationPlayer_finished():
+script/source = "var termnode = \"\"
+var termfunction = \"\"
+
+func _on_AnimationPlayer_finished():
 	hide()
+	if (termnode != \"\") and (termfunction != \"\"):
+		var myfunc = funcref(termnode, termfunction)
+		myfunc.call_func()
 "
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id=2]
 
 script/source = "extends LinkButton
 
@@ -26,7 +32,7 @@ func _ready():
 func door_openning():
 	particule.play(\"openning\")"
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=3]
 
 script/source = "extends LinkButton
 
@@ -41,7 +47,7 @@ func close():
 	UI.hide()
 	player.set_process_input(true)"
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 
 length = 5.0
 loop = false
@@ -79,7 +85,7 @@ tracks/2/keys = {
 
 [node name="DoorunlockRM" type="Node2D"]
 
-script/script = SubResource( 4 )
+script/script = SubResource( 1 )
 
 [node name="ColorFrame" type="ColorFrame" parent="."]
 
@@ -133,7 +139,7 @@ margin/bottom = 375.0
 toggle_mode = false
 enabled_focus_mode = 0
 shortcut = null
-script/script = SubResource( 1 )
+script/script = SubResource( 2 )
 path_particule = NodePath("../Signal/AnimationPlayer")
 
 [node name="CloseUI" type="LinkButton" parent="."]
@@ -149,7 +155,7 @@ margin/bottom = 114.0
 toggle_mode = false
 enabled_focus_mode = 0
 shortcut = null
-script/script = SubResource( 2 )
+script/script = SubResource( 3 )
 
 [node name="Signal" type="Particles2D" parent="."]
 
@@ -187,7 +193,7 @@ randomness/final_size = 0.2
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/openning = SubResource( 3 )
+anims/openning = SubResource( 4 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
