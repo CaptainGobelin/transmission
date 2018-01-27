@@ -1,0 +1,7 @@
+{
+	"name": "Ordinateur",
+	"examine": ["Jeu", "Perdu"],
+	"take": ["C'est une feuille !", "Ramassons la !"],
+	"take_used": ["J'ai déjà toutes les feuilles", "dont j'ai besoin !"],
+	"contains": ["feuille"]
+}

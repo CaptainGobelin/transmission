@@ -72,7 +72,8 @@ func on_mouse_exit_object():
 
 func open_ui(node = "", function = ""):
 	if ui:
-		ui.termnode = node
-		ui.termfunction = function
+		if not ui.get("termnode") == null:
+			ui.termnode = node
+			ui.termfunction = function
 		ui.show()
 		player.set_process_input(false)
