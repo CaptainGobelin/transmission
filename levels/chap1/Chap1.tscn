@@ -1,7 +1,7 @@
-[gd_scene load_steps=25 format=1]
+[gd_scene load_steps=22 format=1]
 
 [ext_resource path="res://scripts/LevelController.gd" type="Script" id=1]
-[ext_resource path="res://assets/bureau1v4.png" type="Texture" id=2]
+[ext_resource path="res://assets/bureau1v3.png" type="Texture" id=2]
 [ext_resource path="res://scenes/Computer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Doorunlock.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/newspaper.png" type="Texture" id=5]
@@ -85,29 +85,14 @@ points = Vector2Array( 486.128, 354.357, 643.668, 350.933, 643.668, 511.898, 486
 [sub_resource type="ConvexPolygonShape2D" id=10]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 866.8, 664.096, 817.587, 664.096, 821.688, 608.731, 868.872, 610.018 )
+points = Vector2Array( 734.68, 442.6, 1001.02, 435.27, 1001.84, 613.647, 736.309, 611.203 )
 
 [sub_resource type="ConvexPolygonShape2D" id=11]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 1001.02, 435.27, 1001.84, 613.647, 868.872, 610.018, 719.161, 442.637 )
+points = Vector2Array( 585.79, 774.906, 699.633, 782.495, 673.07, 934.287, 604.764, 926.697 )
 
 [sub_resource type="ConvexPolygonShape2D" id=12]
-
-custom_solver_bias = 0.0
-points = Vector2Array( 719.161, 442.637, 868.872, 610.018, 821.688, 608.731 )
-
-[sub_resource type="ConvexPolygonShape2D" id=13]
-
-custom_solver_bias = 0.0
-points = Vector2Array( 721.211, 608.731, 719.161, 442.637, 821.688, 608.731 )
-
-[sub_resource type="ConvexPolygonShape2D" id=14]
-
-custom_solver_bias = 0.0
-points = Vector2Array( 620.735, 742.016, 699.633, 782.495, 673.07, 934.287, 569.471, 924.515, 561.269, 793.28 )
-
-[sub_resource type="ConvexPolygonShape2D" id=15]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 195.021, 347.508, 297.765, 374.906, 308.039, 689.986, 195.021, 720.809 )
@@ -437,19 +422,11 @@ autostart = false
 
 [node name="computer" type="Area2D" parent="Hotspots"]
 
+editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 10 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 11 )
-shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/1/trigger = false
-shapes/2/shape = SubResource( 12 )
-shapes/2/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/2/trigger = false
-shapes/3/shape = SubResource( 13 )
-shapes/3/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/3/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
@@ -462,8 +439,8 @@ can_take = null
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/computer"]
 
 build_mode = 0
-polygon = Vector2Array( 719.161, 442.637, 1001.02, 435.27, 1001.84, 613.647, 868.872, 610.018, 866.8, 664.096, 817.587, 664.096, 821.688, 608.731, 721.211, 608.731 )
-shape_range = Vector2( 0, 3 )
+polygon = Vector2Array( 734.68, 442.6, 1001.02, 435.27, 1001.84, 613.647, 736.309, 611.203 )
+shape_range = Vector2( 0, 0 )
 trigger = false
 
 [node name="goToPoint" type="PinJoint2D" parent="Hotspots/computer"]
@@ -501,7 +478,7 @@ autostart = false
 [node name="trashcan" type="Area2D" parent="Hotspots"]
 
 input/pickable = true
-shapes/0/shape = SubResource( 14 )
+shapes/0/shape = SubResource( 11 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -515,7 +492,7 @@ sprite = NodePath("../../newspaper1")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/trashcan"]
 
 build_mode = 0
-polygon = Vector2Array( 620.735, 742.016, 699.633, 782.495, 673.07, 934.287, 569.471, 924.515, 561.269, 793.28 )
+polygon = Vector2Array( 585.79, 774.906, 699.633, 782.495, 673.07, 934.287, 604.764, 926.697 )
 shape_range = Vector2( 0, 0 )
 trigger = false
 
@@ -532,7 +509,7 @@ softness = 0.0
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 15 )
+shapes/0/shape = SubResource( 12 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )

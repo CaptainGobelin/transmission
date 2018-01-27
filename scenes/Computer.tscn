@@ -176,7 +176,7 @@ json_path = "res://texts/Computer_0.json"
 
 [node name="ColorFrame" type="ColorFrame" parent="."]
 
-focus/ignore_mouse = true
+focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
@@ -314,10 +314,10 @@ margin/left = 638.0
 margin/top = 212.0
 margin/right = 1134.0
 margin/bottom = 800.0
-custom_colors/font_color_selected = Color( 1, 1, 1, 1 )
+custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-flat = true
-button/count = 4
+flat = false
+button/count = 0
 button/min_button_size = -1.0
 button/align = 0
 
