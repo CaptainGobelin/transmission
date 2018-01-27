@@ -8,12 +8,14 @@ script/source = "extends Node2D
 
 export(NodePath) var terrain_path
 export(NodePath) var debug_path
+
 var debug_node
 var debug = false
 var current_level
 var path
 var nav_2d
-var speed = 100
+var speed = 1000
+var hotspot_target
 
 func _ready():
 	debug_node = get_node(debug_path)
@@ -25,24 +27,33 @@ func _ready():
 	
 func _fixed_process(delta):
 	var effective_speed = speed * delta
-	if (path != null and path.size() > 1):
-		var source = get_global_pos()
-		var target = path[1]
-		var direction = Vector2(target - source)
-		var new_pos = direction.normalized()*effective_speed
-		if (source.distance_to(target) < effective_speed):
-			path.remove(0)
-			new_pos = direction
-		translate(new_pos)
-		update_scale()
+	if (path != null):
+		if (path.size() > 1):
+			var source = get_global_pos()
+			var target = path[1]
+			var direction = Vector2(target - source)
+			var new_pos = direction.normalized()*effective_speed
+			if (source.distance_to(target) < effective_speed):
+				path.remove(0)
+				new_pos = direction
+			translate(new_pos)
+			update_scale()
+		else:
+			path = null
+			if (hotspot_target != null):
+				hotspot_target.play_dialogue(0);
 
 func _input(event):
 	if (event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_LEFT):
-		path = nav_2d.get_simple_path(get_global_pos(), event.global_pos)
-		path = Array(path)
+		go_to(event.global_pos, null)
 		if (debug):
 			print(path)
 			debug_node.draw_points(path)
+
+func go_to(point, hotspot):
+	path = nav_2d.get_simple_path(get_global_pos(), point)
+	path = Array(path)
+	hotspot_target = hotspot
 
 func update_scale():
 	#var z = (1 - get_global_pos().y / Globals.get(\"display/height\")) * 100
