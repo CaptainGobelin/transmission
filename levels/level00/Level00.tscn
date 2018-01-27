@@ -1,13 +1,30 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://scripts/LevelController.gd" type="Script" id=1]
 [ext_resource path="res://assets/bg00.jpg" type="Texture" id=2]
+[ext_resource path="res://scripts/HotspotController.gd" type="Script" id=3]
+[ext_resource path="res://assets/fonts/font_examine.fnt" type="BitmapFont" id=4]
 
 [sub_resource type="NavigationPolygon" id=1]
 
-vertices = Vector2Array( 884.146, 1075.69, 1007.44, 681.835, 1243.75, 674.986, 1548.56, 1079.11 )
-polygons = [ IntArray( 0, 1, 2, 3 ) ]
-outlines = [ Vector2Array( 1548.56, 1079.11, 1243.75, 674.986, 1007.44, 681.835, 884.146, 1075.69 ) ]
+vertices = Vector2Array( 1891.03, 1068.84, 14.2506, 1075.69, 72.4719, 966.092, 1668.42, 972.942, 1808.84, 873.623, 1665, 863.349 )
+polygons = [ IntArray( 0, 1, 2, 3 ), IntArray( 4, 0, 3, 5 ) ]
+outlines = [ Vector2Array( 1891.03, 1068.84, 1808.84, 873.623, 1665, 863.349, 1668.42, 972.942, 72.4719, 966.092, 14.2506, 1075.69 ) ]
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1613.63, 613.339, 1699.25, 544.844, 1778.02, 558.543, 1860.21, 609.915, 1856.79, 733.207, 1747.19, 722.933, 1617.05, 709.233 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1685.55, 729.782, 1617.05, 709.233, 1747.19, 722.933 )
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1685.55, 729.782, 1747.19, 722.933, 1730.07, 839.375, 1688.97, 839.375 )
 
 [node name="Level00" type="Node2D"]
 
@@ -27,5 +44,65 @@ centered = false
 
 navpoly = SubResource( 1 )
 enabled = true
+
+[node name="Hotspots" type="Node2D" parent="."]
+
+[node name="tree1" type="Area2D" parent="Hotspots"]
+
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+shapes/1/shape = SubResource( 3 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/1/trigger = false
+shapes/2/shape = SubResource( 4 )
+shapes/2/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/2/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 3 )
+json_path = "res://texts/tree001.json"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/tree1"]
+
+build_mode = 0
+polygon = Vector2Array( 1699.25, 544.844, 1613.63, 613.339, 1617.05, 709.233, 1685.55, 729.782, 1688.97, 839.375, 1730.07, 839.375, 1747.19, 722.933, 1856.79, 733.207, 1860.21, 609.915, 1778.02, 558.543 )
+shape_range = Vector2( 0, 2 )
+trigger = false
+
+[node name="goToPoint" type="PinJoint2D" parent="Hotspots/tree1"]
+
+transform/pos = Vector2( 1741.83, 882.549 )
+node_a = NodePath("")
+node_b = NodePath("")
+bias/bias = 0.0
+collision/exclude_nodes = true
+softness = 0.0
+
+[node name="Label" type="Label" parent="Hotspots/tree1"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 1427.0
+margin/top = 459.0
+margin/right = 1872.0
+margin/bottom = 526.0
+custom_fonts/font = ExtResource( 4 )
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Timer" type="Timer" parent="Hotspots/tree1"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
 
 
