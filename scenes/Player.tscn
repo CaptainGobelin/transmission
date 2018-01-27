@@ -53,6 +53,8 @@ func _input(event):
 func go_to(point, hotspot):
 	path = nav_2d.get_simple_path(get_global_pos(), point)
 	path = Array(path)
+	if (hotspot_target):
+		hotspot_target.cut_dialogue()
 	hotspot_target = hotspot
 
 func update_scale():

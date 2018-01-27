@@ -31,6 +31,11 @@ func play_dialogue(n=next_dialogue):
 	else:
 		next_dialogue = 0
 
+func cut_dialogue():
+	timer.stop()
+	next_dialogue = 0
+	label.text = ""
+
 func _input(event):
 	if (is_cursor_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_LEFT):
 		player.go_to(get_node("goToPoint").get_global_pos(), self)
