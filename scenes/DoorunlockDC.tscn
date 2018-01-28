@@ -1,25 +1,27 @@
-[gd_scene load_steps=13 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://assets/porte.png" type="Texture" id=1]
 [ext_resource path="res://assets/portetransmitteur.png" type="Texture" id=2]
 [ext_resource path="res://assets/cable.png" type="Texture" id=3]
-[ext_resource path="res://assets/open.png" type="Texture" id=4]
+[ext_resource path="res://assets/close.png" type="Texture" id=4]
 [ext_resource path="res://scenes/switchdoormecha.tscn" type="PackedScene" id=5]
 
 [sub_resource type="GDScript" id=1]
 
 script/source = "var termnode = \"\"
 var termfunction = \"\"
+var clean = false
 
 func _ready():
 	connect(\"hide\",self,\"activate_player\")
 
 func _on_AnimationPlayer_finished():
-	hide()
-	if (termnode != \"\") and (termfunction != \"\"):
-		print(get_tree().get_root().get_node(termnode).get_path())
-		print(get_tree().get_root().get_node(termnode).get_name())
-		get_tree().get_root().get_node(termnode).call(termfunction)
+	if clean:
+		hide()
+		if (termnode != \"\") and (termfunction != \"\"):
+			print(get_tree().get_root().get_node(termnode).get_path())
+			print(get_tree().get_root().get_node(termnode).get_name())
+			get_tree().get_root().get_node(termnode).call(termfunction)
 
 func activate_player():
 	get_node(\"../Player\").set_process_input(true)"
@@ -37,11 +39,6 @@ func _ready():
 
 func door_openning():
 	particule.play(\"openning1sur2\")"
-
-[sub_resource type="ColorRamp" id=3]
-
-offsets = FloatArray( 0, 0.216749, 0.477833, 0.847291, 1 )
-colors = ColorArray( 0.99527, 1, 0.394531, 1, 1, 1, 1, 1, 1, 0.995117, 0.921875, 1, 1, 1, 1, 1, 0.597656, 0.820831, 1, 1 )
 
 [sub_resource type="Animation" id=4]
 
@@ -114,6 +111,16 @@ tracks/2/keys = {
 "update": 1,
 "values": [ true, false, true, false ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:color/color")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 0,
+"values": [ Color( 0.914062, 0, 0, 1 ) ]
+}
 
 [sub_resource type="Animation" id=6]
 
@@ -150,6 +157,16 @@ tracks/2/keys = {
 "update": 1,
 "values": [ true, false ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:color/color")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="GDScript" id=7]
 
@@ -169,6 +186,7 @@ func check():
 			light = false
 	if light:
 		particule.play(\"openning2sur2\")
+		get_parent().clean = true
 "
 
 [node name="DoorunlockRM" type="Node2D"]
@@ -239,7 +257,7 @@ config/amount = 250
 config/lifetime = 2.0
 config/emitting = false
 config/process_mode = 1
-config/offset = Vector2( -1200, 180 )
+config/offset = Vector2( -335, 0 )
 config/half_extents = Vector2( 8, 8 )
 params/direction = 0.0
 params/spread = 360.0
@@ -262,8 +280,7 @@ randomness/spin_velocity = 0.2
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.2
 randomness/final_size = 0.2
-color/color = Color( 1, 0.97403, 0.855469, 1 )
-color/color_ramp = SubResource( 3 )
+color/color = Color( 0.914062, 0, 0, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Signal"]
 
