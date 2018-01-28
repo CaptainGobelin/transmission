@@ -84,14 +84,110 @@ points = Vector2Array( 125.997, 241.409, 195.734, 238.619, 190.155, 299.988, 123
 [sub_resource type="ConvexPolygonShape2D" id=10]
 
 custom_solver_bias = 0.0
+points = Vector2Array( -0.822571, 989.536, 1046.63, 909.959, 1698.04, 1059.86, -2.67319, 1061.71 )
+
+[sub_resource type="GDScript" id=11]
+
+script/source = "extends Node2D
+
+export(String,FILE) var json_path
+onready var player = get_node(\"../../../Player\")
+onready var label = get_node(\"Label\")
+onready var timer = get_node(\"Timer\")
+export(NodePath) var ui_path
+var ui
+var data = {}
+var gui_label
+var is_cursor_on = false
+var dialogue = null
+var next_dialogue = 0
+var take_used = false
+var first_try = true
+var viewed_mail = false
+export(bool) var can_take
+
+func _ready():
+	if ui_path:
+		ui = get_node(ui_path)
+	gui_label = get_node(\"../../../Label\")
+	var file = File.new()
+	file.open(json_path, File.READ)
+	var json_str = file.get_as_text()
+	file.close()
+	data.parse_json(json_str)
+	connect(\"mouse_enter\", self, \"on_mouse_enter_object\", [data.name])
+	connect(\"mouse_exit\", self, \"on_mouse_exit_object\")
+	timer.connect(\"timeout\", self, \"play_dialogue\")
+	set_process_input(true)
+
+func play_dialogue(n=next_dialogue, texts=null):
+	label.text = \"\"
+	if (texts != null):
+		dialogue = texts
+	if (n < dialogue.size()):
+		label.text = dialogue[n]
+		next_dialogue = n + 1
+		timer.set_wait_time(1.5)
+		timer.start()
+	else:
+		next_dialogue = 0
+
+func cut_dialogue():
+	timer.stop()
+	next_dialogue = 0
+	label.text = \"\"
+
+func _input(event):
+	if (is_cursor_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_LEFT):
+		player.go_to(get_node(\"goToPoint\").get_global_pos(), get_path(), false)
+		first_try = false
+	else:
+		if (is_cursor_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_RIGHT):
+			if (ui_path != null):
+				is_cursor_on = false
+				if viewed_mail:
+					player.set_process_input(false)
+					get_node(\"../../../Timerto3\").testing()
+					
+			else:
+				if (first_try or not can_take):
+					player.go_to(get_node(\"goToPoint\").get_global_pos(), get_path(), false)
+					first_try = false
+				else:
+					player.go_to(get_node(\"goToPoint\").get_global_pos(), get_path(), true)
+
+func on_mouse_enter_object(object_name):
+	gui_label.text = object_name
+	is_cursor_on = true
+
+func on_mouse_exit_object():
+	gui_label.text = \"\"
+	is_cursor_on = false
+
+func open_ui(node = \"\", function = \"\"):
+	if ui:
+		if not ui.get(\"termnode\") == null:
+			ui.termnode = node
+			ui.termfunction = function
+		ui.show()
+		player.set_process_input(false)
+
+func _on_Computer_notification_read():
+	viewed_mail = true
+	pass # replace with function body
+"
+
+[sub_resource type="ConvexPolygonShape2D" id=12]
+
+custom_solver_bias = 0.0
 points = Vector2Array( 166.982, 169.953, 257.206, 172.003, 261.307, 231.469, 160.83, 233.52 )
 
-[sub_resource type="ConvexPolygonShape2D" id=11]
+[sub_resource type="ConvexPolygonShape2D" id=13]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 998.035, 672.298, 1073.91, 686.652, 971.378, 717.41, 866.8, 698.955 )
 
-[sub_resource type="ConvexPolygonShape2D" id=12]
+[sub_resource type="ConvexPolygonShape2D" id=14]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 368.809, 764.602, 560.141, 752.014, 497.203, 900.549, 414.125, 860.268 )
@@ -123,7 +219,7 @@ visibility/visible = false
 z/z = 100
 z/relative = false
 
-[node name="newspaper1" type="Sprite" parent="."]
+[node name="newspaper2" type="Sprite" parent="."]
 
 visibility/visible = false
 transform/pos = Vector2( 1212.69, 555.802 )
@@ -133,7 +229,7 @@ z/relative = false
 texture = ExtResource( 4 )
 script/script = SubResource( 2 )
 
-[node name="ColorFrame" type="ColorFrame" parent="newspaper1"]
+[node name="ColorFrame" type="ColorFrame" parent="newspaper2"]
 
 visibility/behind_parent = true
 focus/ignore_mouse = false
@@ -146,7 +242,7 @@ margin/right = 698.0
 margin/bottom = 628.0
 color = Color( 0, 0, 0, 0.863373 )
 
-[node name="Label" type="Label" parent="newspaper1"]
+[node name="Label" type="Label" parent="newspaper2"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -158,17 +254,18 @@ margin/right = -215.0
 margin/bottom = 266.0
 custom_fonts/font = ExtResource( 5 )
 align = 1
+autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Sprite" type="Sprite" parent="newspaper1"]
+[node name="Sprite" type="Sprite" parent="newspaper2"]
 
 transform/pos = Vector2( -778.723, -285.664 )
 transform/scale = Vector2( 0.537995, 0.537995 )
 texture = ExtResource( 6 )
 
-[node name="Area2D" type="Area2D" parent="newspaper1"]
+[node name="Area2D" type="Area2D" parent="newspaper2"]
 
 editor/display_folded = true
 input/pickable = true
@@ -181,7 +278,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 script/script = SubResource( 4 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="newspaper1/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="newspaper2/Area2D"]
 
 transform/pos = Vector2( -779.596, -288.358 )
 transform/scale = Vector2( 7.49208, 6.78303 )
@@ -413,10 +510,65 @@ bias/bias = 0.0
 collision/exclude_nodes = true
 softness = 0.0
 
+[node name="sortie" type="Area2D" parent="Hotspots"]
+
+editor/display_folded = true
+input/pickable = true
+shapes/0/shape = SubResource( 10 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = SubResource( 11 )
+json_path = "res://texts/a placer/sortie.json"
+ui_path = NodePath("CollisionPolygon2D")
+can_take = null
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/sortie"]
+
+build_mode = 0
+polygon = Vector2Array( -0.822571, 989.536, 1046.63, 909.959, 1698.04, 1059.86, -2.67319, 1061.71 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="Label" type="Label" parent="Hotspots/sortie"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 16.0
+margin/top = 38.0
+margin/right = 669.0
+margin/bottom = 105.0
+custom_fonts/font = ExtResource( 5 )
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Timer" type="Timer" parent="Hotspots/sortie"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
+[node name="goToPoint" type="PinJoint2D" parent="Hotspots/sortie"]
+
+transform/pos = Vector2( 554.059, 990.883 )
+node_a = NodePath("")
+node_b = NodePath("")
+bias/bias = 0.0
+collision/exclude_nodes = true
+softness = 0.0
+
 [node name="photo1" type="Area2D" parent="Hotspots"]
 
 input/pickable = true
-shapes/0/shape = SubResource( 10 )
+shapes/0/shape = SubResource( 12 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -469,9 +621,8 @@ autostart = false
 
 [node name="journal1" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 11 )
+shapes/0/shape = SubResource( 13 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -480,7 +631,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 8 )
 json_path = "res://texts/a placer/artjournal1.json"
-sprite = NodePath("../../newspaper1")
+sprite = NodePath("../../newspaper2")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/journal1"]
 
@@ -500,9 +651,8 @@ softness = 0.0
 
 [node name="journal2" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 12 )
+shapes/0/shape = SubResource( 14 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -511,7 +661,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 8 )
 json_path = "res://texts/a placer/artjournal2.json"
-sprite = NodePath("../../newspaper1")
+sprite = NodePath("../../newspaper2")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/journal2"]
 
@@ -531,16 +681,22 @@ softness = 0.0
 
 [connection signal="draw" from="newspaper1" to="Hotspots" method="_on_newspaper1_draw"]
 
-[connection signal="draw" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_draw"]
+[connection signal="draw" from="newspaper2" to="Hotspots" method="_on_newspaper1_draw"]
 
 [connection signal="hide" from="newspaper1" to="Hotspots" method="_on_newspaper1_hide"]
 
-[connection signal="hide" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_hide"]
+[connection signal="draw" from="newspaper2" to="newspaper2/Area2D" method="_on_newspaper1_draw"]
+
+[connection signal="hide" from="newspaper2" to="Hotspots" method="_on_newspaper1_hide"]
 
 [connection signal="input_event" from="newspaper1/Area2D" to="newspaper1" method="_on_Area2D_input_event"]
 
-[connection signal="mouse_enter" from="newspaper1/Area2D" to="newspaper1" method="_on_Area2D_mouse_enter"]
+[connection signal="hide" from="newspaper2" to="newspaper2/Area2D" method="_on_newspaper1_hide"]
 
-[connection signal="mouse_exit" from="newspaper1/Area2D" to="newspaper1" method="_on_Area2D_mouse_exit"]
+[connection signal="input_event" from="newspaper2/Area2D" to="newspaper2" method="_on_Area2D_input_event"]
+
+[connection signal="mouse_enter" from="newspaper2/Area2D" to="newspaper2" method="_on_Area2D_mouse_enter"]
+
+[connection signal="mouse_exit" from="newspaper2/Area2D" to="newspaper2" method="_on_Area2D_mouse_exit"]
 
 
