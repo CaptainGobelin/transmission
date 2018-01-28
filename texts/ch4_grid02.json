@@ -1,0 +1,7 @@
+{   
+    "name": "Grille d'aération interaction 2",
+	"examine": ["La grille fond sous l’effet de l’acide tonitrique"],
+	"take": ["", ""],
+	"take_used": ["", ""],
+	"contains": [""]    
+}

@@ -284,7 +284,7 @@ autoplay = ""
 [node name="Timertobientot2" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 6.0
+wait_time = 25.0
 one_shot = true
 autostart = true
 script/script = SubResource( 4 )
