@@ -1,4 +1,7 @@
-{
-	"name": "Armoire à pharmacie",
-	"examine": ["Plus rien pour la migraine malheureusement."]
+{   
+    "name": "Armoire à pharmacie",
+	"examine": ["Il me reste une boîte de DetoxPlus™. J’aurais jamais pensé qu’elle puisse m’être utile"],
+	"take": ["", ""],
+	"take_used": ["", ""],
+	"contains": ["f"]    
 }

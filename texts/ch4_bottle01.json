@@ -1,0 +1,7 @@
+{   
+    "name": "Bouteilles d'aclool",
+	"examine": ["Diverses bouteilles d’alcool, la plupart presque vides.", "Cette bouteille de liqueur à moitié pleine fera l’affaire."],
+	"take": ["", ""],
+	"take_used": ["", ""],
+	"contains": [""]    
+}
