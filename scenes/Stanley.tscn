@@ -31,9 +31,10 @@ func _input(event):
 		gui_dialogue.open()
 		gui_dialogue.termnode = \"GameController/Timertobientot2\"
 		gui_dialogue.termfunction = \"open_ui\"
-		gui_dialogue.play_dialog(data.dialog)
+		gui_dialogue.play_dialog(data)
 		get_node(\"../../Player\").go_to(get_node(\"PinJoint2D\").get_global_pos(), null, false)
 		is_mouse_on = false
+		
 
 func _on_Area2D_mouse_exit():
 	is_mouse_on = false
