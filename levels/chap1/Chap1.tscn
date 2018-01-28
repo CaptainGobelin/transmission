@@ -187,6 +187,7 @@ enabled = true
 visibility/visible = false
 z/z = 100
 z/relative = false
+json_path = "res://texts/Computer_0.json"
 
 [node name="newspaper1" type="Sprite" parent="."]
 
@@ -247,6 +248,7 @@ params/resize_mode = 0
 params/stretch_mode = 0
 
 [node name="Hotspots" type="Node2D" parent="."]
+
 
 editor/display_folded = true
 script/script = SubResource( 3 )
