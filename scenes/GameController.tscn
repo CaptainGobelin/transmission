@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=1]
+[gd_scene load_steps=20 format=1]
 
 [ext_resource path="res://levels/chap1/Chap1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -7,6 +7,10 @@
 [ext_resource path="res://assets/fonts/computer_font.fnt" type="BitmapFont" id=5]
 [ext_resource path="res://scenes/Doorunlock.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/DoorunlockDC.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/music/scene1.wav" type="Sample" id=8]
+[ext_resource path="res://assets/music/scene2.wav" type="Sample" id=9]
+[ext_resource path="res://assets/music/scene3.wav" type="Sample" id=10]
+[ext_resource path="res://assets/music/scene4.wav" type="Sample" id=11]
 
 [sub_resource type="GDScript" id=1]
 
@@ -96,6 +100,7 @@ func tolvl2():
 	player.nav_2d = player.current_level.get_node(\"Navigation2D\")
 	player.set_process_input(true)
 	player.update_scale()
+	player.hotspot_target = null
 	get_node(\"../Chap2/Hotspots\").show()
 	print(\"jeuchangement scène\")
 	
@@ -205,6 +210,33 @@ func testing():
 	player.nav_2d = player.current_level.get_node(\"Navigation2D\")
 	player.update_scale()"
 
+[sub_resource type="SampleLibrary" id=8]
+
+samples/scene1 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 8 )
+}
+samples/scene2 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 9 )
+}
+samples/scene3 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 10 )
+}
+samples/scene4 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 11 )
+}
+
 [node name="GameController" type="Node2D"]
 
 [node name="Chap1" parent="." instance=ExtResource( 1 )]
@@ -286,7 +318,7 @@ autoplay = ""
 process_mode = 1
 wait_time = 6.0
 one_shot = true
-autostart = false
+autostart = true
 script/script = SubResource( 4 )
 ui_path = NodePath("../DoorunlockRM")
 
@@ -302,9 +334,9 @@ ui_path = NodePath("../DoorunlockDC")
 [node name="Timerto3" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 8.0
+wait_time = 10.0
 one_shot = true
-autostart = false
+autostart = true
 script/script = SubResource( 6 )
 
 [node name="Timerto4" type="Timer" parent="."]
@@ -323,6 +355,23 @@ z/z = 1050
 [node name="DoorunlockDC" parent="." instance=ExtResource( 7 )]
 
 visibility/visible = false
+
+[node name="SamplePlayer" type="SamplePlayer" parent="."]
+
+config/polyphony = 1
+config/samples = SubResource( 8 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
 
 [connection signal="finished" from="ColorFrame/AnimationPlayer" to="ColorFrame" method="_on_AnimationPlayer_finished"]
 

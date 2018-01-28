@@ -102,6 +102,7 @@ z/z = -1
 script/script = ExtResource( 1 )
 min_scale = 0.2
 max_scale = 2.7
+music = "scene2"
 
 [node name="Sprite" type="Sprite" parent="."]
 

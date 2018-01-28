@@ -1,26 +1,20 @@
 [gd_scene load_steps=12 format=1]
 
-[ext_resource path="res://assets/ruelle_v1.png" type="Texture" id=1]
-[ext_resource path="res://scripts/HotspotController.gd" type="Script" id=2]
-[ext_resource path="res://assets/fonts/font_examine.fnt" type="BitmapFont" id=3]
-[ext_resource path="res://scenes/Stanley.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/PNJ_FemmeFatale.png" type="Texture" id=5]
-[ext_resource path="res://assets/Indic.png" type="Texture" id=6]
+[ext_resource path="res://scripts/LevelController.gd" type="Script" id=1]
+[ext_resource path="res://assets/ruelle_v1.png" type="Texture" id=2]
+[ext_resource path="res://scripts/HotspotController.gd" type="Script" id=3]
+[ext_resource path="res://assets/fonts/font_examine.fnt" type="BitmapFont" id=4]
+[ext_resource path="res://scenes/Stanley.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/PNJ_FemmeFatale.png" type="Texture" id=6]
+[ext_resource path="res://assets/Indic.png" type="Texture" id=7]
 
-[sub_resource type="GDScript" id=1]
-
-script/source = "extends Node2D
-
-export(float) var min_scale
-export(float) var max_scale"
-
-[sub_resource type="NavigationPolygon" id=2]
+[sub_resource type="NavigationPolygon" id=1]
 
 vertices = Vector2Array( 1961.49, 1103.37, -58.1109, 1106.16, -16.2682, 1016.89, 750.847, 1011.31, 845.69, 924.839, 1925.23, 927.628 )
 polygons = [ IntArray( 0, 1, 2, 3 ), IntArray( 0, 3, 4, 5 ) ]
 outlines = [ Vector2Array( 1961.49, 1103.37, -58.1109, 1106.16, -16.2682, 1016.89, 750.847, 1011.31, 845.69, 924.839, 1925.23, 927.628 ) ]
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=2]
 
 script/source = "func _on_DoorunlockRM_draw():
 	hide()
@@ -37,12 +31,12 @@ func _on_newspaper1_hide():
 	get_node(\"../../Player\").set_process_input(true)
 	show()"
 
-[sub_resource type="ConvexPolygonShape2D" id=4]
+[sub_resource type="ConvexPolygonShape2D" id=3]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1202.75, 919.259, 1531.91, 916.47, 1590.49, 1014.1, 1272.48, 1081.05 )
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=4]
 
 script/source = "extends Node2D
 onready var gui_dialogue = get_node(\"../../GUI/Dialogue\")
@@ -86,38 +80,39 @@ func _on_Area2D_mouse_enter():
 [node name="Chap3" type="Node2D"]
 
 z/z = -1
-script/script = SubResource( 1 )
-min_scale = 0.6
-max_scale = 1.4
+script/script = ExtResource( 1 )
+min_scale = 1.0
+max_scale = 1.0
+music = "scene3"
 
 [node name="Sprite" type="Sprite" parent="."]
 
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 centered = false
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
 
-navpoly = SubResource( 2 )
+navpoly = SubResource( 1 )
 enabled = true
 
 [node name="Hotspots" type="Node2D" parent="."]
 
 editor/display_folded = true
-script/script = SubResource( 3 )
+script/script = SubResource( 2 )
 
 [node name="Poster" type="Area2D" parent="Hotspots"]
 
 input/pickable = true
-shapes/0/shape = SubResource( 4 )
+shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 2 )
+script/script = ExtResource( 3 )
 json_path = "res://texts/ch1_computer01.json"
 ui_path = NodePath("")
 can_take = null
@@ -148,7 +143,7 @@ margin/left = 795.571
 margin/top = 1168.55
 margin/right = 1448.57
 margin/bottom = 1235.55
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -161,18 +156,18 @@ wait_time = 2.0
 one_shot = true
 autostart = false
 
-[node name="Stanley" parent="." instance=ExtResource( 4 )]
+[node name="Stanley" parent="." instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 895.432, 987.486 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 level_path = NodePath("..")
 
-[node name="Stanley 2" parent="." instance=ExtResource( 4 )]
+[node name="Stanley 2" parent="." instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 1824, 963.014 )
-script/script = SubResource( 5 )
+script/script = SubResource( 4 )
 json_path = "res://texts/ch2_jade.json"
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 level_path = NodePath("..")
 
 
