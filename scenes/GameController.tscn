@@ -323,6 +323,7 @@ z/z = 1050
 [node name="DoorunlockDC" parent="." instance=ExtResource( 7 )]
 
 visibility/visible = false
+z/z = 1
 
 [connection signal="finished" from="ColorFrame/AnimationPlayer" to="ColorFrame" method="_on_AnimationPlayer_finished"]
 
