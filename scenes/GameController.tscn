@@ -286,7 +286,7 @@ autoplay = ""
 process_mode = 1
 wait_time = 6.0
 one_shot = true
-autostart = true
+autostart = false
 script/script = SubResource( 4 )
 ui_path = NodePath("../DoorunlockRM")
 
@@ -304,7 +304,7 @@ ui_path = NodePath("../DoorunlockDC")
 process_mode = 1
 wait_time = 8.0
 one_shot = true
-autostart = true
+autostart = false
 script/script = SubResource( 6 )
 
 [node name="Timerto4" type="Timer" parent="."]

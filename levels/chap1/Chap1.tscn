@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=1]
+[gd_scene load_steps=24 format=1]
 
 [ext_resource path="res://scripts/LevelController.gd" type="Script" id=1]
 [ext_resource path="res://assets/bureau1v4.png" type="Texture" id=2]
@@ -13,9 +13,9 @@
 
 [sub_resource type="NavigationPolygon" id=1]
 
-vertices = Vector2Array( 1444.77, 943.73, 1423.67, 883.436, 1508.14, 886.997, 1608.11, 955.159, 1742.16, 1057.4, 423.932, 878.302, 576.547, 886.451, 538.713, 969.627, 122.665, 1048.46, 679.046, 975.384, 1286.5, 990.458 )
+vertices = Vector2Array( 1444.77, 943.73, 1423.67, 883.436, 1508.14, 886.997, 1608.11, 955.159, 1742.16, 1057.4, 423.932, 878.302, 526.279, 881.505, 538.713, 969.627, 122.665, 1048.46, 679.046, 975.384, 1286.5, 990.458 )
 polygons = [ IntArray( 0, 1, 2, 3, 4 ), IntArray( 5, 6, 7, 8 ), IntArray( 4, 8, 7, 9 ), IntArray( 4, 9, 10 ), IntArray( 4, 10, 0 ) ]
-outlines = [ Vector2Array( 1742.16, 1057.4, 1608.11, 955.159, 1508.14, 886.997, 1423.67, 883.436, 1444.77, 943.73, 1286.5, 990.458, 679.046, 975.384, 538.713, 969.627, 576.547, 886.451, 423.932, 878.302, 122.665, 1048.46 ) ]
+outlines = [ Vector2Array( 1742.16, 1057.4, 1608.11, 955.159, 1508.14, 886.997, 1423.67, 883.436, 1444.77, 943.73, 1286.5, 990.458, 679.046, 975.384, 538.713, 969.627, 526.279, 881.505, 423.932, 878.302, 122.665, 1048.46 ) ]
 
 [sub_resource type="GDScript" id=2]
 
@@ -27,24 +27,11 @@ func _on_Area2D_mouse_enter():
 
 func _on_Area2D_mouse_exit():
 	is_cursor_on = false
+
+
+func _on_TextureButton_pressed():
+		hide()
 "
-
-[sub_resource type="CircleShape2D" id=3]
-
-custom_solver_bias = 0.0
-radius = 10.0
-
-[sub_resource type="GDScript" id=4]
-
-script/source = "func _on_newspaper1_hide():
-	set_process_input(false)
-
-func _on_newspaper1_draw():
-	set_process_input(true)
-
-func _input(event):
-	if (event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_LEFT):
-		get_node(\"../\").hide()"
 
 [sub_resource type="GDScript" id=5]
 
@@ -121,7 +108,7 @@ max_scale = 0.5
 
 [node name="Sprite" type="Sprite" parent="."]
 
-transform/pos = Vector2( -0.0411377, -4.12289 )
+transform/pos = Vector2( 2.23096, -1.85083 )
 texture = ExtResource( 2 )
 centered = false
 
@@ -140,7 +127,6 @@ z/relative = false
 
 [node name="newspaper1" type="Sprite" parent="."]
 
-editor/display_folded = true
 visibility/visible = false
 transform/pos = Vector2( 1212.69, 555.802 )
 transform/scale = Vector2( 1.35287, 1.41752 )
@@ -168,7 +154,7 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = -804.0
+margin/left = -648.0
 margin/top = -215.0
 margin/right = -216.0
 margin/bottom = 287.0
@@ -178,31 +164,23 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Sprite" type="Sprite" parent="newspaper1"]
+[node name="TextureButton" type="TextureButton" parent="newspaper1"]
 
-transform/pos = Vector2( -778.723, -285.664 )
-transform/scale = Vector2( 0.537995, 0.537995 )
-texture = ExtResource( 6 )
-
-[node name="Area2D" type="Area2D" parent="newspaper1"]
-
-input/pickable = true
-shapes/0/shape = SubResource( 3 )
-shapes/0/transform = Matrix32( 7.49208, 0, 0, 6.78303, -779.596, -288.358 )
-shapes/0/trigger = false
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-script/script = SubResource( 4 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="newspaper1/Area2D"]
-
-transform/pos = Vector2( -779.596, -288.358 )
-transform/scale = Vector2( 7.49208, 6.78303 )
-shape = SubResource( 3 )
-trigger = false
-_update_shape_index = 0
+rect/scale = Vector2( 0.5, 0.5 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -814.0
+margin/top = -335.0
+margin/right = -514.0
+margin/bottom = -35.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 6 )
+params/resize_mode = 0
+params/stretch_mode = 0
 
 [node name="Hotspots" type="Node2D" parent="."]
 
@@ -265,7 +243,6 @@ autostart = false
 
 [node name="grid" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 7 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -375,7 +352,6 @@ autostart = false
 
 [node name="safe" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 9 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -398,7 +374,7 @@ trigger = false
 
 [node name="goToPoint" type="PinJoint2D" parent="Hotspots/safe"]
 
-transform/pos = Vector2( 540.571, 901.554 )
+transform/pos = Vector2( 520.122, 931.091 )
 node_a = NodePath("")
 node_b = NodePath("")
 bias/bias = 0.0
@@ -430,7 +406,6 @@ autostart = false
 
 [node name="computer" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 10 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -462,7 +437,7 @@ trigger = false
 
 [node name="goToPoint" type="PinJoint2D" parent="Hotspots/computer"]
 
-transform/pos = Vector2( 540.571, 901.554 )
+transform/pos = Vector2( 486.041, 897.01 )
 node_a = NodePath("")
 node_b = NodePath("")
 bias/bias = 0.0
@@ -494,7 +469,6 @@ autostart = false
 
 [node name="trashcan" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 14 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -586,16 +560,8 @@ level_path = NodePath("..")
 
 [connection signal="draw" from="newspaper1" to="Hotspots" method="_on_newspaper1_draw"]
 
-[connection signal="draw" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_draw"]
-
 [connection signal="hide" from="newspaper1" to="Hotspots" method="_on_newspaper1_hide"]
 
-[connection signal="hide" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_hide"]
-
-[connection signal="input_event" from="newspaper1/Area2D" to="newspaper1" method="_on_Area2D_input_event"]
-
-[connection signal="mouse_enter" from="newspaper1/Area2D" to="newspaper1" method="_on_Area2D_mouse_enter"]
-
-[connection signal="mouse_exit" from="newspaper1/Area2D" to="newspaper1" method="_on_Area2D_mouse_exit"]
+[connection signal="pressed" from="newspaper1/TextureButton" to="newspaper1" method="_on_TextureButton_pressed"]
 
 
