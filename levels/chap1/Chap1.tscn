@@ -845,6 +845,8 @@ autoplay = ""
 
 [connection signal="pressed" from="newspaper2/TextureButton" to="newspaper2" method="_on_TextureButton_pressed"]
 
+[connection signal="draw" from="Stanley" to="Hotspots/door" method="_on_Stanley_draw"]
+
 [connection signal="animation_started" from="Node2D/ColorFrame/AnimationPlayer" to="Node2D/ColorFrame" method="_on_AnimationPlayer_animation_started"]
 
 [connection signal="finished" from="Node2D/ColorFrame/AnimationPlayer" to="Node2D/ColorFrame" method="_on_AnimationPlayer_finished"]

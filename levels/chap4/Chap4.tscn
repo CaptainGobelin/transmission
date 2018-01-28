@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=1]
+[gd_scene load_steps=25 format=1]
 
 [ext_resource path="res://scripts/LevelController.gd" type="Script" id=1]
 [ext_resource path="res://assets/bureau1v5.png" type="Texture" id=2]
@@ -68,52 +68,138 @@ points = Vector2Array( 1737.62, 317.14, 1755.25, 382.596, 1752.73, 1011.98, 1664
 custom_solver_bias = 0.0
 points = Vector2Array( 195.021, 950.27, 58.0295, 1008.49, 58.0295, 871.5, 201.871, 823.553 )
 
-[sub_resource type="ConvexPolygonShape2D" id=7]
+[sub_resource type="GDScript" id=7]
 
-custom_solver_bias = 0.0
-points = Vector2Array( 1438.22, 501.623, 1277.25, 501.623, 1277.25, 350.933, 1431.37, 347.508 )
+script/source = "extends Node2D
 
-[sub_resource type="ConvexPolygonShape2D" id=15]
+export(String,FILE) var json_path
+onready var player = get_node(\"../../../Player\")
+onready var label = get_node(\"Label\")
+onready var timer = get_node(\"Timer\")
+export(NodePath) var ui_path
+var ui
+var data = {}
+var gui_label
+var is_cursor_on = false
+var dialogue = null
+var next_dialogue = 0
+var take_used = false
+var first_try = true
+export(bool) var can_take
 
-custom_solver_bias = 0.0
-points = Vector2Array( 1439.97, 816.026, 1504.87, 720.208, 1532.69, 871.661 )
+func _ready():
+	if ui_path:
+		ui = get_node(ui_path)
+	gui_label = get_node(\"../../../Label\")
+	var file = File.new()
+	file.open(json_path, File.READ)
+	var json_str = file.get_as_text()
+	file.close()
+	data.parse_json(json_str)
+	connect(\"mouse_enter\", self, \"on_mouse_enter_object\", [data.name])
+	connect(\"mouse_exit\", self, \"on_mouse_exit_object\")
+	timer.connect(\"timeout\", self, \"play_dialogue\")
+	set_process_input(true)
 
-[sub_resource type="ConvexPolygonShape2D" id=16]
+func play_dialogue(n=next_dialogue, texts=null):
+	label.text = \"\"
+	if (texts != null):
+		dialogue = texts
+	if (n < dialogue.size()):
+		label.text = dialogue[n]
+		next_dialogue = n + 1
+		timer.set_wait_time(1.5)
+		timer.start()
+	else:
+		next_dialogue = 0
 
-custom_solver_bias = 0.0
-points = Vector2Array( 1439.97, 816.026, 1532.69, 871.661, 1350.33, 874.752, 1356.51, 816.026 )
+func cut_dialogue():
+	timer.stop()
+	next_dialogue = 0
+	label.text = \"\"
+
+func _input(event):
+	if (is_cursor_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed):
+		player.go_to(get_node(\"goToPoint\").get_global_pos(), get_path(), false)
+		first_try = false
+	else:
+		if (is_cursor_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed):
+			if (ui_path != null):
+				is_cursor_on = false
+				open_ui()
+			else:
+				if (first_try or not can_take):
+					player.go_to(get_node(\"goToPoint\").get_global_pos(), get_path(), false)
+					first_try = false
+				else:
+					player.go_to(get_node(\"goToPoint\").get_global_pos(), get_path(), true)
+
+func on_mouse_enter_object(object_name):
+	gui_label.text = object_name
+	is_cursor_on = true
+
+func on_mouse_exit_object():
+	gui_label.text = \"\"
+	is_cursor_on = false
+
+func open_ui(node = \"\", function = \"\"):
+	if ui:
+		if not ui.get(\"termnode\") == null:
+			ui.termnode = node
+			ui.termfunction = function
+		ui.show()
+		player.set_process_input(false)
+
+func _on_Stanley_draw():
+	hide()
+"
 
 [sub_resource type="ConvexPolygonShape2D" id=8]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 486.128, 354.357, 643.668, 350.933, 643.668, 511.898, 486.128, 511.898 )
+points = Vector2Array( 1438.22, 501.623, 1277.25, 501.623, 1277.25, 350.933, 1431.37, 347.508 )
 
 [sub_resource type="ConvexPolygonShape2D" id=9]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 866.8, 664.096, 817.587, 664.096, 821.688, 608.731, 868.872, 610.018 )
+points = Vector2Array( 1439.97, 816.026, 1504.87, 720.208, 1532.69, 871.661 )
 
 [sub_resource type="ConvexPolygonShape2D" id=10]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 1001.02, 435.27, 1001.84, 613.647, 868.872, 610.018, 719.161, 442.637 )
+points = Vector2Array( 1439.97, 816.026, 1532.69, 871.661, 1350.33, 874.752, 1356.51, 816.026 )
 
 [sub_resource type="ConvexPolygonShape2D" id=11]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 719.161, 442.637, 868.872, 610.018, 821.688, 608.731 )
+points = Vector2Array( 486.128, 354.357, 643.668, 350.933, 643.668, 511.898, 486.128, 511.898 )
 
 [sub_resource type="ConvexPolygonShape2D" id=12]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 721.211, 608.731, 719.161, 442.637, 821.688, 608.731 )
+points = Vector2Array( 866.8, 664.096, 817.587, 664.096, 821.688, 608.731, 868.872, 610.018 )
 
 [sub_resource type="ConvexPolygonShape2D" id=13]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 620.735, 742.016, 699.633, 782.495, 673.07, 934.287, 569.471, 924.515, 561.269, 793.28 )
+points = Vector2Array( 1001.02, 435.27, 1001.84, 613.647, 868.872, 610.018, 719.161, 442.637 )
 
 [sub_resource type="ConvexPolygonShape2D" id=14]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 719.161, 442.637, 868.872, 610.018, 821.688, 608.731 )
+
+[sub_resource type="ConvexPolygonShape2D" id=15]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 721.211, 608.731, 719.161, 442.637, 821.688, 608.731 )
+
+[sub_resource type="ConvexPolygonShape2D" id=16]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 620.735, 742.016, 699.633, 782.495, 673.07, 934.287, 569.471, 924.515, 561.269, 793.28 )
+
+[sub_resource type="ConvexPolygonShape2D" id=17]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 195.021, 347.508, 297.765, 374.906, 308.039, 689.986, 195.021, 720.809 )
@@ -262,7 +348,6 @@ autostart = false
 
 [node name="grid" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 6 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -271,8 +356,8 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 6 )
-json_path = "res://texts/ch4_grid01.json"
+script/script = SubResource( 7 )
+json_path = null
 ui_path = null
 can_take = null
 
@@ -319,7 +404,7 @@ autostart = false
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 7 )
+shapes/0/shape = SubResource( 8 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -372,11 +457,12 @@ autostart = false
 
 [node name="bottle" type="Area2D" parent="Hotspots"]
 
+editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 15 )
+shapes/0/shape = SubResource( 9 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 16 )
+shapes/1/shape = SubResource( 10 )
 shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/1/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -431,7 +517,7 @@ autostart = false
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 8 )
+shapes/0/shape = SubResource( 11 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -486,16 +572,16 @@ autostart = false
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 9 )
+shapes/0/shape = SubResource( 12 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 10 )
+shapes/1/shape = SubResource( 13 )
 shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/1/trigger = false
-shapes/2/shape = SubResource( 11 )
+shapes/2/shape = SubResource( 14 )
 shapes/2/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/2/trigger = false
-shapes/3/shape = SubResource( 12 )
+shapes/3/shape = SubResource( 15 )
 shapes/3/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/3/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -550,7 +636,7 @@ autostart = false
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 13 )
+shapes/0/shape = SubResource( 16 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -581,7 +667,7 @@ softness = 0.0
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 14 )
+shapes/0/shape = SubResource( 17 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
