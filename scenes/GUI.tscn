@@ -195,9 +195,9 @@ func play_lines(n):
 	timer.start()
 
 func _on_TextureButton_pressed():
-	if ended:
+	if (ended and is_queue_empty()):
 		terminate_dialogue()
-	if (is_queue_empty()):
+	if (is_queue_empty() ):
 		play_lines(line)
 	else:
 		draw_queue()
@@ -257,14 +257,14 @@ func multiple_choice():
 	var s = queue[2]
 	s.erase(0,1)
 	queue[2] = s
-	draw_queue()
 	get_node(\"Sprite/TextureButton\").hide()
-	if (queue[0] == \"\"):
+	if (queue[0] != \"\"):
 		buttons[0].show()
-	if (queue[1] == \"\"):
+	if (queue[1] != \"\"):
 		buttons[1].show()
-	if (queue[2] == \"\"):
+	if (queue[2] != \"\"):
 		buttons[2].show()
+	draw_queue()
 
 func _on_ButtonLabel1_pressed():
 	choice = choice + \"1\"
