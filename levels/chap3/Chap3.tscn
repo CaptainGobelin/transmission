@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://scripts/LevelController.gd" type="Script" id=1]
 [ext_resource path="res://assets/ruelle_v1.png" type="Texture" id=2]
@@ -7,12 +7,13 @@
 [ext_resource path="res://scenes/Stanley.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/PNJ_FemmeFatale.png" type="Texture" id=6]
 [ext_resource path="res://assets/Indic.png" type="Texture" id=7]
+[ext_resource path="res://assets/PNJ_RandomJohnny.png" type="Texture" id=8]
 
 [sub_resource type="NavigationPolygon" id=1]
 
-vertices = Vector2Array( 1961.49, 1103.37, -58.1109, 1106.16, -16.2682, 1016.89, 750.847, 1011.31, 845.69, 924.839, 1925.23, 927.628 )
-polygons = [ IntArray( 0, 1, 2, 3 ), IntArray( 0, 3, 4, 5 ) ]
-outlines = [ Vector2Array( 1961.49, 1103.37, -58.1109, 1106.16, -16.2682, 1016.89, 750.847, 1011.31, 845.69, 924.839, 1925.23, 927.628 ) ]
+vertices = Vector2Array( 1961.49, 1103.37, -58.1109, 1106.16, 14.5155, 1009.41, 784.751, 1004.86, 1046.04, 988.96, 1146.01, 927.614, 1925.23, 927.628 )
+polygons = [ IntArray( 0, 1, 2, 3 ), IntArray( 0, 3, 4 ), IntArray( 0, 4, 5, 6 ) ]
+outlines = [ Vector2Array( 1961.49, 1103.37, -58.1109, 1106.16, 14.5155, 1009.41, 784.751, 1004.86, 1046.04, 988.96, 1146.01, 927.614, 1925.23, 927.628 ) ]
 
 [sub_resource type="GDScript" id=2]
 
@@ -31,12 +32,53 @@ func _on_newspaper1_hide():
 	get_node(\"../../Player\").set_process_input(true)
 	show()"
 
-[sub_resource type="ConvexPolygonShape2D" id=3]
+[sub_resource type="ConvexPolygonShape2D" id=5]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 1202.75, 919.259, 1531.91, 916.47, 1590.49, 1014.1, 1272.48, 1081.05 )
+points = Vector2Array( 1455.02, 920.798, 1732.21, 943.519, 1750.39, 1002.59, 1380.04, 979.872 )
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=9]
+
+script/source = "extends Node2D
+onready var gui_dialogue = get_node(\"../../GUI/Dialogue\")
+export(String,FILE) var json_path
+export(Texture) var texture
+export(NodePath) var level_path
+var current_level
+var data = {}
+var is_mouse_on = false
+
+func _ready():
+	current_level = get_node(\"..\")
+	print(\"jeu\")
+	print(current_level.get_name())
+	get_node(\"Sprite\").texture = texture
+	var file = File.new()
+	file.open(json_path, File.READ)
+	var json_str = file.get_as_text()
+	file.close()
+	data.parse_json(json_str)
+	set_process_input(true)
+
+func _input(event):
+	if (is_mouse_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_LEFT):
+		gui_dialogue.open()
+		gui_dialogue.termnode = \"\"
+		gui_dialogue.termfunction = \"\"
+		gui_dialogue.play_dialog(data)
+		get_node(\"../../Player\").go_to(get_node(\"PinJoint2D\").get_global_pos(), null, false)
+		is_mouse_on = false
+		
+
+func _on_Area2D_mouse_exit():
+	is_mouse_on = false
+
+
+func _on_Area2D_mouse_enter():
+	is_mouse_on = true
+"
+
+[sub_resource type="GDScript" id=8]
 
 script/source = "extends Node2D
 onready var gui_dialogue = get_node(\"../../GUI/Dialogue\")
@@ -77,6 +119,47 @@ func _on_Area2D_mouse_enter():
 	is_mouse_on = true
 "
 
+[sub_resource type="GDScript" id=7]
+
+script/source = "extends Node2D
+onready var gui_dialogue = get_node(\"../../GUI/Dialogue\")
+export(String,FILE) var json_path
+export(Texture) var texture
+export(NodePath) var level_path
+var current_level
+var data = {}
+var is_mouse_on = false
+
+func _ready():
+	current_level = get_node(\"..\")
+	print(\"jeu\")
+	print(current_level.get_name())
+	get_node(\"Sprite\").texture = texture
+	var file = File.new()
+	file.open(json_path, File.READ)
+	var json_str = file.get_as_text()
+	file.close()
+	data.parse_json(json_str)
+	set_process_input(true)
+
+func _input(event):
+	if (is_mouse_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_LEFT):
+		gui_dialogue.open()
+		gui_dialogue.termnode = \"\"
+		gui_dialogue.termfunction = \"\"
+		gui_dialogue.play_dialog(data)
+		get_node(\"../../Player\").go_to(get_node(\"PinJoint2D\").get_global_pos(), null, false)
+		is_mouse_on = false
+		
+
+func _on_Area2D_mouse_exit():
+	is_mouse_on = false
+
+
+func _on_Area2D_mouse_enter():
+	is_mouse_on = true
+"
+
 [node name="Chap3" type="Node2D"]
 
 z/z = -1
@@ -99,13 +182,13 @@ enabled = true
 
 [node name="Hotspots" type="Node2D" parent="."]
 
-editor/display_folded = true
 script/script = SubResource( 2 )
 
 [node name="Poster" type="Area2D" parent="Hotspots"]
 
+editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 5 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -120,7 +203,7 @@ can_take = null
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/Poster"]
 
 build_mode = 0
-polygon = Vector2Array( 1202.75, 919.259, 1531.91, 916.47, 1590.49, 1014.1, 1272.48, 1081.05 )
+polygon = Vector2Array( 1455.02, 920.798, 1732.21, 943.519, 1750.39, 1002.59, 1380.04, 979.872 )
 shape_range = Vector2( 0, 0 )
 trigger = false
 
@@ -158,16 +241,26 @@ autostart = false
 
 [node name="Stanley" parent="." instance=ExtResource( 5 )]
 
-transform/pos = Vector2( 895.432, 987.486 )
+transform/pos = Vector2( 547.804, 962.493 )
+script/script = SubResource( 9 )
+json_path = "res://texts/ch3_lady_fr.json"
 texture = ExtResource( 6 )
 level_path = NodePath("..")
 
 [node name="Stanley 2" parent="." instance=ExtResource( 5 )]
 
-transform/pos = Vector2( 1824, 963.014 )
-script/script = SubResource( 4 )
+transform/pos = Vector2( 956.065, 944.837 )
+script/script = SubResource( 8 )
 json_path = "res://texts/ch2_jade.json"
 texture = ExtResource( 7 )
+level_path = NodePath("..")
+
+[node name="Stanley3" parent="." instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 185.829, 965.286 )
+script/script = SubResource( 7 )
+json_path = "res://texts/ch3_man_fr.json"
+texture = ExtResource( 8 )
 level_path = NodePath("..")
 
 

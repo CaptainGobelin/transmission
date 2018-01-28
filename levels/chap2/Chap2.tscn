@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=1]
+[gd_scene load_steps=21 format=1]
 
 [ext_resource path="res://scripts/LevelController.gd" type="Script" id=1]
 [ext_resource path="res://assets/chambre_keithv2.png" type="Texture" id=2]
@@ -218,7 +218,6 @@ enabled = true
 visibility/visible = false
 z/z = 100
 z/relative = false
-json_path = "res://texts/Computer_1.json"
 
 [node name="newspaper2" type="Sprite" parent="."]
 
@@ -329,10 +328,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 808.0
-margin/top = 27.0
-margin/right = 1461.0
-margin/bottom = 94.0
+margin/left = 1245.0
+margin/top = 86.0
+margin/right = 1898.0
+margin/bottom = 153.0
 custom_fonts/font = ExtResource( 5 )
 align = 1
 percent_visible = 1.0
@@ -375,10 +374,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 809.0
-margin/top = 7.0
-margin/right = 1462.0
-margin/bottom = 74.0
+margin/left = 892.0
+margin/top = 137.0
+margin/right = 1545.0
+margin/bottom = 204.0
 custom_fonts/font = ExtResource( 5 )
 align = 1
 percent_visible = 1.0
@@ -568,7 +567,6 @@ softness = 0.0
 
 [node name="photo1" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 12 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -604,10 +602,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 1209.0
-margin/top = 427.0
-margin/right = 1862.0
-margin/bottom = 494.0
+margin/left = 34.0
+margin/top = 51.0
+margin/right = 687.0
+margin/bottom = 118.0
 custom_fonts/font = ExtResource( 5 )
 align = 1
 percent_visible = 1.0
@@ -681,13 +679,17 @@ bias/bias = 0.0
 collision/exclude_nodes = true
 softness = 0.0
 
-[connection signal="notification_read" from="Computer" to="Hotspots/sortie" method="_on_Computer_notification_read"]
+[connection signal="draw" from="newspaper1" to="Hotspots" method="_on_newspaper1_draw"]
 
 [connection signal="draw" from="newspaper2" to="Hotspots" method="_on_newspaper1_draw"]
+
+[connection signal="hide" from="newspaper1" to="Hotspots" method="_on_newspaper1_hide"]
 
 [connection signal="draw" from="newspaper2" to="newspaper2/Area2D" method="_on_newspaper1_draw"]
 
 [connection signal="hide" from="newspaper2" to="Hotspots" method="_on_newspaper1_hide"]
+
+[connection signal="input_event" from="newspaper1/Area2D" to="newspaper1" method="_on_Area2D_input_event"]
 
 [connection signal="hide" from="newspaper2" to="newspaper2/Area2D" method="_on_newspaper1_hide"]
 
