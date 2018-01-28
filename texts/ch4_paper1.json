@@ -1,7 +1,4 @@
-{   
-    "name": "Poubelle",
-	"examine": ["Créez un liquide corrosif en mélangeant de l’alcool, de la poudre à canon et du detoxplus !", "Recette Acide Tonitrique: ", "Alcool à 90°, ", "Poudre noire,", "DetoxPlus™ 50mg", "Pour des carreaux étincelants !", "À ne pas mettre en contact avec la peau !"],
-	"take": ["", ""],
-	"take_used": ["", ""],
-	"contains": [""]    
+{
+	"name": "Poubelle",
+	"examine": "Recette d'acide tonitrique:\n\nAlcool à 90°, poudre noire et\nDetoxPlus 50mg.\n\nPour des carreaux étincelants.\nNe pas mettre en contact avec la peau !"
 }

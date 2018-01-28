@@ -1,7 +1,4 @@
 {   
-    "name": "Grille d'aération interaction 1",
-	"examine": ["La grille bouge un peu, peut-être qu’il existe un moyen de l’ouvrir de force"],
-	"take": ["", ""],
-	"take_used": ["", ""],
-	"contains": [""]    
+    "name": "Grille d'aération",
+	"examine": ["La grille bouge un peu,","peut-être qu’il existe un moyen de l’ouvrir de force"]
 }
