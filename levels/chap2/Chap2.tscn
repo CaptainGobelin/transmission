@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=1]
+[gd_scene load_steps=21 format=1]
 
 [ext_resource path="res://scripts/LevelController.gd" type="Script" id=1]
 [ext_resource path="res://assets/chambre_keithv2.png" type="Texture" id=2]
@@ -61,15 +61,40 @@ func _on_newspaper1_hide():
 	get_node(\"../../Player\").set_process_input(true)
 	show()"
 
-[sub_resource type="ConvexPolygonShape2D" id=13]
+[sub_resource type="ConvexPolygonShape2D" id=6]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1580.39, 184.268, 1877.72, 182.217, 1869.52, 338.059, 1572.19, 336.008 )
 
-[sub_resource type="ConvexPolygonShape2D" id=14]
+[sub_resource type="ConvexPolygonShape2D" id=8]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1381.28, 233.04, 1562.59, 224.671, 1562.59, 372.515, 1294.8, 380.884 )
+
+[sub_resource type="ConvexPolygonShape2D" id=9]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 555.581, 553.834, 675.53, 570.571, 569.529, 637.519, 485.843, 609.624 )
+
+[sub_resource type="ConvexPolygonShape2D" id=10]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 125.997, 241.409, 195.734, 238.619, 190.155, 299.988, 123.207, 302.778 )
+
+[sub_resource type="ConvexPolygonShape2D" id=11]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 166.982, 169.953, 257.206, 172.003, 261.307, 231.469, 160.83, 233.52 )
+
+[sub_resource type="ConvexPolygonShape2D" id=7]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 998.035, 672.298, 1073.91, 686.652, 971.378, 717.41, 866.8, 698.955 )
+
+[sub_resource type="ConvexPolygonShape2D" id=12]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 368.809, 764.602, 560.141, 752.014, 497.203, 900.549, 414.125, 860.268 )
 
 [node name="Chap2" type="Node2D"]
 
@@ -173,7 +198,7 @@ script/script = SubResource( 5 )
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 13 )
+shapes/0/shape = SubResource( 6 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -224,11 +249,230 @@ wait_time = 2.0
 one_shot = true
 autostart = false
 
-[node name="trashcan" type="Area2D" parent="Hotspots"]
+[node name="poster" type="Area2D" parent="Hotspots"]
+
+input/pickable = true
+shapes/0/shape = SubResource( 8 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 7 )
+json_path = "res://texts/ch1_computer01.json"
+ui_path = NodePath("")
+can_take = null
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/poster"]
+
+build_mode = 0
+polygon = Vector2Array( 1381.28, 233.04, 1562.59, 224.671, 1562.59, 372.515, 1294.8, 380.884 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="goToPoint" type="PinJoint2D" parent="Hotspots/poster"]
+
+transform/pos = Vector2( 540.571, 901.554 )
+node_a = NodePath("")
+node_b = NodePath("")
+bias/bias = 0.0
+collision/exclude_nodes = true
+softness = 0.0
+
+[node name="Label" type="Label" parent="Hotspots/poster"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 255.0
+margin/top = 267.0
+margin/right = 908.0
+margin/bottom = 334.0
+custom_fonts/font = ExtResource( 5 )
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Timer" type="Timer" parent="Hotspots/poster"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
+[node name="flyer" type="Area2D" parent="Hotspots"]
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 14 )
+shapes/0/shape = SubResource( 9 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 7 )
+json_path = "res://texts/ch1_computer01.json"
+ui_path = NodePath("")
+can_take = null
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/flyer"]
+
+build_mode = 0
+polygon = Vector2Array( 555.581, 553.834, 675.53, 570.571, 569.529, 637.519, 485.843, 609.624 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="goToPoint" type="PinJoint2D" parent="Hotspots/flyer"]
+
+transform/pos = Vector2( 540.571, 901.554 )
+node_a = NodePath("")
+node_b = NodePath("")
+bias/bias = 0.0
+collision/exclude_nodes = true
+softness = 0.0
+
+[node name="Label" type="Label" parent="Hotspots/flyer"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 255.0
+margin/top = 267.0
+margin/right = 908.0
+margin/bottom = 334.0
+custom_fonts/font = ExtResource( 5 )
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Timer" type="Timer" parent="Hotspots/flyer"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
+[node name="photo" type="Area2D" parent="Hotspots"]
+
+editor/display_folded = true
+input/pickable = true
+shapes/0/shape = SubResource( 10 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 7 )
+json_path = "res://texts/ch1_computer01.json"
+ui_path = NodePath("")
+can_take = null
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/photo"]
+
+build_mode = 0
+polygon = Vector2Array( 125.997, 241.409, 195.734, 238.619, 190.155, 299.988, 123.207, 302.778 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="goToPoint" type="PinJoint2D" parent="Hotspots/photo"]
+
+transform/pos = Vector2( 540.571, 901.554 )
+node_a = NodePath("")
+node_b = NodePath("")
+bias/bias = 0.0
+collision/exclude_nodes = true
+softness = 0.0
+
+[node name="Label" type="Label" parent="Hotspots/photo"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 255.0
+margin/top = 267.0
+margin/right = 908.0
+margin/bottom = 334.0
+custom_fonts/font = ExtResource( 5 )
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Timer" type="Timer" parent="Hotspots/photo"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
+[node name="photo1" type="Area2D" parent="Hotspots"]
+
+editor/display_folded = true
+input/pickable = true
+shapes/0/shape = SubResource( 11 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 7 )
+json_path = "res://texts/ch1_computer01.json"
+ui_path = NodePath("")
+can_take = null
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/photo1"]
+
+build_mode = 0
+polygon = Vector2Array( 166.982, 169.953, 257.206, 172.003, 261.307, 231.469, 160.83, 233.52 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="goToPoint" type="PinJoint2D" parent="Hotspots/photo1"]
+
+transform/pos = Vector2( 540.571, 901.554 )
+node_a = NodePath("")
+node_b = NodePath("")
+bias/bias = 0.0
+collision/exclude_nodes = true
+softness = 0.0
+
+[node name="Label" type="Label" parent="Hotspots/photo1"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 255.0
+margin/top = 267.0
+margin/right = 908.0
+margin/bottom = 334.0
+custom_fonts/font = ExtResource( 5 )
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Timer" type="Timer" parent="Hotspots/photo1"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
+[node name="journal" type="Area2D" parent="Hotspots"]
+
+editor/display_folded = true
+input/pickable = true
+shapes/0/shape = SubResource( 7 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -239,14 +483,14 @@ script/script = ExtResource( 8 )
 json_path = "res://texts/ch1_paper1.json"
 sprite = NodePath("../../newspaper1")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/trashcan"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/journal"]
 
 build_mode = 0
 polygon = Vector2Array( 998.035, 672.298, 1073.91, 686.652, 971.378, 717.41, 866.8, 698.955 )
 shape_range = Vector2( 0, 0 )
 trigger = false
 
-[node name="goToPoint" type="PinJoint2D" parent="Hotspots/trashcan"]
+[node name="goToPoint" type="PinJoint2D" parent="Hotspots/journal"]
 
 transform/pos = Vector2( 570.929, 962.27 )
 node_a = NodePath("")
@@ -255,13 +499,44 @@ bias/bias = 0.0
 collision/exclude_nodes = true
 softness = 0.0
 
-[connection signal="draw" from="newspaper1" to="Hotspots" method="_on_newspaper1_draw"]
+[node name="journal2" type="Area2D" parent="Hotspots"]
+
+editor/display_folded = true
+input/pickable = true
+shapes/0/shape = SubResource( 12 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 8 )
+json_path = "res://texts/ch1_paper1.json"
+sprite = NodePath("../../newspaper1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/journal2"]
+
+build_mode = 0
+polygon = Vector2Array( 368.809, 764.602, 560.141, 752.014, 497.203, 900.549, 414.125, 860.268 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="goToPoint" type="PinJoint2D" parent="Hotspots/journal2"]
+
+transform/pos = Vector2( 570.929, 962.27 )
+node_a = NodePath("")
+node_b = NodePath("")
+bias/bias = 0.0
+collision/exclude_nodes = true
+softness = 0.0
 
 [connection signal="draw" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_draw"]
 
-[connection signal="hide" from="newspaper1" to="Hotspots" method="_on_newspaper1_hide"]
+[connection signal="draw" from="newspaper1" to="Hotspots" method="_on_newspaper1_draw"]
 
 [connection signal="hide" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_hide"]
+
+[connection signal="hide" from="newspaper1" to="Hotspots" method="_on_newspaper1_hide"]
 
 [connection signal="input_event" from="newspaper1/Area2D" to="newspaper1" method="_on_Area2D_input_event"]
 
