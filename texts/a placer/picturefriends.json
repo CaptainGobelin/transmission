@@ -1,7 +1,4 @@
 {
 	"name": "Photo d'amis",
-	"examine": ["Photo de Keith et ses proches", "Il y est écrit dessus ‘Stanley, Michelle et moi’"],
-	"take": ["", ""],
-	"take_used": ["", ""],
-	"contains": [""]
+	"examine": ["Photo de Keith et ses proches", "Il y est écrit dessus ‘Stanley, Michelle et moi’"]
 }

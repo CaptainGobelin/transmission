@@ -133,6 +133,7 @@ var termfunction = \"\"
 var ended = false
 
 func terminate_dialogue():
+	close()
 	hide()
 	if (termnode != \"\") and (termfunction != \"\"):
 		print(get_tree().get_root().get_node(termnode).get_path())
@@ -152,6 +153,7 @@ func open():
 
 func close():
 	get_node(\"AnimationPlayer\").play(\"close\")
+	get_node(\"../../Player\").set_process_input(true)
 	is_closed = true
 	
 func play_dialog(dialog):
