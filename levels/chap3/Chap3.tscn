@@ -88,7 +88,7 @@ trigger = false
 
 [node name="goToPoint" type="PinJoint2D" parent="Hotspots/Poster"]
 
-transform/pos = Vector2( 540.571, 901.554 )
+transform/pos = Vector2( 1159.88, 982.115 )
 node_a = NodePath("")
 node_b = NodePath("")
 bias/bias = 0.0

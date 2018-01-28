@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=1]
+[gd_scene load_steps=26 format=1]
 
 [ext_resource path="res://assets/inventory.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Item.tscn" type="PackedScene" id=2]
@@ -121,6 +121,8 @@ script/source = "var used = false"
 
 script/source = "extends Control
 
+export(Color) var fontColor
+
 onready var timer = get_node(\"Sprite/Timer\")
 
 var is_closed = true
@@ -128,22 +130,14 @@ var labels = {}
 var queue = {}
 var to_play = null
 var line = 0
-var termnode = \"\"
-var termfunction = \"\"
-var ended = false
-
-func terminate_dialogue():
-	close()
-	hide()
-	if (termnode != \"\") and (termfunction != \"\"):
-		print(get_tree().get_root().get_node(termnode).get_path())
-		print(get_tree().get_root().get_node(termnode).get_name())
-		get_tree().get_root().get_node(termnode).call(termfunction,termnode,\"tolvl2\")
 
 func _ready():
 	labels[0] = get_node(\"Sprite/Label\")
+	labels[0].set(\"custom_colors/font_color\", fontColor)
 	labels[1] = get_node(\"Sprite/Label1\")
+	labels[1].set(\"custom_colors/font_color\", fontColor)
 	labels[2] = get_node(\"Sprite/Label2\")
+	labels[2].set(\"custom_colors/font_color\", fontColor)
 
 func open():
 	get_node(\"AnimationPlayer\").play(\"open\")
@@ -153,7 +147,6 @@ func open():
 
 func close():
 	get_node(\"AnimationPlayer\").play(\"close\")
-	get_node(\"../../Player\").set_process_input(true)
 	is_closed = true
 	
 func play_dialog(dialog):
@@ -169,15 +162,15 @@ func play_lines(n):
 		queue[0] = to_play[n]
 		queue[1] = to_play[n+1]
 		queue[2] = to_play[n+2]
+		if (queue[0][0] == \"%\"):
+			multiple_choice(n)
+			return
 		if (line >= to_play.size()):
 			get_node(\"Sprite/TextureButton\").set_normal_texture(get_node(\"Sprite/TextureButton\").alternate)
-			ended = true
 	timer.set_wait_time(0.05)
 	timer.start()
 
 func _on_TextureButton_pressed():
-	if ended:
-		terminate_dialogue()
 	if (is_queue_empty()):
 		play_lines(line)
 	else:
@@ -226,12 +219,60 @@ func draw_queue():
 	labels[1].text = labels[1].text + queue[1]
 	queue[1] = \"\"
 	labels[2].text = labels[2].text + queue[2]
-	queue[2] = \"\""
+	queue[2] = \"\"
+	
+func multiple_choice():
+	var s = queue[0]
+	s.erase(0,1)
+	queue[0] = s
+	var s = queue[1]
+	s.erase(0,1)
+	queue[1] = s
+	var s = queue[2]
+	s.erase(0,1)
+	queue[2] = s
+	draw_queue()
+	get_node(\"Sprite/TextureButton\").hide()"
 
 [sub_resource type="ConvexPolygonShape2D" id=12]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1609.72, 755.729, 1602.87, 1087.93, 352.826, 1084.51, 349.401, 755.729 )
+
+[sub_resource type="GDScript" id=16]
+
+script/source = "extends Label
+
+func _on_ButtonLabel1_mouse_enter():
+	set(\"custom_colors/font_color\", Color(0,0,0))
+
+
+func _on_ButtonLabel1_mouse_exit():
+	set(\"custom_colors/font_color\", get_node(\"../..\").fontColor)"
+
+[sub_resource type="GDScript" id=17]
+
+script/source = "extends Label
+
+func _on_ButtonLabel2_mouse_enter():
+	set(\"custom_colors/font_color\", Color(0,0,0))
+
+
+func _on_ButtonLabel2_mouse_exit():
+	set(\"custom_colors/font_color\", get_node(\"../..\").fontColor)
+"
+
+[sub_resource type="GDScript" id=18]
+
+script/source = "extends Label
+
+func _on_ButtonLabel3_mouse_enter():
+	set(\"custom_colors/font_color\", Color(0,0,0))
+
+
+func _on_ButtonLabel3_mouse_exit():
+	set(\"custom_colors/font_color\", get_node(\"../..\").fontColor)
+"
 
 [sub_resource type="GDScript" id=13]
 
@@ -451,6 +492,7 @@ margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 40.0
 script/script = SubResource( 11 )
+fontColor = Color( 0.396078, 0.937255, 0.356863, 1 )
 
 [node name="ColorFrame" type="ColorFrame" parent="Dialogue"]
 
@@ -503,9 +545,11 @@ margin/top = -60.0
 margin/right = 639.0
 margin/bottom = 6.0
 custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.396078, 0.937255, 0.356863, 1 )
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+script/script = SubResource( 16 )
 
 [node name="Label1" type="Label" parent="Dialogue/Sprite"]
 
@@ -518,9 +562,11 @@ margin/top = 0.0
 margin/right = 639.0
 margin/bottom = 66.0
 custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.396078, 0.937255, 0.356863, 1 )
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+script/script = SubResource( 17 )
 
 [node name="Label2" type="Label" parent="Dialogue/Sprite"]
 
@@ -530,12 +576,14 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = -344.0
 margin/top = 60.0
-margin/right = 639.0
+margin/right = 572.0
 margin/bottom = 126.0
 custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.396078, 0.937255, 0.356863, 1 )
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+script/script = SubResource( 18 )
 
 [node name="TextureButton" type="TextureButton" parent="Dialogue/Sprite"]
 
@@ -564,6 +612,54 @@ wait_time = 0.1
 one_shot = false
 autostart = false
 
+[node name="ButtonLabel1" type="TextureButton" parent="Dialogue/Sprite"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -344.0
+margin/top = -60.0
+margin/right = 639.0
+margin/bottom = 6.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="ButtonLabel2" type="TextureButton" parent="Dialogue/Sprite"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -344.0
+margin/top = 0.0
+margin/right = 639.0
+margin/bottom = 66.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="ButtonLabel3" type="TextureButton" parent="Dialogue/Sprite"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -344.0
+margin/top = 60.0
+margin/right = 572.0
+margin/bottom = 126.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+params/resize_mode = 0
+params/stretch_mode = 0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Dialogue"]
 
 playback/process_mode = 1
@@ -589,5 +685,17 @@ autoplay = ""
 [connection signal="pressed" from="Dialogue/Sprite/TextureButton" to="Dialogue" method="_on_TextureButton_pressed"]
 
 [connection signal="timeout" from="Dialogue/Sprite/Timer" to="Dialogue" method="_on_Timer_timeout"]
+
+[connection signal="mouse_enter" from="Dialogue/Sprite/ButtonLabel1" to="Dialogue/Sprite/Label" method="_on_ButtonLabel1_mouse_enter"]
+
+[connection signal="mouse_exit" from="Dialogue/Sprite/ButtonLabel1" to="Dialogue/Sprite/Label" method="_on_ButtonLabel1_mouse_exit"]
+
+[connection signal="mouse_enter" from="Dialogue/Sprite/ButtonLabel2" to="Dialogue/Sprite/Label1" method="_on_ButtonLabel2_mouse_enter"]
+
+[connection signal="mouse_exit" from="Dialogue/Sprite/ButtonLabel2" to="Dialogue/Sprite/Label1" method="_on_ButtonLabel2_mouse_exit"]
+
+[connection signal="mouse_enter" from="Dialogue/Sprite/ButtonLabel3" to="Dialogue/Sprite/Label2" method="_on_ButtonLabel3_mouse_enter"]
+
+[connection signal="mouse_exit" from="Dialogue/Sprite/ButtonLabel3" to="Dialogue/Sprite/Label2" method="_on_ButtonLabel3_mouse_exit"]
 
 
