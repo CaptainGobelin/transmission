@@ -1,14 +1,13 @@
-[gd_scene load_steps=25 format=1]
+[gd_scene load_steps=24 format=1]
 
 [ext_resource path="res://scripts/LevelController.gd" type="Script" id=1]
 [ext_resource path="res://assets/bureau1v4.png" type="Texture" id=2]
 [ext_resource path="res://scenes/Computer.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/Doorunlock.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/newspaper.png" type="Texture" id=5]
-[ext_resource path="res://assets/fonts/font_examine.fnt" type="BitmapFont" id=6]
-[ext_resource path="res://assets/close_paper.png" type="Texture" id=7]
-[ext_resource path="res://scripts/HotspotController.gd" type="Script" id=8]
-[ext_resource path="res://scenes/NewspaperController.gd" type="Script" id=9]
+[ext_resource path="res://assets/newspaper.png" type="Texture" id=4]
+[ext_resource path="res://assets/fonts/font_examine.fnt" type="BitmapFont" id=5]
+[ext_resource path="res://assets/close_paper.png" type="Texture" id=6]
+[ext_resource path="res://scripts/HotspotController.gd" type="Script" id=7]
+[ext_resource path="res://scenes/NewspaperController.gd" type="Script" id=8]
 
 [sub_resource type="NavigationPolygon" id=1]
 
@@ -139,21 +138,14 @@ visibility/visible = false
 z/z = 100
 z/relative = false
 
-[node name="DoorunlockRM" parent="." instance=ExtResource( 4 )]
-
-visibility/visible = false
-z/z = 1000
-z/relative = false
-
 [node name="newspaper1" type="Sprite" parent="."]
 
-editor/display_folded = true
 visibility/visible = false
 transform/pos = Vector2( 1212.69, 555.802 )
 transform/scale = Vector2( 1.35287, 1.41752 )
 z/z = 1000
 z/relative = false
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
 script/script = SubResource( 14 )
 
 [node name="ColorFrame" type="ColorFrame" parent="newspaper1"]
@@ -175,13 +167,12 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = -695.0
-margin/top = -318.0
-margin/right = -230.0
-margin/bottom = 303.0
-custom_fonts/font = ExtResource( 6 )
+margin/left = -804.0
+margin/top = -215.0
+margin/right = -216.0
+margin/bottom = 287.0
+custom_fonts/font = ExtResource( 5 )
 align = 1
-valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -190,7 +181,7 @@ max_lines_visible = -1
 
 transform/pos = Vector2( -778.723, -285.664 )
 transform/scale = Vector2( 0.537995, 0.537995 )
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 
 [node name="Area2D" type="Area2D" parent="newspaper1"]
 
@@ -214,6 +205,7 @@ _update_shape_index = 0
 
 [node name="Hotspots" type="Node2D" parent="."]
 
+editor/display_folded = true
 script/script = SubResource( 5 )
 
 [node name="door" type="Area2D" parent="Hotspots"]
@@ -226,9 +218,9 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
+script/script = ExtResource( 7 )
 json_path = "res://texts/ch1_door01.json"
-ui_path = NodePath("../../DoorunlockRM")
+ui_path = NodePath("")
 can_take = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/door"]
@@ -257,7 +249,7 @@ margin/left = 1120.0
 margin/top = 346.0
 margin/right = 1773.0
 margin/bottom = 413.0
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 5 )
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -281,7 +273,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
+script/script = ExtResource( 7 )
 json_path = "res://texts/ch1_grid01.json"
 ui_path = null
 can_take = null
@@ -312,7 +304,7 @@ margin/left = 69.0
 margin/top = 308.0
 margin/right = 722.0
 margin/bottom = 375.0
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 5 )
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -336,7 +328,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
+script/script = ExtResource( 7 )
 json_path = "res://texts/ch1_firstaid01.json"
 ui_path = null
 can_take = null
@@ -367,7 +359,7 @@ margin/left = 986.0
 margin/top = 220.0
 margin/right = 1639.0
 margin/bottom = 287.0
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 5 )
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -391,7 +383,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
+script/script = ExtResource( 7 )
 json_path = "res://texts/ch1_safe01.json"
 ui_path = null
 can_take = null
@@ -422,7 +414,7 @@ margin/left = 255.0
 margin/top = 267.0
 margin/right = 908.0
 margin/bottom = 334.0
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 5 )
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -455,7 +447,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
+script/script = ExtResource( 7 )
 json_path = "res://texts/ch1_computer01.json"
 ui_path = NodePath("../../Computer")
 can_take = null
@@ -486,7 +478,7 @@ margin/left = 255.0
 margin/top = 267.0
 margin/right = 908.0
 margin/bottom = 334.0
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 5 )
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -510,7 +502,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 9 )
+script/script = ExtResource( 8 )
 json_path = "res://texts/ch1_paper1.json"
 sprite = NodePath("../../newspaper1")
 
@@ -541,7 +533,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
+script/script = ExtResource( 7 )
 json_path = "res://texts/ch1_window01.json"
 ui_path = null
 can_take = null
@@ -572,7 +564,7 @@ margin/left = 128.0
 margin/top = 222.0
 margin/right = 781.0
 margin/bottom = 289.0
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 5 )
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -585,17 +577,13 @@ wait_time = 2.0
 one_shot = true
 autostart = false
 
-[connection signal="draw" from="DoorunlockRM" to="Hotspots" method="_on_DoorunlockRM_draw"]
-
-[connection signal="hide" from="DoorunlockRM" to="Hotspots" method="_on_DoorunlockRM_hide"]
+[connection signal="draw" from="newspaper1" to="Hotspots" method="_on_newspaper1_draw"]
 
 [connection signal="draw" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_draw"]
 
-[connection signal="draw" from="newspaper1" to="Hotspots" method="_on_newspaper1_draw"]
+[connection signal="hide" from="newspaper1" to="Hotspots" method="_on_newspaper1_hide"]
 
 [connection signal="hide" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_hide"]
-
-[connection signal="hide" from="newspaper1" to="Hotspots" method="_on_newspaper1_hide"]
 
 [connection signal="input_event" from="newspaper1/Area2D" to="newspaper1" method="_on_Area2D_input_event"]
 

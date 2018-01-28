@@ -21,8 +21,9 @@ func _ready():
 	
 func _input(event):
 	if (is_cursor_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_LEFT):
+		print(sprite)
 		get_node(sprite).show()
-		get_node(sprite).get_node("Label").text = data.examine
+		#get_node(sprite).get_node("Label").text = data.examine
 	
 	
 func on_mouse_enter_object(object_name):

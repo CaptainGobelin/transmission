@@ -1,0 +1,7 @@
+{
+	"name": "Affiche de Vulture",
+	"examine": ["C'est une affiche de Vulture", ""],
+	"take": ["", ""],
+	"take_used": ["", ""],
+	"contains": [""]
+}
