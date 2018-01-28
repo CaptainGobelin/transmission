@@ -1,4 +1,7 @@
-{
-	"name": "Fenêtre",
-	"examine": ["De lourds barreaux obstruent le passage", "Une prècaution loin d'être inutile."]
+{   
+    "name": "Window",
+	"examine": ["These bars are thick. No way to go through there"],
+	"take": ["", ""],
+	"take_used": ["", ""],
+	"contains": [""]    
 }
