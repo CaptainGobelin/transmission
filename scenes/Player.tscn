@@ -114,7 +114,7 @@ func update_scale():
 [sub_resource type="Animation" id=2]
 
 resource/name = "stand"
-length = 7.0
+length = 8.0
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -172,17 +172,17 @@ tracks/5/path = NodePath("Sprite:frame")
 tracks/5/interp = 1
 tracks/5/imported = false
 tracks/5/keys = {
-"times": FloatArray( 0, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7 ),
-"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": FloatArray( 0, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 0 ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("../Particles2D:config/emitting")
 tracks/6/interp = 1
 tracks/6/imported = false
 tracks/6/keys = {
-"times": FloatArray( 3.5, 4, 4.5, 5.5, 6.5, 7 ),
+"times": FloatArray( 3.5, 4, 4.5, 5.5, 7.5, 8 ),
 "transitions": FloatArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ false, false, true, false, true, false ]
@@ -334,7 +334,7 @@ transform/pos = Vector2( 6.03516, -179.017 )
 texture = ExtResource( 1 )
 vframes = 3
 hframes = 3
-frame = 4
+frame = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D"]
 
