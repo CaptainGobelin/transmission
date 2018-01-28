@@ -243,7 +243,7 @@ autoplay = ""
 [node name="Timertobientot2" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 10.0
+wait_time = 25.0
 one_shot = true
 autostart = true
 script/script = SubResource( 5 )
@@ -252,7 +252,7 @@ ui_path = NodePath("../DoorunlockRM")
 [node name="Timerto3" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 40.0
+wait_time = 45.0
 one_shot = true
 autostart = true
 script/script = SubResource( 4 )
@@ -260,7 +260,7 @@ script/script = SubResource( 4 )
 [node name="Timerto4" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 50.0
+wait_time = 65.0
 one_shot = true
 autostart = true
 script/script = SubResource( 6 )

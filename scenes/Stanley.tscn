@@ -7,15 +7,23 @@
 
 script/source = "extends Node2D
 onready var gui_dialogue = get_node(\"../GUI/Dialogue\")
+export(String,FILE) var json_path
 
+var data = {}
 var is_mouse_on = false
 
 func _ready():
+	var file = File.new()
+	file.open(json_path, File.READ)
+	var json_str = file.get_as_text()
+	file.close()
+	data.parse_json(json_str)
 	set_process_input(true)
 
 func _input(event):
 	if (is_mouse_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_LEFT):
 		gui_dialogue.open()
+		gui_dialogue.play_dialog(data.dialog)
 		get_node(\"../Player\").go_to(get_node(\"PinJoint2D\").get_global_pos(), null, false)
 		is_mouse_on = false
 
@@ -45,6 +53,7 @@ points = Vector2Array( 64.1249, -291.019, 44.5983, -179.438, -41.8765, -87.3846,
 [node name="Stanley" type="Node2D"]
 
 script/script = SubResource( 4 )
+json_path = "res://texts/ch1_stanley.json"
 
 [node name="Sprite" type="Sprite" parent="."]
 
