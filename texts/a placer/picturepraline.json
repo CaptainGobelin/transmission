@@ -1,7 +1,4 @@
 {
 	"name": "Photo de chien",
-	"examine": ["C'est la photo d'un chien", "Le nom de 'Praline' y est inscrit"],
-	"take": ["", ""],
-	"take_used": ["", ""],
-	"contains": [""]
+	"examine": ["C'est la photo d'un chien", "Le nom de 'Praline' y est inscrit"]
 }

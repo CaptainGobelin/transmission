@@ -95,8 +95,11 @@ func tolvl2():
 	change_level(\"res://levels/chap2/Chap2.tscn\")
 	player.current_level = get_node(\"../Chap2\")
 	player.nav_2d = player.current_level.get_node(\"Navigation2D\")
+	player.set_process_input(true)
 	player.update_scale()
-
+	get_node(\"../Chap2/Hotspots\").show()
+	print(\"jeuchangement scène\")
+	
 func open_ui(node = \"\", function = \"\"):
 	if ui:
 		if not ui.get(\"termnode\") == null:
@@ -254,7 +257,7 @@ ui_path = NodePath("../DoorunlockRM")
 process_mode = 1
 wait_time = 45.0
 one_shot = true
-autostart = true
+autostart = false
 script/script = SubResource( 5 )
 
 [node name="Timerto4" type="Timer" parent="."]
@@ -262,7 +265,7 @@ script/script = SubResource( 5 )
 process_mode = 1
 wait_time = 65.0
 one_shot = true
-autostart = true
+autostart = false
 script/script = SubResource( 6 )
 
 [node name="DoorunlockRM" parent="." instance=ExtResource( 7 )]

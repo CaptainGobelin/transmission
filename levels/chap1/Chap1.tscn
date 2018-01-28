@@ -15,7 +15,7 @@ vertices = Vector2Array( 1444.77, 943.73, 1423.67, 883.436, 1508.14, 886.997, 16
 polygons = [ IntArray( 0, 1, 2, 3, 4 ), IntArray( 5, 6, 7, 8 ), IntArray( 4, 8, 7, 9 ), IntArray( 4, 9, 10 ), IntArray( 4, 10, 0 ) ]
 outlines = [ Vector2Array( 1742.16, 1057.4, 1608.11, 955.159, 1508.14, 886.997, 1423.67, 883.436, 1444.77, 943.73, 1286.5, 990.458, 679.046, 975.384, 538.713, 969.627, 576.547, 886.451, 423.932, 878.302, 122.665, 1048.46 ) ]
 
-[sub_resource type="GDScript" id=14]
+[sub_resource type="GDScript" id=2]
 
 script/source = "var is_cursor_on = false
 
@@ -27,12 +27,12 @@ func _on_Area2D_mouse_exit():
 	is_cursor_on = false
 "
 
-[sub_resource type="CircleShape2D" id=15]
+[sub_resource type="CircleShape2D" id=3]
 
 custom_solver_bias = 0.0
 radius = 10.0
 
-[sub_resource type="GDScript" id=16]
+[sub_resource type="GDScript" id=4]
 
 script/source = "func _on_newspaper1_hide():
 	set_process_input(false)
@@ -101,12 +101,12 @@ points = Vector2Array( 719.161, 442.637, 868.872, 610.018, 821.688, 608.731 )
 custom_solver_bias = 0.0
 points = Vector2Array( 721.211, 608.731, 719.161, 442.637, 821.688, 608.731 )
 
-[sub_resource type="ConvexPolygonShape2D" id=17]
+[sub_resource type="ConvexPolygonShape2D" id=14]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 620.735, 742.016, 699.633, 782.495, 673.07, 934.287, 569.471, 924.515, 561.269, 793.28 )
 
-[sub_resource type="ConvexPolygonShape2D" id=18]
+[sub_resource type="ConvexPolygonShape2D" id=15]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 195.021, 347.508, 297.765, 374.906, 308.039, 689.986, 195.021, 720.809 )
@@ -124,8 +124,6 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
-
-editor/display_folded = true
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
 
@@ -146,7 +144,7 @@ transform/scale = Vector2( 1.35287, 1.41752 )
 z/z = 1000
 z/relative = false
 texture = ExtResource( 4 )
-script/script = SubResource( 14 )
+script/script = SubResource( 2 )
 
 [node name="ColorFrame" type="ColorFrame" parent="newspaper1"]
 
@@ -186,26 +184,25 @@ texture = ExtResource( 6 )
 [node name="Area2D" type="Area2D" parent="newspaper1"]
 
 input/pickable = true
-shapes/0/shape = SubResource( 15 )
+shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Matrix32( 7.49208, 0, 0, 6.78303, -779.596, -288.358 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = SubResource( 16 )
+script/script = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="newspaper1/Area2D"]
 
 transform/pos = Vector2( -779.596, -288.358 )
 transform/scale = Vector2( 7.49208, 6.78303 )
-shape = SubResource( 15 )
+shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
 [node name="Hotspots" type="Node2D" parent="."]
 
-editor/display_folded = true
 script/script = SubResource( 5 )
 
 [node name="door" type="Area2D" parent="Hotspots"]
@@ -495,7 +492,7 @@ autostart = false
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 17 )
+shapes/0/shape = SubResource( 14 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -526,7 +523,7 @@ softness = 0.0
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 18 )
+shapes/0/shape = SubResource( 15 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -577,13 +574,13 @@ wait_time = 2.0
 one_shot = true
 autostart = false
 
-[connection signal="draw" from="newspaper1" to="Hotspots" method="_on_newspaper1_draw"]
-
 [connection signal="draw" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_draw"]
 
-[connection signal="hide" from="newspaper1" to="Hotspots" method="_on_newspaper1_hide"]
+[connection signal="draw" from="newspaper1" to="Hotspots" method="_on_newspaper1_draw"]
 
 [connection signal="hide" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_hide"]
+
+[connection signal="hide" from="newspaper1" to="Hotspots" method="_on_newspaper1_hide"]
 
 [connection signal="input_event" from="newspaper1/Area2D" to="newspaper1" method="_on_Area2D_input_event"]
 

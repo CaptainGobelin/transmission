@@ -17,7 +17,7 @@ vertices = Vector2Array( 1961.49, 1103.37, -58.1109, 1106.16, -16.2682, 1016.89,
 polygons = [ IntArray( 0, 1, 2, 3 ), IntArray( 0, 3, 4, 5 ) ]
 outlines = [ Vector2Array( 1961.49, 1103.37, -58.1109, 1106.16, -16.2682, 1016.89, 750.847, 1011.31, 845.69, 924.839, 1925.23, 927.628 ) ]
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=3]
 
 script/source = "func _on_DoorunlockRM_draw():
 	hide()
@@ -34,7 +34,7 @@ func _on_newspaper1_hide():
 	get_node(\"../../Player\").set_process_input(true)
 	show()"
 
-[sub_resource type="ConvexPolygonShape2D" id=6]
+[sub_resource type="ConvexPolygonShape2D" id=4]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1202.75, 919.259, 1531.91, 916.47, 1590.49, 1014.1, 1272.48, 1081.05 )
@@ -60,12 +60,12 @@ enabled = true
 
 [node name="Hotspots" type="Node2D" parent="."]
 
-script/script = SubResource( 5 )
+script/script = SubResource( 3 )
 
 [node name="Poster" type="Area2D" parent="Hotspots"]
 
 input/pickable = true
-shapes/0/shape = SubResource( 6 )
+shapes/0/shape = SubResource( 4 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )

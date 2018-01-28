@@ -21,13 +21,12 @@ var nav_2d
 var speed = 450
 var hotspot_target
 var take_target = false
+var borne = false
 
 func _ready():
 	debug_node = get_node(debug_path)
 	current_level = get_node(terrain_path)
 	nav_2d = current_level.get_node(\"Navigation2D\")
-	print(nav_2d.get_name())
-	print(nav_2d.get_path())
 	update_scale()
 	update_z()
 	set_process_input(true)
@@ -74,6 +73,9 @@ func take_item(item):
 	gui.get_node(\"Inventory/Items/\"+item).possess()
 
 func _input(event):
+	if borne:
+		borne = false
+		return
 	if (event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_LEFT):
 		if (not gui.is_mouse_on_gui):
 			go_to(event.global_pos, null, false)
@@ -86,7 +88,11 @@ func go_to(point, hotspot, to_take):
 	path = Array(path)
 	if (hotspot_target != null):
 		hotspot_target.cut_dialogue()
-	hotspot_target = hotspot
+	if hotspot:
+		hotspot_target = get_node(hotspot)
+		borne = true
+	else:
+		hotspot_target = null
 	take_target = to_take
 
 func update_z():

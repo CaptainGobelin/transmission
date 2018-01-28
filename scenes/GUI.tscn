@@ -128,6 +128,17 @@ var labels = {}
 var queue = {}
 var to_play = null
 var line = 0
+var termnode = \"\"
+var termfunction = \"\"
+var ended = false
+
+func terminate_dialogue():
+	close()
+	hide()
+	if (termnode != \"\") and (termfunction != \"\"):
+		print(get_tree().get_root().get_node(termnode).get_path())
+		print(get_tree().get_root().get_node(termnode).get_name())
+		get_tree().get_root().get_node(termnode).call(termfunction,termnode,\"tolvl2\")
 
 func _ready():
 	labels[0] = get_node(\"Sprite/Label\")
@@ -142,6 +153,7 @@ func open():
 
 func close():
 	get_node(\"AnimationPlayer\").play(\"close\")
+	get_node(\"../../Player\").set_process_input(true)
 	is_closed = true
 	
 func play_dialog(dialog):
