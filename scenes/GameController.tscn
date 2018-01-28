@@ -1,16 +1,15 @@
-[gd_scene load_steps=20 format=1]
+[gd_scene load_steps=19 format=1]
 
 [ext_resource path="res://levels/chap1/Chap1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/fonts/font_examine.fnt" type="BitmapFont" id=3]
+[ext_resource path="res://assets/fonts/vcr_osd_64.fnt" type="BitmapFont" id=3]
 [ext_resource path="res://scenes/GUI.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/fonts/computer_font.fnt" type="BitmapFont" id=5]
-[ext_resource path="res://scenes/Doorunlock.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/DoorunlockDC.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/music/scene1.wav" type="Sample" id=8]
-[ext_resource path="res://assets/music/scene2.wav" type="Sample" id=9]
-[ext_resource path="res://assets/music/scene3.wav" type="Sample" id=10]
-[ext_resource path="res://assets/music/scene4.wav" type="Sample" id=11]
+[ext_resource path="res://scenes/Doorunlock.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/DoorunlockDC.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/music/scene1.wav" type="Sample" id=7]
+[ext_resource path="res://assets/music/scene2.wav" type="Sample" id=8]
+[ext_resource path="res://assets/music/scene3.wav" type="Sample" id=9]
+[ext_resource path="res://assets/music/scene4.wav" type="Sample" id=10]
 
 [sub_resource type="GDScript" id=1]
 
@@ -216,25 +215,25 @@ samples/scene1 = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 8 )
+"sample": ExtResource( 7 )
 }
 samples/scene2 = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 9 )
+"sample": ExtResource( 8 )
 }
 samples/scene3 = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 10 )
+"sample": ExtResource( 9 )
 }
 samples/scene4 = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 11 )
+"sample": ExtResource( 10 )
 }
 
 [node name="GameController" type="Node2D"]
@@ -273,7 +272,6 @@ max_lines_visible = -1
 
 [node name="ColorFrame" type="ColorFrame" parent="."]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -295,7 +293,7 @@ margin/left = 110.0
 margin/top = 501.0
 margin/right = 1838.0
 margin/bottom = 796.0
-custom_fonts/font = ExtResource( 5 )
+custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
 text = "Chapitre 1: Et si je paie d'avance?"
 percent_visible = 1.0
@@ -318,7 +316,7 @@ autoplay = ""
 process_mode = 1
 wait_time = 6.0
 one_shot = true
-autostart = true
+autostart = false
 script/script = SubResource( 4 )
 ui_path = NodePath("../DoorunlockRM")
 
@@ -336,7 +334,7 @@ ui_path = NodePath("../DoorunlockDC")
 process_mode = 1
 wait_time = 10.0
 one_shot = true
-autostart = true
+autostart = false
 script/script = SubResource( 6 )
 
 [node name="Timerto4" type="Timer" parent="."]
@@ -347,12 +345,12 @@ one_shot = true
 autostart = false
 script/script = SubResource( 7 )
 
-[node name="DoorunlockRM" parent="." instance=ExtResource( 6 )]
+[node name="DoorunlockRM" parent="." instance=ExtResource( 5 )]
 
 visibility/visible = false
 z/z = 1050
 
-[node name="DoorunlockDC" parent="." instance=ExtResource( 7 )]
+[node name="DoorunlockDC" parent="." instance=ExtResource( 6 )]
 
 visibility/visible = false
 
