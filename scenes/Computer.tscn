@@ -35,6 +35,7 @@ func _ready():
 	
 	timer.connect(\"timeout\", self, \"show_next_char\")
 	area2D.connect(\"input_event\", self, \"input_event\")
+	self.connect(\"visibility_changed\", self, \"visibility_changed\")
 	
 	if dict.has(\"choices\"):
 		choices.connect(\"button_selected\", self, \"choice_selected\")
@@ -53,6 +54,10 @@ func show_next_char():
 func input_event(viewport, ev, shape_idx):
 	if ev.type == InputEvent.MOUSE_BUTTON and ev.button_index == BUTTON_LEFT and ev.pressed:
 		show_next_text_page()
+
+func visibility_changed():
+	if is_visible():
+		reset()
 
 func choice_selected(button_idx):
 	#  noop if target empty
@@ -266,7 +271,7 @@ max_lines_visible = -1
 [node name="Timer" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 0.1
+wait_time = 0.04
 one_shot = false
 autostart = false
 
