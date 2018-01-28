@@ -6,24 +6,24 @@
       "target": []
     },
     {
-      "label": "Attention : Heidi, n’est pas votre amie",
-      "target": ["From: alice@rottenmeier.glob\n\nSi vous avez reçu un email de la part d’une femme du nom de \"Heidi\", ne l'ouvrez pas, ne le lisez pas. C’est une arnaque qui prendra possession de votre esprit. Prenez soin de vous.\n\nToujours à votre service pour rendre le monde meilleur, \n\nFondation RottenMeier"]
+      "label": "Attention : Heidi, n'est pas votre amie",
+      "target": ["From: alice@rottenmeier.glob\n\nSi vous avez reçu un email de la part d'une femme du nom de \"Heidi\", ne l'ouvrez pas, ne le lisez pas. C'est une arnaque qui prendra possession de votre esprit. Prenez soin de vous.\n\nToujours à votre service pour rendre le monde meilleur, \n\nFondation RottenMeier"]
     },
     {
       "label": "RE: Keith, je peux vous aider",
-      "target": ["From: automaticresponse@globmail.org\n\nCher Keith,\n\nJe suis heureuse que vous ayez répondu à mon appel. Plus nombreux nous serons, plus l’humanité aura de chance de renaître des cendres crées par la technologie RottenMeier.", "Je ferai une requête en votre nom pour vous obtenir un pass pour les bas fonds. Ils me connaissent. Ils ont confiance en moi. Vous pouvez vous y cacher. Nous pouvons nous rencontrer là-bas. \n\nHeidi\n\n----\n\nHello Heidi,\n\nVotre email a retenu toute mon attention. S’il vous plait, donnez moi plus d’informations sur le moyen de retrouver mon humanité.\n\nKeith\n\n----\n\nHello Keith,\n\nPensez-vous que la technologie vole votre humanité ? Je peux vous aider à vous en sortir. Reprenez votre vie en main."]
+      "target": ["From: automaticresponse@globmail.org\n\nCher Keith,\n\nJe suis heureuse que vous ayez répondu à mon appel. Plus nombreux nous serons, plus l'humanité aura de chance de renaître des cendres crées par la technologie RottenMeier. Je ferai une requête en votre nom pour vous obtenir un pass pour les bas fonds. Ils me connaissent. Ils ont confiance en moi. Vous pouvez vous y cacher. Nous pouvons nous rencontrer là-bas. \n\nHeidi\n\n----\n\nFrom: keithkiss@globmail.org\n\nHello Heidi,\n\nVotre email a retenu toute mon attention. S'il vous plait, donnez-moi plus d'informations sur le moyen de", "retrouver mon humanité.\n\nKeith\n\n----\n\nHello Keith,\n\nPensez-vous que la technologie vole votre humanité ? Je peux vous aider à vous en sortir. Reprenez votre vie en main."]
     },
     {
-      "label": "Hey ! Ca fait longtemps qu’on s’est pas vu <3<3<3",
-      "target": ["From: elena@thisisnotascamipromiseyou.glob\n\nCheri,\n\nTu me manque \n\nS’il te plait viens me voir sur :\n\n      Localgirls.dot\n\nElena Trump"]
+      "label": "Hey ! Ca fait longtemps qu'on s'est pas vu <3<3<3",
+      "target": ["From: elena@thisisnotascamipromiseyou.glob\n\nCheri,\n\nTu me manque \n\nS'il te plait viens me voir sur :\n\n      Localgirls.dot\n\nElena Trump"]
     },
     {
       "label": "Passe pour la liberté",
-      "target": ["From: From: noreply@noreply.glob\n\nCher K.B., \n\nMerci de votre intérêt pour nos produits. Nous avons statué sur votre profil et nous sommes heureux de vous faire savoir que nous allons vous apporter notre aide. Vous trouverez plus d’informations sur votre nouveau passe au marché des déconnectés, au nord de la place centrale.\n\nMeilleures salutations\n\nJaDe."]
+      "target": ["From: noreply@noreply.glob\n\nCher K.B., \n\nMerci de votre intérêt pour nos produits. Nous avons statué sur votre profil et nous sommes heureux de vous faire savoir que nous allons vous apporter notre aide. Vous trouverez plus d'informations sur votre nouveau passe au marché des déconnectés, au nord de la place centrale.\n\nMeilleures salutations\n\nJaDe."]
     },
     {
       "label": "Notifications récentes",
-      "target": ["(1/3) Votre taux de sucre est élevé. Pas de sucre dans votre café aujourd’hui.", "(2/3) Ayez une pensée pour Praline, premier anniversaire de sa mort ce jour.", "(3/3) En raison du climat, vous devrez rester à domicile aujourd'hui."]
+      "target": ["(1/3) Votre taux de sucre est élevé. Pas de sucre dans votre café aujourd'hui.", "(2/3) Ayez une pensée pour Praline, premier anniversaire de sa mort ce jour.", "(3/3) En raison du climat, vous devrez rester à domicile aujourd'hui."]
     }
   ]
 }

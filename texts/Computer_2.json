@@ -1,0 +1,17 @@
+{
+  "choices":
+  [
+    {
+      "label": "E-MAIL",
+      "target": []
+    },
+    {
+      "label": "Mise à jour de votre implant",
+      "target": ["From: johndoe@bestimplantever.glob\n\nCher M. Richards,\n\nNous avons constaté que vos visites se font rares et nous en sommes navrés. Nous nous soucions de vos implants et pensons qu'une mise à jour serait nécessaire. Nous vous invitons à une cordiale visite dès que possible.\n\nPrenez rendez-vous avec nous sur notre globsite :\n\nBestimplantever.glob"]
+    },
+    {
+      "label": "Notifications récentes",
+      "target": ["(1/5) Votre compte est à découvert ! Buvez un café", "(2/5) Votre chien est mort. Caressez votre chien", "(3/5) Vous n'allez pas bien.", "(4/5) VOUS AVEZ ETE BLOQUE!  VOUS AVEZ ETE BLOQUE!  VOUS AVEZ ETE BLOQUE!", "VOUSAVEZETEBLOQUEVOUSAVETBLO$$QUE(/&%*”OQUEhGJRyOUaared)&&%/çç//*/*QQQQQQQQQQEEEEEEEEEEE"]
+    }
+  ]
+}
