@@ -13,6 +13,7 @@ func update_z():
 
 func update_scale():
 	var z = 1 - get_global_pos().y / Globals.get("display/height")
+	print(get_node("..").get_name())
 	var minS = get_node("..").current_level.min_scale
 	var maxS = get_node("..").current_level.max_scale
 	var scale_ratio = minS + z*(maxS-minS)

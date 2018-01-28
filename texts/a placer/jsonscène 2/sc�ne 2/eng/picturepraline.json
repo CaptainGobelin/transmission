@@ -1,7 +1,0 @@
-{
-	"name": "Dog picture",
-	"examine": ["This is the picture of a dog", "Praline's name is inscribed on it"],
-	"take": ["", ""],
-	"take_used": ["", ""],
-	"contains": [""]
-}

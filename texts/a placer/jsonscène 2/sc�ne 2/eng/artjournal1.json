@@ -1,7 +1,0 @@
-{
-	"name": "Newspaper article Disappearances",
-	"examine": ["Several cases of mysterious disappearances", " Since the beginning of the month, several cases of disappearances have been reported.", "This scourge seems to target only people of middle class or in precariousness.", "Our star reporter, Adam Smith, investigating this case, did not report to our editorial office this morning."],
-	"take": ["", ""],
-	"take_used": ["", ""],
-	"contains": [""]
-}

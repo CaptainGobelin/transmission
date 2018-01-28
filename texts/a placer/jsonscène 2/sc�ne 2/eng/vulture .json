@@ -1,7 +1,0 @@
-{
-	"name": "Poster of Vulture",
-	"examine": ["This is a poster of Vulture", ""],
-	"take": ["", ""],
-	"take_used": ["", ""],
-	"contains": [""]
-}

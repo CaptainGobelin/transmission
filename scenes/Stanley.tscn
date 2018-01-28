@@ -15,7 +15,8 @@ var data = {}
 var is_mouse_on = false
 
 func _ready():
-	current_level = get_node(level_path)
+	current_level = get_node(\"..\")
+	print(\"jeu\")
 	print(current_level.get_name())
 	get_node(\"Sprite\").texture = texture
 	var file = File.new()
