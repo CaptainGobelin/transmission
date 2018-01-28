@@ -33,7 +33,7 @@ func _on_TextureButton_pressed():
 		hide()
 "
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=3]
 
 script/source = "func _on_DoorunlockRM_draw():
 	hide()
@@ -50,52 +50,52 @@ func _on_newspaper1_hide():
 	get_node(\"../../Player\").set_process_input(true)
 	show()"
 
-[sub_resource type="ConvexPolygonShape2D" id=6]
+[sub_resource type="ConvexPolygonShape2D" id=4]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1737.62, 317.14, 1755.25, 382.596, 1752.73, 1011.98, 1664.62, 956.593, 1664.62, 541.201, 1669.65, 415.324, 1679.72, 334.763 )
 
-[sub_resource type="ConvexPolygonShape2D" id=7]
+[sub_resource type="ConvexPolygonShape2D" id=5]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 195.021, 950.27, 58.0295, 1008.49, 58.0295, 871.5, 201.871, 823.553 )
 
-[sub_resource type="ConvexPolygonShape2D" id=8]
+[sub_resource type="ConvexPolygonShape2D" id=6]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1438.22, 501.623, 1277.25, 501.623, 1277.25, 350.933, 1431.37, 347.508 )
 
-[sub_resource type="ConvexPolygonShape2D" id=9]
+[sub_resource type="ConvexPolygonShape2D" id=7]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 486.128, 354.357, 643.668, 350.933, 643.668, 511.898, 486.128, 511.898 )
 
-[sub_resource type="ConvexPolygonShape2D" id=10]
+[sub_resource type="ConvexPolygonShape2D" id=8]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 866.8, 664.096, 817.587, 664.096, 821.688, 608.731, 868.872, 610.018 )
 
-[sub_resource type="ConvexPolygonShape2D" id=11]
+[sub_resource type="ConvexPolygonShape2D" id=9]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1001.02, 435.27, 1001.84, 613.647, 868.872, 610.018, 719.161, 442.637 )
 
-[sub_resource type="ConvexPolygonShape2D" id=12]
+[sub_resource type="ConvexPolygonShape2D" id=10]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 719.161, 442.637, 868.872, 610.018, 821.688, 608.731 )
 
-[sub_resource type="ConvexPolygonShape2D" id=13]
+[sub_resource type="ConvexPolygonShape2D" id=11]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 721.211, 608.731, 719.161, 442.637, 821.688, 608.731 )
 
-[sub_resource type="ConvexPolygonShape2D" id=14]
+[sub_resource type="ConvexPolygonShape2D" id=12]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 620.735, 742.016, 699.633, 782.495, 673.07, 934.287, 569.471, 924.515, 561.269, 793.28 )
 
-[sub_resource type="ConvexPolygonShape2D" id=15]
+[sub_resource type="ConvexPolygonShape2D" id=13]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 195.021, 347.508, 297.765, 374.906, 308.039, 689.986, 195.021, 720.809 )
@@ -124,6 +124,7 @@ enabled = true
 visibility/visible = false
 z/z = 100
 z/relative = false
+json_path = "res://texts/Computer_0.json"
 
 [node name="newspaper1" type="Sprite" parent="."]
 
@@ -184,13 +185,13 @@ params/stretch_mode = 0
 
 [node name="Hotspots" type="Node2D" parent="."]
 
-script/script = SubResource( 5 )
+script/script = SubResource( 3 )
 
 [node name="door" type="Area2D" parent="Hotspots"]
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 6 )
+shapes/0/shape = SubResource( 4 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -244,7 +245,7 @@ autostart = false
 [node name="grid" type="Area2D" parent="Hotspots"]
 
 input/pickable = true
-shapes/0/shape = SubResource( 7 )
+shapes/0/shape = SubResource( 5 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -299,7 +300,7 @@ autostart = false
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 8 )
+shapes/0/shape = SubResource( 6 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -353,7 +354,7 @@ autostart = false
 [node name="safe" type="Area2D" parent="Hotspots"]
 
 input/pickable = true
-shapes/0/shape = SubResource( 9 )
+shapes/0/shape = SubResource( 7 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -407,16 +408,16 @@ autostart = false
 [node name="computer" type="Area2D" parent="Hotspots"]
 
 input/pickable = true
-shapes/0/shape = SubResource( 10 )
+shapes/0/shape = SubResource( 8 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 11 )
+shapes/1/shape = SubResource( 9 )
 shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/1/trigger = false
-shapes/2/shape = SubResource( 12 )
+shapes/2/shape = SubResource( 10 )
 shapes/2/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/2/trigger = false
-shapes/3/shape = SubResource( 13 )
+shapes/3/shape = SubResource( 11 )
 shapes/3/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/3/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -470,7 +471,7 @@ autostart = false
 [node name="trashcan" type="Area2D" parent="Hotspots"]
 
 input/pickable = true
-shapes/0/shape = SubResource( 14 )
+shapes/0/shape = SubResource( 12 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -501,7 +502,7 @@ softness = 0.0
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 15 )
+shapes/0/shape = SubResource( 13 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
