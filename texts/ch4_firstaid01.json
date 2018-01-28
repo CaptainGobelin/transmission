@@ -1,7 +1,7 @@
 {   
     "name": "Armoire à pharmacie",
-	"examine": ["Il me reste une boîte de DetoxPlus™. J’aurais jamais pensé qu’elle puisse m’être utile"],
-	"take": ["", ""],
-	"take_used": ["", ""],
-	"contains": ["f"]    
+	"examine": ["Avec le tournevis la pharmacie", "s'ouvre sans problèmes."],
+	"take": ["Il me reste une boîte de DetoxPlus.", "J’aurais jamais pensé qu’elle puisse m’être utile."],
+	"take_used": ["Le reste neme sera pas utile"],
+	"contains": ["detox"]    
 }

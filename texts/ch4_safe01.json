@@ -1,7 +1,7 @@
 {   
     "name": "Coffre-fort",
-	"examine": ["Mon coffre-fort. Il contient le revolver de mon père et une boîte de cartouches", "En ouvrant les cartouches, je devrais avoir assez de poudre"],
-	"take": ["", ""],
-	"take_used": ["", ""],
-	"contains": [""]    
+	"examine": ["Mon coffre-fort.", "Il contient le revolver de mon père et une boîte de cartouches"],
+	"take": ["En ouvrant les cartouches,","je devrais avoir assez de poudre"],
+	"take_used": ["Sans cartouche le revolver est inutile"],
+	"contains": ["balles"]    
 }
