@@ -1,9 +1,5 @@
 {
-	"name": "Article journal Apocalypse",
-	"examine": ["L’Apocalypse est-elle à notre porte ?", "Ramon Trump, 36 ans, habitant dans notre banlieue, nous a contacté ce matin pour nous demander de l’aide concernant la disparition de son oncle et de sa tante, Miguel et Rachel Trump.", "Pourtant toujours au top de la technologie, ce couple ne répond à aucun appel ou mail de leur neveu. Nous avons tenté de les contacter également, sans succès.", "C’est en se rendant à leur appartement que Ramon a remarqué leur absence physique. Il s’agit du 5ème cas de disparition physique et numérique depuis le début du mois.", "Va-t-on tous disparaître ? Sommes-nous plus proche du cloud bang que jamais ?"],
-	"take": ["", ""],
-	"take_used": ["", ""],
-	"contains": [""]
+	"name": "L’Apocalypse est-elle à notre porte ?",
+	"examine": "Ramon Trump, 36 ans, habitant dans notre banlieue, nous a contacté ce matin pour nous demander de l’aide concernant la disparition de son oncle et de sa tante, Miguel et Rachel Trump. Pourtant toujours au top de la technologie, ce couple ne répond à aucun appel ou mail de leur neveu. Nous avons tenté de les contacter également, sans succès.
+C’est en se rendant à leur appartement que Ramon a remarqué leur absence physique. Il s’agit du 5ème cas de disparition physique et numérique depuis le début du mois. Va-t-on tous disparaître ? Sommes-nous plus proche du cloud bang que jamais ?"
 }
- 
-

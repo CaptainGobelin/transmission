@@ -28,7 +28,7 @@
     },
     {
       "label": "Notifications récentes",
-      "target": ["(1/3) Votre taux de sucre est élevé. Pas de sucre dans votre café aujourd'hui.", "(2/3) Ayez une pensée pour Praline, premier anniversaire de sa mort ce jour.", "(3/3) En raison du climat, vous devrez rester à domicile aujourd'hui."]
+      "target": ["(1/3) Votre taux de sucre est élevé. Pas de sucre dans votre café aujourd'hui.", "(2/3) Ayez une pensée pour Praline, premier anniversaire de sa mort ce jour.", "SIGNAL (3/3) En raison du climat, vous devrez rester à domicile aujourd'hui."]
     }
   ]
 }

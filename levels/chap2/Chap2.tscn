@@ -81,12 +81,12 @@ points = Vector2Array( 555.581, 553.834, 675.53, 570.571, 569.529, 637.519, 485.
 custom_solver_bias = 0.0
 points = Vector2Array( 125.997, 241.409, 195.734, 238.619, 190.155, 299.988, 123.207, 302.778 )
 
-[sub_resource type="ConvexPolygonShape2D" id=13]
+[sub_resource type="ConvexPolygonShape2D" id=10]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -0.822571, 989.536, 1046.63, 909.959, 1698.04, 1059.86, -2.67319, 1061.71 )
 
-[sub_resource type="GDScript" id=15]
+[sub_resource type="GDScript" id=11]
 
 script/source = "extends Node2D
 
@@ -177,17 +177,17 @@ func _on_Computer_notification_read():
 	pass # replace with function body
 "
 
-[sub_resource type="ConvexPolygonShape2D" id=10]
+[sub_resource type="ConvexPolygonShape2D" id=12]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 166.982, 169.953, 257.206, 172.003, 261.307, 231.469, 160.83, 233.52 )
 
-[sub_resource type="ConvexPolygonShape2D" id=11]
+[sub_resource type="ConvexPolygonShape2D" id=13]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 998.035, 672.298, 1073.91, 686.652, 971.378, 717.41, 866.8, 698.955 )
 
-[sub_resource type="ConvexPolygonShape2D" id=12]
+[sub_resource type="ConvexPolygonShape2D" id=14]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 368.809, 764.602, 560.141, 752.014, 497.203, 900.549, 414.125, 860.268 )
@@ -220,7 +220,7 @@ z/z = 100
 z/relative = false
 json_path = "res://texts/Computer_1.json"
 
-[node name="newspaper1" type="Sprite" parent="."]
+[node name="newspaper2" type="Sprite" parent="."]
 
 visibility/visible = false
 transform/pos = Vector2( 1212.69, 555.802 )
@@ -230,7 +230,7 @@ z/relative = false
 texture = ExtResource( 4 )
 script/script = SubResource( 2 )
 
-[node name="ColorFrame" type="ColorFrame" parent="newspaper1"]
+[node name="ColorFrame" type="ColorFrame" parent="newspaper2"]
 
 visibility/behind_parent = true
 focus/ignore_mouse = false
@@ -243,7 +243,7 @@ margin/right = 698.0
 margin/bottom = 628.0
 color = Color( 0, 0, 0, 0.863373 )
 
-[node name="Label" type="Label" parent="newspaper1"]
+[node name="Label" type="Label" parent="newspaper2"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -255,17 +255,18 @@ margin/right = -215.0
 margin/bottom = 266.0
 custom_fonts/font = ExtResource( 5 )
 align = 1
+autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Sprite" type="Sprite" parent="newspaper1"]
+[node name="Sprite" type="Sprite" parent="newspaper2"]
 
 transform/pos = Vector2( -778.723, -285.664 )
 transform/scale = Vector2( 0.537995, 0.537995 )
 texture = ExtResource( 6 )
 
-[node name="Area2D" type="Area2D" parent="newspaper1"]
+[node name="Area2D" type="Area2D" parent="newspaper2"]
 
 editor/display_folded = true
 input/pickable = true
@@ -278,7 +279,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 script/script = SubResource( 4 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="newspaper1/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="newspaper2/Area2D"]
 
 transform/pos = Vector2( -779.596, -288.358 )
 transform/scale = Vector2( 7.49208, 6.78303 )
@@ -292,6 +293,7 @@ script/script = SubResource( 5 )
 
 [node name="computer" type="Area2D" parent="Hotspots"]
 
+editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 6 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -511,15 +513,16 @@ softness = 0.0
 
 [node name="sortie" type="Area2D" parent="Hotspots"]
 
+editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 13 )
+shapes/0/shape = SubResource( 10 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = SubResource( 15 )
+script/script = SubResource( 11 )
 json_path = "res://texts/a placer/sortie.json"
 ui_path = NodePath("CollisionPolygon2D")
 can_take = null
@@ -567,7 +570,7 @@ softness = 0.0
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 10 )
+shapes/0/shape = SubResource( 12 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -620,9 +623,8 @@ autostart = false
 
 [node name="journal1" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 11 )
+shapes/0/shape = SubResource( 13 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -631,7 +633,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 8 )
 json_path = "res://texts/a placer/artjournal1.json"
-sprite = NodePath("../../newspaper1")
+sprite = NodePath("../../newspaper2")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/journal1"]
 
@@ -651,9 +653,8 @@ softness = 0.0
 
 [node name="journal2" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 12 )
+shapes/0/shape = SubResource( 14 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -662,7 +663,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 8 )
 json_path = "res://texts/a placer/artjournal2.json"
-sprite = NodePath("../../newspaper1")
+sprite = NodePath("../../newspaper2")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/journal2"]
 
@@ -682,18 +683,18 @@ softness = 0.0
 
 [connection signal="notification_read" from="Computer" to="Hotspots/sortie" method="_on_Computer_notification_read"]
 
-[connection signal="draw" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_draw"]
+[connection signal="draw" from="newspaper2" to="Hotspots" method="_on_newspaper1_draw"]
 
-[connection signal="draw" from="newspaper1" to="Hotspots" method="_on_newspaper1_draw"]
+[connection signal="draw" from="newspaper2" to="newspaper2/Area2D" method="_on_newspaper1_draw"]
 
-[connection signal="hide" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_hide"]
+[connection signal="hide" from="newspaper2" to="Hotspots" method="_on_newspaper1_hide"]
 
-[connection signal="hide" from="newspaper1" to="Hotspots" method="_on_newspaper1_hide"]
+[connection signal="hide" from="newspaper2" to="newspaper2/Area2D" method="_on_newspaper1_hide"]
 
-[connection signal="input_event" from="newspaper1/Area2D" to="newspaper1" method="_on_Area2D_input_event"]
+[connection signal="input_event" from="newspaper2/Area2D" to="newspaper2" method="_on_Area2D_input_event"]
 
-[connection signal="mouse_enter" from="newspaper1/Area2D" to="newspaper1" method="_on_Area2D_mouse_enter"]
+[connection signal="mouse_enter" from="newspaper2/Area2D" to="newspaper2" method="_on_Area2D_mouse_enter"]
 
-[connection signal="mouse_exit" from="newspaper1/Area2D" to="newspaper1" method="_on_Area2D_mouse_exit"]
+[connection signal="mouse_exit" from="newspaper2/Area2D" to="newspaper2" method="_on_Area2D_mouse_exit"]
 
 

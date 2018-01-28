@@ -1,9 +1,4 @@
 {
-	"name": "Article de journal Disparitions",
-	"examine": ["Plusieurs cas de disparitions mystérieuses", "Depuis le début du mois, plusieurs cas de disparitions nous ont été signalés.", "Ce fléau ne semble viser que des personnes de classe moyenne ou dans la précarité.", "Notre journaliste phare, Adam Smith, investiguant sur cette affaire, ne s’est pas présenté à notre rédaction ce matin."],
-	"take": ["", ""],
-	"take_used": ["", ""],
-	"contains": [""]
+	"name": "Plusieurs cas de disparitions mystérieuses",
+	"examine": "Depuis le début du mois, plusieurs cas de disparitions nous ont été signalés. Ce fléau ne semble viser que des personnes de classe moyenne ou dans la précarité. Notre journaliste phare, Adam Smith, investiguant sur cette affaire, ne s’est pas présenté à notre rédaction ce matin."
 }
-
-  
