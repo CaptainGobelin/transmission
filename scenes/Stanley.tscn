@@ -1,18 +1,23 @@
 [gd_scene load_steps=7 format=1]
 
-[ext_resource path="res://assets/Indic.png" type="Texture" id=1]
+[ext_resource path="res://assets/PNJ_Stanley.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Human.gd" type="Script" id=2]
 
 [sub_resource type="GDScript" id=1]
 
 script/source = "extends Node2D
-onready var gui_dialogue = get_node(\"../GUI/Dialogue\")
+onready var gui_dialogue = get_node(\"../../GUI/Dialogue\")
 export(String,FILE) var json_path
-
+export(Texture) var texture
+export(NodePath) var level_path
+var current_level
 var data = {}
 var is_mouse_on = false
 
 func _ready():
+	current_level = get_node(level_path)
+	print(current_level.get_name())
+	get_node(\"Sprite\").texture = texture
 	var file = File.new()
 	file.open(json_path, File.READ)
 	var json_str = file.get_as_text()
@@ -26,7 +31,7 @@ func _input(event):
 		gui_dialogue.termnode = \"GameController/Timertobientot2\"
 		gui_dialogue.termfunction = \"open_ui\"
 		gui_dialogue.play_dialog(data.dialog)
-		get_node(\"../Player\").go_to(get_node(\"PinJoint2D\").get_global_pos(), null, false)
+		get_node(\"../../Player\").go_to(get_node(\"PinJoint2D\").get_global_pos(), null, false)
 		is_mouse_on = false
 
 func _on_Area2D_mouse_exit():
@@ -56,6 +61,8 @@ points = Vector2Array( 64.1249, -291.019, 44.5983, -179.438, -41.8765, -87.3846,
 
 script/script = SubResource( 1 )
 json_path = "res://texts/ch1_stanley.json"
+texture = null
+level_path = null
 
 [node name="Sprite" type="Sprite" parent="."]
 

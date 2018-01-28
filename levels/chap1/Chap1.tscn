@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=1]
+[gd_scene load_steps=25 format=1]
 
 [ext_resource path="res://scripts/LevelController.gd" type="Script" id=1]
 [ext_resource path="res://assets/bureau1v4.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/close_paper.png" type="Texture" id=6]
 [ext_resource path="res://scripts/HotspotController.gd" type="Script" id=7]
 [ext_resource path="res://scenes/NewspaperController.gd" type="Script" id=8]
+[ext_resource path="res://scenes/Stanley.tscn" type="PackedScene" id=9]
 
 [sub_resource type="NavigationPolygon" id=1]
 
@@ -203,6 +204,7 @@ _update_shape_index = 0
 
 [node name="Hotspots" type="Node2D" parent="."]
 
+editor/display_folded = true
 script/script = SubResource( 5 )
 
 [node name="door" type="Area2D" parent="Hotspots"]
@@ -574,13 +576,18 @@ wait_time = 2.0
 one_shot = true
 autostart = false
 
-[connection signal="draw" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_draw"]
+[node name="Stanley" parent="." instance=ExtResource( 9 )]
+
+transform/pos = Vector2( 1800.76, 1051.59 )
+level_path = NodePath("..")
 
 [connection signal="draw" from="newspaper1" to="Hotspots" method="_on_newspaper1_draw"]
 
-[connection signal="hide" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_hide"]
+[connection signal="draw" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_draw"]
 
 [connection signal="hide" from="newspaper1" to="Hotspots" method="_on_newspaper1_hide"]
+
+[connection signal="hide" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_hide"]
 
 [connection signal="input_event" from="newspaper1/Area2D" to="newspaper1" method="_on_Area2D_input_event"]
 
