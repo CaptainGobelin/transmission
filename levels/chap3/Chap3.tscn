@@ -32,12 +32,12 @@ func _on_newspaper1_hide():
 	get_node(\"../../Player\").set_process_input(true)
 	show()"
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
+[sub_resource type="ConvexPolygonShape2D" id=3]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1455.02, 920.798, 1732.21, 943.519, 1750.39, 1002.59, 1380.04, 979.872 )
 
-[sub_resource type="GDScript" id=9]
+[sub_resource type="GDScript" id=4]
 
 script/source = "extends Node2D
 onready var gui_dialogue = get_node(\"../../GUI/Dialogue\")
@@ -78,7 +78,7 @@ func _on_Area2D_mouse_enter():
 	is_mouse_on = true
 "
 
-[sub_resource type="GDScript" id=8]
+[sub_resource type="GDScript" id=5]
 
 script/source = "extends Node2D
 onready var gui_dialogue = get_node(\"../../GUI/Dialogue\")
@@ -119,7 +119,7 @@ func _on_Area2D_mouse_enter():
 	is_mouse_on = true
 "
 
-[sub_resource type="GDScript" id=7]
+[sub_resource type="GDScript" id=6]
 
 script/source = "extends Node2D
 onready var gui_dialogue = get_node(\"../../GUI/Dialogue\")
@@ -188,7 +188,7 @@ script/script = SubResource( 2 )
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 5 )
+shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -242,7 +242,7 @@ autostart = false
 [node name="Stanley" parent="." instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 547.804, 962.493 )
-script/script = SubResource( 9 )
+script/script = SubResource( 4 )
 json_path = "res://texts/ch3_lady_fr.json"
 texture = ExtResource( 6 )
 level_path = NodePath("..")
@@ -250,7 +250,7 @@ level_path = NodePath("..")
 [node name="Stanley 2" parent="." instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 956.065, 944.837 )
-script/script = SubResource( 8 )
+script/script = SubResource( 5 )
 json_path = "res://texts/ch2_jade.json"
 texture = ExtResource( 7 )
 level_path = NodePath("..")
@@ -258,7 +258,7 @@ level_path = NodePath("..")
 [node name="Stanley3" parent="." instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 185.829, 965.286 )
-script/script = SubResource( 7 )
+script/script = SubResource( 6 )
 json_path = "res://texts/ch3_man_fr.json"
 texture = ExtResource( 8 )
 level_path = NodePath("..")

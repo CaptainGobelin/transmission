@@ -142,6 +142,7 @@ func tolvl2():
 	player.current_level = get_node(\"../Chap4\")
 	player.nav_2d = player.current_level.get_node(\"Navigation2D\")
 	player.set_process_input(true)
+	player.hotspot_target = null
 	player.update_scale()
 	get_node(\"../Chap4/Hotspots\").show()
 	print(\"jeuchangement scène\")
@@ -180,6 +181,9 @@ func testing():
 	player.current_level = get_node(\"../Chap3\")
 	player.nav_2d = player.current_level.get_node(\"Navigation2D\")
 	player.update_scale()
+	player.hotspot_target = null
+	player.set_process_input(true)
+	get_node(\"../Chap3/Hotspots\").show()
 "
 
 [sub_resource type="GDScript" id=7]
@@ -353,6 +357,7 @@ z/z = 1050
 [node name="DoorunlockDC" parent="." instance=ExtResource( 6 )]
 
 visibility/visible = false
+z/z = 1000
 
 [node name="SamplePlayer" type="SamplePlayer" parent="."]
 

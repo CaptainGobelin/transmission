@@ -1,7 +1,7 @@
-[gd_scene load_steps=22 format=1]
+[gd_scene load_steps=24 format=1]
 
 [ext_resource path="res://scripts/LevelController.gd" type="Script" id=1]
-[ext_resource path="res://assets/bureau1v4.png" type="Texture" id=2]
+[ext_resource path="res://assets/bureau1v5.png" type="Texture" id=2]
 [ext_resource path="res://assets/newspaper.png" type="Texture" id=3]
 [ext_resource path="res://assets/fonts/font_examine.fnt" type="BitmapFont" id=4]
 [ext_resource path="res://assets/close_paper.png" type="Texture" id=5]
@@ -37,9 +37,9 @@ func close():
 
 [sub_resource type="NavigationPolygon" id=3]
 
-vertices = Vector2Array( 423.932, 878.302, 576.547, 886.451, 525.517, 966.748, 122.665, 1048.46, 1444.77, 943.73, 1423.67, 883.436, 1508.14, 886.997, 1608.11, 955.159, 1742.16, 1057.4, 679.046, 975.384, 1286.5, 990.458 )
-polygons = [ IntArray( 0, 1, 2, 3 ), IntArray( 4, 5, 6, 7, 8 ), IntArray( 8, 3, 2, 9 ), IntArray( 8, 9, 10 ), IntArray( 8, 10, 4 ) ]
-outlines = [ Vector2Array( 1742.16, 1057.4, 1608.11, 955.159, 1508.14, 886.997, 1423.67, 883.436, 1444.77, 943.73, 1286.5, 990.458, 679.046, 975.384, 525.517, 966.748, 576.547, 886.451, 423.932, 878.302, 122.665, 1048.46 ) ]
+vertices = Vector2Array( 423.932, 878.302, 576.547, 886.451, 525.517, 966.748, 122.665, 1048.46, 1742.16, 1057.4, 679.046, 975.384, 1286.5, 990.458, 1608.11, 955.159, 1452.33, 939.661, 1517.24, 930.388 )
+polygons = [ IntArray( 0, 1, 2, 3 ), IntArray( 4, 3, 2, 5 ), IntArray( 4, 5, 6 ), IntArray( 7, 4, 6, 8, 9 ) ]
+outlines = [ Vector2Array( 1742.16, 1057.4, 1608.11, 955.159, 1517.24, 930.388, 1452.33, 939.661, 1286.5, 990.458, 679.046, 975.384, 525.517, 966.748, 576.547, 886.451, 423.932, 878.302, 122.665, 1048.46 ) ]
 
 [sub_resource type="GDScript" id=4]
 
@@ -72,6 +72,16 @@ points = Vector2Array( 195.021, 950.27, 58.0295, 1008.49, 58.0295, 871.5, 201.87
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1438.22, 501.623, 1277.25, 501.623, 1277.25, 350.933, 1431.37, 347.508 )
+
+[sub_resource type="ConvexPolygonShape2D" id=15]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1439.97, 816.026, 1504.87, 720.208, 1532.69, 871.661 )
+
+[sub_resource type="ConvexPolygonShape2D" id=16]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1439.97, 816.026, 1532.69, 871.661, 1350.33, 874.752, 1356.51, 816.026 )
 
 [sub_resource type="ConvexPolygonShape2D" id=8]
 
@@ -112,8 +122,8 @@ points = Vector2Array( 195.021, 347.508, 297.765, 374.906, 308.039, 689.986, 195
 
 z/z = -1
 script/script = ExtResource( 1 )
-min_scale = 0.3
-max_scale = 0.5
+min_scale = 1.0
+max_scale = 1.5
 music = "scene4"
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -330,7 +340,7 @@ trigger = false
 
 [node name="goToPoint" type="PinJoint2D" parent="Hotspots/firstaid"]
 
-transform/pos = Vector2( 1451.56, 901.554 )
+transform/pos = Vector2( 1386.65, 972.644 )
 node_a = NodePath("")
 node_b = NodePath("")
 bias/bias = 0.0
@@ -354,6 +364,63 @@ lines_skipped = 0
 max_lines_visible = -1
 
 [node name="Timer" type="Timer" parent="Hotspots/firstaid"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
+[node name="bottle" type="Area2D" parent="Hotspots"]
+
+input/pickable = true
+shapes/0/shape = SubResource( 15 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+shapes/1/shape = SubResource( 16 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/1/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 6 )
+json_path = "res://texts/ch4_bottle01.json"
+ui_path = null
+can_take = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/bottle"]
+
+build_mode = 0
+polygon = Vector2Array( 1504.87, 720.208, 1439.97, 816.026, 1356.51, 816.026, 1350.33, 874.752, 1532.69, 871.661 )
+shape_range = Vector2( 0, 1 )
+trigger = false
+
+[node name="goToPoint" type="PinJoint2D" parent="Hotspots/bottle"]
+
+transform/pos = Vector2( 1497.92, 954.099 )
+node_a = NodePath("")
+node_b = NodePath("")
+bias/bias = 0.0
+collision/exclude_nodes = true
+softness = 0.0
+
+[node name="Label" type="Label" parent="Hotspots/bottle"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 986.0
+margin/top = 220.0
+margin/right = 1639.0
+margin/bottom = 287.0
+custom_fonts/font = ExtResource( 4 )
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Timer" type="Timer" parent="Hotspots/bottle"]
 
 process_mode = 1
 wait_time = 2.0
