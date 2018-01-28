@@ -176,8 +176,8 @@ json_path = "res://texts/Computer_0.json"
 
 [node name="ColorFrame" type="ColorFrame" parent="."]
 
-focus/ignore_mouse = false
-focus/stop_mouse = true
+focus/ignore_mouse = true
+focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0

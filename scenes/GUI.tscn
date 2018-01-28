@@ -128,16 +128,6 @@ var labels = {}
 var queue = {}
 var to_play = null
 var line = 0
-var termnode = \"\"
-var termfunction = \"\"
-var ended = false
-
-func terminate_dialogue():
-	hide()
-	if (termnode != \"\") and (termfunction != \"\"):
-		print(get_tree().get_root().get_node(termnode).get_path())
-		print(get_tree().get_root().get_node(termnode).get_name())
-		get_tree().get_root().get_node(termnode).call(termfunction,termnode,\"tolvl2\")
 
 func _ready():
 	labels[0] = get_node(\"Sprite/Label\")
@@ -169,13 +159,10 @@ func play_lines(n):
 		queue[2] = to_play[n+2]
 		if (line >= to_play.size()):
 			get_node(\"Sprite/TextureButton\").set_normal_texture(get_node(\"Sprite/TextureButton\").alternate)
-			ended = true
 	timer.set_wait_time(0.05)
 	timer.start()
 
 func _on_TextureButton_pressed():
-	if ended:
-		terminate_dialogue()
 	if (is_queue_empty()):
 		play_lines(line)
 	else:
