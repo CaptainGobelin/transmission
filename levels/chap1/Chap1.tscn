@@ -140,6 +140,7 @@ z/relative = false
 
 [node name="newspaper1" type="Sprite" parent="."]
 
+editor/display_folded = true
 visibility/visible = false
 transform/pos = Vector2( 1212.69, 555.802 )
 transform/scale = Vector2( 1.35287, 1.41752 )
@@ -205,11 +206,11 @@ _update_shape_index = 0
 
 [node name="Hotspots" type="Node2D" parent="."]
 
-editor/display_folded = true
 script/script = SubResource( 5 )
 
 [node name="door" type="Area2D" parent="Hotspots"]
 
+editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 6 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -583,13 +584,13 @@ transform/pos = Vector2( 1800.76, 1051.59 )
 texture = ExtResource( 10 )
 level_path = NodePath("..")
 
-[connection signal="draw" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_draw"]
-
 [connection signal="draw" from="newspaper1" to="Hotspots" method="_on_newspaper1_draw"]
 
-[connection signal="hide" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_hide"]
+[connection signal="draw" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_draw"]
 
 [connection signal="hide" from="newspaper1" to="Hotspots" method="_on_newspaper1_hide"]
+
+[connection signal="hide" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_hide"]
 
 [connection signal="input_event" from="newspaper1/Area2D" to="newspaper1" method="_on_Area2D_input_event"]
 

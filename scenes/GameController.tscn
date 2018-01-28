@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=1]
+[gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://levels/chap1/Chap1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -75,7 +75,7 @@ var ui
 func _ready():
 	if ui_path:
 		ui = get_node(ui_path)
-	self.connect(\"timeout\",self,\"open_ui\",[self.get_path(),\"tolvl2\"])
+	self.connect(\"timeout\",self,\"tolvl2\")
 
 func change_level(next_level_path):
 
@@ -111,6 +111,49 @@ func open_ui(node = \"\", function = \"\"):
 
 script/source = "extends Timer
 
+export(NodePath) var ui_path
+var ui
+
+func _ready():
+	if ui_path:
+		ui = get_node(ui_path)
+	self.connect(\"timeout\",self,\"tolvl2\")
+
+func change_level(next_level_path):
+
+    var level_container = get_tree().get_root().get_node(\"GameController/Chap3\")
+
+    for i in range(level_container.get_child_count()):
+        var child = level_container.get_child(i)
+        child.queue_free()
+
+    var next_level_res = load(next_level_path)
+    var next_level = next_level_res.instance()
+    get_tree().get_root().get_node(\"GameController\").add_child(next_level)
+
+func tolvl2():
+	print(\"enter tout bientot 3\")
+	var player = get_node(\"../Player\")
+	change_level(\"res://levels/chap4/Chap4.tscn\")
+	player.current_level = get_node(\"../Chap4\")
+	player.nav_2d = player.current_level.get_node(\"Navigation2D\")
+	player.set_process_input(true)
+	player.update_scale()
+	get_node(\"../Chap4/Hotspots\").show()
+	print(\"jeuchangement scène\")
+	
+func open_ui(node = \"\", function = \"\"):
+	if ui:
+		if not ui.get(\"termnode\") == null:
+			ui.termnode = node
+			ui.termfunction = function
+		ui.show()
+"
+
+[sub_resource type="GDScript" id=6]
+
+script/source = "extends Timer
+
 
 func _ready():
 	self.connect(\"timeout\",self,\"testing\")
@@ -135,7 +178,7 @@ func testing():
 	player.update_scale()
 "
 
-[sub_resource type="GDScript" id=6]
+[sub_resource type="GDScript" id=7]
 
 script/source = "extends Timer
 
@@ -243,17 +286,26 @@ autoplay = ""
 process_mode = 1
 wait_time = 6.0
 one_shot = true
-autostart = false
+autostart = true
 script/script = SubResource( 4 )
 ui_path = NodePath("../DoorunlockRM")
+
+[node name="Timertobientot3" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 6.0
+one_shot = true
+autostart = false
+script/script = SubResource( 5 )
+ui_path = NodePath("../DoorunlockDC")
 
 [node name="Timerto3" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 2.0
+wait_time = 8.0
 one_shot = true
-autostart = false
-script/script = SubResource( 5 )
+autostart = true
+script/script = SubResource( 6 )
 
 [node name="Timerto4" type="Timer" parent="."]
 
@@ -261,17 +313,17 @@ process_mode = 1
 wait_time = 65.0
 one_shot = true
 autostart = false
-script/script = SubResource( 6 )
+script/script = SubResource( 7 )
 
 [node name="DoorunlockRM" parent="." instance=ExtResource( 6 )]
 
 visibility/visible = false
 z/z = 1050
 
-[node name="DoorunlockRM 2" parent="." instance=ExtResource( 7 )]
+[node name="DoorunlockDC" parent="." instance=ExtResource( 7 )]
 
 visibility/visible = false
-z/z = 1050
+z/z = 1
 
 [connection signal="finished" from="ColorFrame/AnimationPlayer" to="ColorFrame" method="_on_AnimationPlayer_finished"]
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=10 format=1]
 
-[ext_resource path="res://assets/Player/Player_walking_LR.png" type="Texture" id=1]
-[ext_resource path="res://assets/Player/Player_standingV4.png" type="Texture" id=2]
-[ext_resource path="res://assets/Player/Player_walking_RL.png" type="Texture" id=3]
+[ext_resource path="res://assets/Player/Player_idle_anim.png" type="Texture" id=1]
+[ext_resource path="res://assets/Player/Player_walking_RL.png" type="Texture" id=2]
+[ext_resource path="res://assets/Player/Player_walking_LR.png" type="Texture" id=3]
+[ext_resource path="res://assets/Fumee.png" type="Texture" id=4]
 
 [sub_resource type="GDScript" id=1]
 
@@ -113,9 +114,9 @@ func update_scale():
 [sub_resource type="Animation" id=2]
 
 resource/name = "stand"
-length = 1.0
+length = 7.0
 loop = true
-step = 0.1
+step = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -124,7 +125,7 @@ tracks/0/keys = {
 "times": FloatArray( 0 ),
 "transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 2 ) ]
+"values": [ ExtResource( 1 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:flip_h")
@@ -154,7 +155,7 @@ tracks/3/keys = {
 "times": FloatArray( 0 ),
 "transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ 1 ]
+"values": [ 3 ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Sprite:hframes")
@@ -164,17 +165,27 @@ tracks/4/keys = {
 "times": FloatArray( 0 ),
 "transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ 1 ]
+"values": [ 3 ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Sprite:frame")
 tracks/5/interp = 1
 tracks/5/imported = false
 tracks/5/keys = {
-"times": FloatArray( 0 ),
-"transitions": FloatArray( 1 ),
+"times": FloatArray( 0, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("../Particles2D:config/emitting")
+tracks/6/interp = 1
+tracks/6/imported = false
+tracks/6/keys = {
+"times": FloatArray( 3.5, 4, 4.5, 5.5, 6.5, 7 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, false, true, false, true, false ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -190,7 +201,7 @@ tracks/0/keys = {
 "times": FloatArray( 0 ),
 "transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 3 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:flip_h")
@@ -256,7 +267,7 @@ tracks/0/keys = {
 "times": FloatArray( 0 ),
 "transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 1 ) ]
+"values": [ ExtResource( 3 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:flip_h")
@@ -299,6 +310,11 @@ tracks/4/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 0 ]
 }
 
+[sub_resource type="ColorRamp" id=5]
+
+offsets = FloatArray( 0, 0.162562, 0.541872, 1 )
+colors = ColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.27218, 1, 1, 1, 0.2 )
+
 [node name="Player" type="Node2D"]
 
 script/script = SubResource( 1 )
@@ -318,6 +334,7 @@ transform/pos = Vector2( 6.03516, -179.017 )
 texture = ExtResource( 1 )
 vframes = 3
 hframes = 3
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D"]
 
@@ -331,5 +348,34 @@ playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
+
+[node name="Particles2D" type="Particles2D" parent="."]
+
+visibility/opacity = 0.7
+transform/pos = Vector2( 9.06059, -299.687 )
+config/amount = 560
+config/lifetime = 8.0
+config/emitting = false
+config/process_mode = 1
+config/local_space = false
+config/texture = ExtResource( 4 )
+params/direction = 80.0
+params/spread = 12.0
+params/linear_velocity = 60.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = -1.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 1.5
+params/initial_angle = 0.0
+params/initial_size = 0.6
+params/final_size = 7.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/linear_velocity = 0.2
+color/color_ramp = SubResource( 5 )
 
 
