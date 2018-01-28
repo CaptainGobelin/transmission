@@ -182,7 +182,9 @@ debug_path = NodePath("../DebugNode")
 
 [node name="Stanley" parent="." instance=ExtResource( 3 )]
 
+visibility/visible = false
 transform/pos = Vector2( 1513.76, 976.064 )
+level_path = null
 
 [node name="Label" type="Label" parent="."]
 
