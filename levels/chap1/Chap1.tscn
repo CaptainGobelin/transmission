@@ -1,7 +1,7 @@
-[gd_scene load_steps=27 format=1]
+[gd_scene load_steps=29 format=1]
 
 [ext_resource path="res://scripts/LevelController.gd" type="Script" id=1]
-[ext_resource path="res://assets/bureau1v4.png" type="Texture" id=2]
+[ext_resource path="res://assets/bureau1v5.png" type="Texture" id=2]
 [ext_resource path="res://scenes/Computer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/newspaper.png" type="Texture" id=4]
 [ext_resource path="res://assets/fonts/font_examine.fnt" type="BitmapFont" id=5]
@@ -74,6 +74,16 @@ points = Vector2Array( 195.021, 950.27, 58.0295, 1008.49, 58.0295, 871.5, 201.87
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1438.22, 501.623, 1277.25, 501.623, 1277.25, 350.933, 1431.37, 347.508 )
+
+[sub_resource type="ConvexPolygonShape2D" id=17]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1532.65, 880.686, 1356.84, 871.433, 1364.24, 836.272, 1462.33, 830.72 )
+
+[sub_resource type="ConvexPolygonShape2D" id=18]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1515.99, 762.247, 1532.65, 880.686, 1462.33, 830.72, 1491.94, 756.695 )
 
 [sub_resource type="ConvexPolygonShape2D" id=7]
 
@@ -249,11 +259,11 @@ params/stretch_mode = 0
 
 [node name="Hotspots" type="Node2D" parent="."]
 
-editor/display_folded = true
 script/script = SubResource( 3 )
 
 [node name="door" type="Area2D" parent="Hotspots"]
 
+editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 4 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -416,6 +426,63 @@ wait_time = 2.0
 one_shot = true
 autostart = false
 
+[node name="bottles" type="Area2D" parent="Hotspots"]
+
+input/pickable = true
+shapes/0/shape = SubResource( 17 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+shapes/1/shape = SubResource( 18 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/1/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 7 )
+json_path = "res://texts/ch1_bottle01.json"
+ui_path = null
+can_take = null
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/bottles"]
+
+build_mode = 0
+polygon = Vector2Array( 1515.99, 762.247, 1491.94, 756.695, 1462.33, 830.72, 1364.24, 836.272, 1356.84, 871.433, 1532.65, 880.686 )
+shape_range = Vector2( 0, 1 )
+trigger = false
+
+[node name="goToPoint" type="PinJoint2D" parent="Hotspots/bottles"]
+
+transform/pos = Vector2( 1479.32, 905.255 )
+node_a = NodePath("")
+node_b = NodePath("")
+bias/bias = 0.0
+collision/exclude_nodes = true
+softness = 0.0
+
+[node name="Label" type="Label" parent="Hotspots/bottles"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 1039.0
+margin/top = 278.0
+margin/right = 1692.0
+margin/bottom = 345.0
+custom_fonts/font = ExtResource( 5 )
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Timer" type="Timer" parent="Hotspots/bottles"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
 [node name="safe" type="Area2D" parent="Hotspots"]
 
 editor/display_folded = true
@@ -473,6 +540,7 @@ autostart = false
 
 [node name="computer" type="Area2D" parent="Hotspots"]
 
+editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 8 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -536,6 +604,7 @@ autostart = false
 
 [node name="trashcan" type="Area2D" parent="Hotspots"]
 
+editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 12 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
