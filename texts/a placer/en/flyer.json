@@ -1,0 +1,7 @@
+{
+	"name": "Propaganda flyer",
+	"examine": ["Don’t you want to think by yourself?", "Are not you tired of feeling controlled?", "Join the Resistance!", "Unplug yourself: relive!", "Inquire on: heidioursalute.org"],
+	"take": ["", ""],
+	"take_used": ["", ""],
+	"contains": [""]
+}
