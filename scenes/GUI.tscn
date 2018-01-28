@@ -130,6 +130,18 @@ var labels = {}
 var queue = {}
 var to_play = null
 var line = 0
+var termnode = \"\"
+var termfunction = \"\"
+var ended = false
+
+func terminate_dialogue():
+       close()
+       hide()
+       if (termnode != \"\") and (termfunction != \"\"):
+               print(get_tree().get_root().get_node(termnode).get_path())
+               print(get_tree().get_root().get_node(termnode).get_name())
+               get_tree().get_root().get_node(termnode).call(termfunction,termnode,\"tolvl2\")
+
 
 func _ready():
 	labels[0] = get_node(\"Sprite/Label\")
@@ -147,6 +159,7 @@ func open():
 
 func close():
 	get_node(\"AnimationPlayer\").play(\"close\")
+	get_node(\"../../Player\").set_process_input(true)
 	is_closed = true
 	
 func play_dialog(dialog):
@@ -167,10 +180,13 @@ func play_lines(n):
 			return
 		if (line >= to_play.size()):
 			get_node(\"Sprite/TextureButton\").set_normal_texture(get_node(\"Sprite/TextureButton\").alternate)
+			ended = true
 	timer.set_wait_time(0.05)
 	timer.start()
 
 func _on_TextureButton_pressed():
+	if ended:
+		terminate_dialogue()
 	if (is_queue_empty()):
 		play_lines(line)
 	else:
@@ -239,7 +255,7 @@ func multiple_choice():
 custom_solver_bias = 0.0
 points = Vector2Array( 1609.72, 755.729, 1602.87, 1087.93, 352.826, 1084.51, 349.401, 755.729 )
 
-[sub_resource type="GDScript" id=16]
+[sub_resource type="GDScript" id=13]
 
 script/source = "extends Label
 
@@ -250,7 +266,7 @@ func _on_ButtonLabel1_mouse_enter():
 func _on_ButtonLabel1_mouse_exit():
 	set(\"custom_colors/font_color\", get_node(\"../..\").fontColor)"
 
-[sub_resource type="GDScript" id=17]
+[sub_resource type="GDScript" id=14]
 
 script/source = "extends Label
 
@@ -262,7 +278,7 @@ func _on_ButtonLabel2_mouse_exit():
 	set(\"custom_colors/font_color\", get_node(\"../..\").fontColor)
 "
 
-[sub_resource type="GDScript" id=18]
+[sub_resource type="GDScript" id=15]
 
 script/source = "extends Label
 
@@ -274,13 +290,13 @@ func _on_ButtonLabel3_mouse_exit():
 	set(\"custom_colors/font_color\", get_node(\"../..\").fontColor)
 "
 
-[sub_resource type="GDScript" id=13]
+[sub_resource type="GDScript" id=16]
 
 script/source = "extends TextureButton
 
 export(Texture) var alternate"
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=17]
 
 length = 0.4
 loop = false
@@ -306,7 +322,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 330 ) ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=18]
 
 length = 0.8
 loop = false
@@ -549,7 +565,7 @@ custom_colors/font_color = Color( 0.396078, 0.937255, 0.356863, 1 )
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script/script = SubResource( 16 )
+script/script = SubResource( 13 )
 
 [node name="Label1" type="Label" parent="Dialogue/Sprite"]
 
@@ -566,7 +582,7 @@ custom_colors/font_color = Color( 0.396078, 0.937255, 0.356863, 1 )
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script/script = SubResource( 17 )
+script/script = SubResource( 14 )
 
 [node name="Label2" type="Label" parent="Dialogue/Sprite"]
 
@@ -583,7 +599,7 @@ custom_colors/font_color = Color( 0.396078, 0.937255, 0.356863, 1 )
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script/script = SubResource( 18 )
+script/script = SubResource( 15 )
 
 [node name="TextureButton" type="TextureButton" parent="Dialogue/Sprite"]
 
@@ -602,7 +618,7 @@ shortcut = null
 textures/normal = ExtResource( 6 )
 params/resize_mode = 0
 params/stretch_mode = 0
-script/script = SubResource( 13 )
+script/script = SubResource( 16 )
 alternate = ExtResource( 7 )
 
 [node name="Timer" type="Timer" parent="Dialogue/Sprite"]
@@ -665,8 +681,8 @@ params/stretch_mode = 0
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/close = SubResource( 14 )
-anims/open = SubResource( 15 )
+anims/close = SubResource( 17 )
+anims/open = SubResource( 18 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
