@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=1]
+[gd_scene load_steps=21 format=1]
 
 [ext_resource path="res://scripts/LevelController.gd" type="Script" id=1]
 [ext_resource path="res://assets/chambre_keithv2.png" type="Texture" id=2]
@@ -81,102 +81,6 @@ points = Vector2Array( 555.581, 553.834, 675.53, 570.571, 569.529, 637.519, 485.
 custom_solver_bias = 0.0
 points = Vector2Array( 125.997, 241.409, 195.734, 238.619, 190.155, 299.988, 123.207, 302.778 )
 
-[sub_resource type="ConvexPolygonShape2D" id=13]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -0.822571, 989.536, 1046.63, 909.959, 1698.04, 1059.86, -2.67319, 1061.71 )
-
-[sub_resource type="GDScript" id=15]
-
-script/source = "extends Node2D
-
-export(String,FILE) var json_path
-onready var player = get_node(\"../../../Player\")
-onready var label = get_node(\"Label\")
-onready var timer = get_node(\"Timer\")
-export(NodePath) var ui_path
-var ui
-var data = {}
-var gui_label
-var is_cursor_on = false
-var dialogue = null
-var next_dialogue = 0
-var take_used = false
-var first_try = true
-var viewed_mail = false
-export(bool) var can_take
-
-func _ready():
-	if ui_path:
-		ui = get_node(ui_path)
-	gui_label = get_node(\"../../../Label\")
-	var file = File.new()
-	file.open(json_path, File.READ)
-	var json_str = file.get_as_text()
-	file.close()
-	data.parse_json(json_str)
-	connect(\"mouse_enter\", self, \"on_mouse_enter_object\", [data.name])
-	connect(\"mouse_exit\", self, \"on_mouse_exit_object\")
-	timer.connect(\"timeout\", self, \"play_dialogue\")
-	set_process_input(true)
-
-func play_dialogue(n=next_dialogue, texts=null):
-	label.text = \"\"
-	if (texts != null):
-		dialogue = texts
-	if (n < dialogue.size()):
-		label.text = dialogue[n]
-		next_dialogue = n + 1
-		timer.set_wait_time(1.5)
-		timer.start()
-	else:
-		next_dialogue = 0
-
-func cut_dialogue():
-	timer.stop()
-	next_dialogue = 0
-	label.text = \"\"
-
-func _input(event):
-	if (is_cursor_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_LEFT):
-		player.go_to(get_node(\"goToPoint\").get_global_pos(), get_path(), false)
-		first_try = false
-	else:
-		if (is_cursor_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_RIGHT):
-			if (ui_path != null):
-				is_cursor_on = false
-				if viewed_mail:
-					player.set_process_input(false)
-					get_node(\"../../../Timerto3\").testing()
-					
-			else:
-				if (first_try or not can_take):
-					player.go_to(get_node(\"goToPoint\").get_global_pos(), get_path(), false)
-					first_try = false
-				else:
-					player.go_to(get_node(\"goToPoint\").get_global_pos(), get_path(), true)
-
-func on_mouse_enter_object(object_name):
-	gui_label.text = object_name
-	is_cursor_on = true
-
-func on_mouse_exit_object():
-	gui_label.text = \"\"
-	is_cursor_on = false
-
-func open_ui(node = \"\", function = \"\"):
-	if ui:
-		if not ui.get(\"termnode\") == null:
-			ui.termnode = node
-			ui.termfunction = function
-		ui.show()
-		player.set_process_input(false)
-
-func _on_Computer_notification_read():
-	viewed_mail = true
-	pass # replace with function body
-"
-
 [sub_resource type="ConvexPolygonShape2D" id=10]
 
 custom_solver_bias = 0.0
@@ -218,7 +122,6 @@ enabled = true
 visibility/visible = false
 z/z = 100
 z/relative = false
-json_path = "res://texts/Computer_1.json"
 
 [node name="newspaper1" type="Sprite" parent="."]
 
@@ -292,6 +195,7 @@ script/script = SubResource( 5 )
 
 [node name="computer" type="Area2D" parent="Hotspots"]
 
+editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 6 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -327,10 +231,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 808.0
-margin/top = 27.0
-margin/right = 1461.0
-margin/bottom = 94.0
+margin/left = 1245.0
+margin/top = 86.0
+margin/right = 1898.0
+margin/bottom = 153.0
 custom_fonts/font = ExtResource( 5 )
 align = 1
 percent_visible = 1.0
@@ -373,10 +277,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 809.0
-margin/top = 7.0
-margin/right = 1462.0
-margin/bottom = 74.0
+margin/left = 892.0
+margin/top = 137.0
+margin/right = 1545.0
+margin/bottom = 204.0
 custom_fonts/font = ExtResource( 5 )
 align = 1
 percent_visible = 1.0
@@ -509,63 +413,8 @@ bias/bias = 0.0
 collision/exclude_nodes = true
 softness = 0.0
 
-[node name="sortie" type="Area2D" parent="Hotspots"]
-
-input/pickable = true
-shapes/0/shape = SubResource( 13 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/0/trigger = false
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-script/script = SubResource( 15 )
-json_path = "res://texts/a placer/sortie.json"
-ui_path = NodePath("CollisionPolygon2D")
-can_take = null
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/sortie"]
-
-build_mode = 0
-polygon = Vector2Array( -0.822571, 989.536, 1046.63, 909.959, 1698.04, 1059.86, -2.67319, 1061.71 )
-shape_range = Vector2( 0, 0 )
-trigger = false
-
-[node name="Label" type="Label" parent="Hotspots/sortie"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 16.0
-margin/top = 38.0
-margin/right = 669.0
-margin/bottom = 105.0
-custom_fonts/font = ExtResource( 5 )
-align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="Timer" type="Timer" parent="Hotspots/sortie"]
-
-process_mode = 1
-wait_time = 2.0
-one_shot = true
-autostart = false
-
-[node name="goToPoint" type="PinJoint2D" parent="Hotspots/sortie"]
-
-transform/pos = Vector2( 554.059, 990.883 )
-node_a = NodePath("")
-node_b = NodePath("")
-bias/bias = 0.0
-collision/exclude_nodes = true
-softness = 0.0
-
 [node name="photo1" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 10 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -601,10 +450,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 1209.0
-margin/top = 427.0
-margin/right = 1862.0
-margin/bottom = 494.0
+margin/left = 34.0
+margin/top = 51.0
+margin/right = 687.0
+margin/bottom = 118.0
 custom_fonts/font = ExtResource( 5 )
 align = 1
 percent_visible = 1.0
@@ -680,15 +529,13 @@ bias/bias = 0.0
 collision/exclude_nodes = true
 softness = 0.0
 
-[connection signal="notification_read" from="Computer" to="Hotspots/sortie" method="_on_Computer_notification_read"]
+[connection signal="draw" from="newspaper1" to="Hotspots" method="_on_newspaper1_draw"]
 
 [connection signal="draw" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_draw"]
 
-[connection signal="draw" from="newspaper1" to="Hotspots" method="_on_newspaper1_draw"]
+[connection signal="hide" from="newspaper1" to="Hotspots" method="_on_newspaper1_hide"]
 
 [connection signal="hide" from="newspaper1" to="newspaper1/Area2D" method="_on_newspaper1_hide"]
-
-[connection signal="hide" from="newspaper1" to="Hotspots" method="_on_newspaper1_hide"]
 
 [connection signal="input_event" from="newspaper1/Area2D" to="newspaper1" method="_on_Area2D_input_event"]
 

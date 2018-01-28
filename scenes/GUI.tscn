@@ -141,7 +141,6 @@ var ended = false
 
 func terminate_dialogue():
 		close()
-		hide()
 		if (termnode != \"\") and (termfunction != \"\"):
 			print(get_tree().get_root().get_node(termnode).get_path())
 			print(get_tree().get_root().get_node(termnode).get_name())
@@ -170,9 +169,12 @@ func open():
 func close():
 	get_node(\"AnimationPlayer\").play(\"close\")
 	get_node(\"../../Player\").set_process_input(true)
+	get_node(\"ColorFrame\").hide()
 	is_closed = true
 	
 func play_dialog(dialog,key=\"dialog\"):
+	get_node(\"Sprite/TextureButton\").set_normal_texture(get_node(\"Sprite/TextureButton\").original)
+	ended = false
 	data = dialog
 	to_play = data[key]
 	play_lines(0)
@@ -344,7 +346,8 @@ func _on_ButtonLabel3_mouse_exit():
 
 script/source = "extends TextureButton
 
-export(Texture) var alternate"
+export(Texture) var alternate
+export(Texture) var original"
 
 [sub_resource type="Animation" id=17]
 
@@ -731,6 +734,7 @@ params/resize_mode = 0
 params/stretch_mode = 0
 script/script = SubResource( 16 )
 alternate = ExtResource( 9 )
+original = ExtResource( 8 )
 
 [node name="Timer" type="Timer" parent="Dialogue/Sprite"]
 
