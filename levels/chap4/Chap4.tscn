@@ -121,18 +121,7 @@ func cut_dialogue():
 func _input(event):
 	if (is_cursor_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed):
 		player.go_to(get_node(\"goToPoint\").get_global_pos(), get_path(), false)
-		first_try = false
-	else:
-		if (is_cursor_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed):
-			if (ui_path != null):
-				is_cursor_on = false
-				open_ui()
-			else:
-				if (first_try or not can_take):
-					player.go_to(get_node(\"goToPoint\").get_global_pos(), get_path(), false)
-					first_try = false
-				else:
-					player.go_to(get_node(\"goToPoint\").get_global_pos(), get_path(), true)
+		
 
 func on_mouse_enter_object(object_name):
 	gui_label.text = object_name

@@ -77,6 +77,3 @@ func open_ui(node = "", function = ""):
 			ui.termfunction = function
 		ui.show()
 		player.set_process_input(false)
-
-func _on_Stanley_draw():
-	hide()
