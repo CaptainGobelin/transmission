@@ -6,11 +6,23 @@
 [ext_resource path="res://assets/open.png" type="Texture" id=4]
 [ext_resource path="res://scenes/switchdoormecha.tscn" type="PackedScene" id=5]
 
-[sub_resource type="GDScript" id=8]
+[sub_resource type="GDScript" id=1]
 
-script/source = "func _on_AnimationPlayer_finished():
+script/source = "var termnode = \"\"
+var termfunction = \"\"
+
+func _ready():
+	connect(\"hide\",self,\"activate_player\")
+
+func _on_AnimationPlayer_finished():
 	hide()
-"
+	if (termnode != \"\") and (termfunction != \"\"):
+		print(get_tree().get_root().get_node(termnode).get_path())
+		print(get_tree().get_root().get_node(termnode).get_name())
+		get_tree().get_root().get_node(termnode).call(termfunction)
+
+func activate_player():
+	get_node(\"../Player\").set_process_input(true)"
 
 [sub_resource type="GDScript" id=2]
 
@@ -161,19 +173,20 @@ func check():
 
 [node name="DoorunlockRM" type="Node2D"]
 
-script/script = SubResource( 8 )
+script/script = SubResource( 1 )
 
 [node name="ColorFrame" type="ColorFrame" parent="."]
 
+visibility/behind_parent = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 1918.0
-margin/bottom = 1075.0
-color = Color( 0, 0, 0, 0.387961 )
+margin/right = 1925.0
+margin/bottom = 1078.0
+color = Color( 0.109375, 0.109375, 0.109375, 1 )
 
 [node name="Porte" type="Sprite" parent="."]
 
@@ -267,81 +280,101 @@ autoplay = ""
 
 [node name="FamilleBouton" type="Node2D" parent="."]
 
-editor/display_folded = true
 script/script = SubResource( 7 )
 path_particule = NodePath("../Signal/AnimationPlayer")
 
 [node name="switchdoormecha" parent="FamilleBouton" instance=ExtResource( 5 )]
 
 margin/left = 1118.0
-margin/top = 311.0
+margin/top = 317.0
 margin/right = 1182.0
-margin/bottom = 375.0
+margin/bottom = 381.0
 path_neib_1 = NodePath("../switchdoormecha1")
 path_neib_2 = NodePath("../switchdoormecha7")
 
 [node name="switchdoormecha1" parent="FamilleBouton" instance=ExtResource( 5 )]
 
-margin/left = 1122.0
-margin/top = 451.0
-margin/right = 1186.0
-margin/bottom = 515.0
+margin/left = 1118.0
+margin/top = 463.0
+margin/right = 1182.0
+margin/bottom = 527.0
 path_neib_1 = NodePath("../switchdoormecha")
 path_neib_2 = NodePath("../switchdoormecha2")
 
 [node name="switchdoormecha2" parent="FamilleBouton" instance=ExtResource( 5 )]
 
-margin/left = 1118.0
-margin/top = 576.0
-margin/right = 1182.0
-margin/bottom = 640.0
+margin/left = 1116.0
+margin/top = 611.0
+margin/right = 1180.0
+margin/bottom = 675.0
 path_neib_1 = NodePath("../switchdoormecha1")
 path_neib_2 = NodePath("../switchdoormecha3")
 
 [node name="switchdoormecha3" parent="FamilleBouton" instance=ExtResource( 5 )]
 
-margin/left = 1005.0
-margin/top = 562.0
-margin/right = 1069.0
-margin/bottom = 626.0
+margin/left = 974.0
+margin/top = 609.0
+margin/right = 1038.0
+margin/bottom = 673.0
 path_neib_1 = NodePath("../switchdoormecha2")
 path_neib_2 = NodePath("../switchdoormecha4")
 
 [node name="switchdoormecha4" parent="FamilleBouton" instance=ExtResource( 5 )]
 
-margin/left = 874.0
-margin/top = 562.0
-margin/right = 938.0
-margin/bottom = 626.0
+margin/left = 837.0
+margin/top = 611.0
+margin/right = 901.0
+margin/bottom = 675.0
 path_neib_1 = NodePath("../switchdoormecha3")
 path_neib_2 = NodePath("../switchdoormecha5")
 
 [node name="switchdoormecha5" parent="FamilleBouton" instance=ExtResource( 5 )]
 
-margin/left = 864.0
-margin/top = 445.0
-margin/right = 928.0
-margin/bottom = 509.0
+margin/left = 837.0
+margin/top = 459.0
+margin/right = 901.0
+margin/bottom = 523.0
 path_neib_1 = NodePath("../switchdoormecha4")
 path_neib_2 = NodePath("../switchdoormecha6")
 
 [node name="switchdoormecha6" parent="FamilleBouton" instance=ExtResource( 5 )]
 
-margin/left = 873.0
-margin/top = 308.0
-margin/right = 937.0
-margin/bottom = 372.0
+margin/left = 842.0
+margin/top = 312.0
+margin/right = 906.0
+margin/bottom = 376.0
 path_neib_1 = NodePath("../switchdoormecha5")
 path_neib_2 = NodePath("../switchdoormecha7")
 
 [node name="switchdoormecha7" parent="FamilleBouton" instance=ExtResource( 5 )]
 
-margin/left = 1004.0
-margin/top = 308.0
-margin/right = 1068.0
-margin/bottom = 372.0
+margin/left = 979.0
+margin/top = 310.0
+margin/right = 1043.0
+margin/bottom = 374.0
 path_neib_1 = NodePath("../switchdoormecha6")
 path_neib_2 = NodePath("../switchdoormecha")
+
+[node name="Label" type="Label" parent="."]
+
+rect/scale = Vector2( 6, 6 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 60.0
+margin/top = 305.0
+margin/right = 123.0
+margin/bottom = 352.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Mr. L. 
+Richard"
+align = 1
+valign = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [connection signal="finished" from="Signal/AnimationPlayer" to="." method="_on_AnimationPlayer_finished"]
 
