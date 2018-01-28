@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/Indic.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Human.gd" type="Script" id=2]
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=1]
 
 script/source = "extends Node2D
 onready var gui_dialogue = get_node(\"../GUI/Dialogue\")
@@ -23,6 +23,8 @@ func _ready():
 func _input(event):
 	if (is_mouse_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_LEFT):
 		gui_dialogue.open()
+		gui_dialogue.termnode = \"GameController/Timertobientot2\"
+		gui_dialogue.termfunction = \"open_ui\"
 		gui_dialogue.play_dialog(data.dialog)
 		get_node(\"../Player\").go_to(get_node(\"PinJoint2D\").get_global_pos(), null, false)
 		is_mouse_on = false
@@ -35,24 +37,24 @@ func _on_Area2D_mouse_enter():
 	is_mouse_on = true
 "
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
+[sub_resource type="ConvexPolygonShape2D" id=2]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -25.1394, -335.651, 8.33472, -363.546, 30.6508, -330.072, -25.1394, -316.124 )
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
+[sub_resource type="ConvexPolygonShape2D" id=3]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 50.1774, -73.437, 39.0193, 4.66925, -50.245, -0.90979, -41.8765, -87.3846, 44.5983, -179.438 )
 
-[sub_resource type="ConvexPolygonShape2D" id=3]
+[sub_resource type="ConvexPolygonShape2D" id=4]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 64.1249, -291.019, 44.5983, -179.438, -41.8765, -87.3846, -47.4556, -271.492, -25.1394, -316.124, 30.6508, -330.072 )
 
 [node name="Stanley" type="Node2D"]
 
-script/script = SubResource( 4 )
+script/script = SubResource( 1 )
 json_path = "res://texts/ch1_stanley.json"
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -64,13 +66,13 @@ script/script = ExtResource( 2 )
 [node name="Area2D" type="Area2D" parent="."]
 
 input/pickable = true
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 2 )
+shapes/1/shape = SubResource( 3 )
 shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/1/trigger = false
-shapes/2/shape = SubResource( 3 )
+shapes/2/shape = SubResource( 4 )
 shapes/2/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/2/trigger = false
 gravity_vec = Vector2( 0, 1 )

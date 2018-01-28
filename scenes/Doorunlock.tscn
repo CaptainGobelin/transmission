@@ -19,7 +19,6 @@ func _on_AnimationPlayer_finished():
 	if (termnode != \"\") and (termfunction != \"\"):
 		print(get_tree().get_root().get_node(termnode).get_path())
 		print(get_tree().get_root().get_node(termnode).get_name())
-		print(termnode)
 		get_tree().get_root().get_node(termnode).call(termfunction)
 
 func activate_player():
@@ -39,7 +38,7 @@ func _ready():
 func door_openning():
 	particule.play(\"openning\")"
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 
 length = 5.0
 loop = false
@@ -173,7 +172,7 @@ randomness/final_size = 0.2
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/openning = SubResource( 4 )
+anims/openning = SubResource( 3 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]

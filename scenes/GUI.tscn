@@ -117,7 +117,7 @@ func possess():
 
 script/source = "var used = false"
 
-[sub_resource type="GDScript" id=14]
+[sub_resource type="GDScript" id=11]
 
 script/source = "extends Control
 
@@ -128,6 +128,16 @@ var labels = {}
 var queue = {}
 var to_play = null
 var line = 0
+var termnode = \"\"
+var termfunction = \"\"
+var ended = false
+
+func terminate_dialogue():
+	hide()
+	if (termnode != \"\") and (termfunction != \"\"):
+		print(get_tree().get_root().get_node(termnode).get_path())
+		print(get_tree().get_root().get_node(termnode).get_name())
+		get_tree().get_root().get_node(termnode).call(termfunction,termnode,\"tolvl2\")
 
 func _ready():
 	labels[0] = get_node(\"Sprite/Label\")
@@ -159,10 +169,13 @@ func play_lines(n):
 		queue[2] = to_play[n+2]
 		if (line >= to_play.size()):
 			get_node(\"Sprite/TextureButton\").set_normal_texture(get_node(\"Sprite/TextureButton\").alternate)
+			ended = true
 	timer.set_wait_time(0.05)
 	timer.start()
 
 func _on_TextureButton_pressed():
+	if ended:
+		terminate_dialogue()
 	if (is_queue_empty()):
 		play_lines(line)
 	else:
@@ -213,20 +226,19 @@ func draw_queue():
 	labels[2].text = labels[2].text + queue[2]
 	queue[2] = \"\""
 
-[sub_resource type="ConvexPolygonShape2D" id=13]
+[sub_resource type="ConvexPolygonShape2D" id=12]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1609.72, 755.729, 1602.87, 1087.93, 352.826, 1084.51, 349.401, 755.729 )
 
-[sub_resource type="GDScript" id=15]
+[sub_resource type="GDScript" id=13]
 
 script/source = "extends TextureButton
 
 export(Texture) var alternate"
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=14]
 
-resource/name = "close"
 length = 0.4
 loop = false
 step = 0.1
@@ -251,9 +263,8 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 330 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=15]
 
-resource/name = "open"
 length = 0.8
 loop = false
 step = 0.1
@@ -437,7 +448,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 40.0
-script/script = SubResource( 14 )
+script/script = SubResource( 11 )
 
 [node name="ColorFrame" type="ColorFrame" parent="Dialogue"]
 
@@ -457,7 +468,7 @@ color = Color( 0, 0, 0, 0 )
 editor/display_folded = true
 transform/pos = Vector2( 0, 330 )
 input/pickable = true
-shapes/0/shape = SubResource( 13 )
+shapes/0/shape = SubResource( 12 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -541,7 +552,7 @@ shortcut = null
 textures/normal = ExtResource( 6 )
 params/resize_mode = 0
 params/stretch_mode = 0
-script/script = SubResource( 15 )
+script/script = SubResource( 13 )
 alternate = ExtResource( 7 )
 
 [node name="Timer" type="Timer" parent="Dialogue/Sprite"]
@@ -556,8 +567,8 @@ autostart = false
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/close = SubResource( 11 )
-anims/open = SubResource( 12 )
+anims/close = SubResource( 14 )
+anims/open = SubResource( 15 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]

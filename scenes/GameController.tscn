@@ -66,7 +66,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=4]
 
 script/source = "extends Timer
 
@@ -105,7 +105,7 @@ func open_ui(node = \"\", function = \"\"):
 		ui.show()
 "
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=5]
 
 script/source = "extends Timer
 
@@ -245,8 +245,8 @@ autoplay = ""
 process_mode = 1
 wait_time = 25.0
 one_shot = true
-autostart = true
-script/script = SubResource( 5 )
+autostart = false
+script/script = SubResource( 4 )
 ui_path = NodePath("../DoorunlockRM")
 
 [node name="Timerto3" type="Timer" parent="."]
@@ -255,7 +255,7 @@ process_mode = 1
 wait_time = 45.0
 one_shot = true
 autostart = true
-script/script = SubResource( 4 )
+script/script = SubResource( 5 )
 
 [node name="Timerto4" type="Timer" parent="."]
 
