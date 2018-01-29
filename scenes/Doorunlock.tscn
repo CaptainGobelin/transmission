@@ -87,8 +87,8 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 1925.0
-margin/bottom = 1078.0
+margin/right = 1920.0
+margin/bottom = 1080.0
 color = Color( 0.109375, 0.109375, 0.109375, 1 )
 
 [node name="Porte" type="Sprite" parent="."]

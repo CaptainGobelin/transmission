@@ -202,7 +202,7 @@ music = "scene2"
 
 [node name="Sprite" type="Sprite" parent="."]
 
-transform/pos = Vector2( -0.0411377, -4.12289 )
+transform/pos = Vector2( -0.0411377, 0.256958 )
 texture = ExtResource( 2 )
 centered = false
 
@@ -683,13 +683,13 @@ softness = 0.0
 
 [connection signal="notification_read" from="Computer" to="Hotspots/sortie" method="_on_Computer_notification_read"]
 
-[connection signal="draw" from="newspaper2" to="Hotspots" method="_on_newspaper1_draw"]
-
 [connection signal="draw" from="newspaper2" to="newspaper2/Area2D" method="_on_newspaper1_draw"]
 
-[connection signal="hide" from="newspaper2" to="Hotspots" method="_on_newspaper1_hide"]
+[connection signal="draw" from="newspaper2" to="Hotspots" method="_on_newspaper1_draw"]
 
 [connection signal="hide" from="newspaper2" to="newspaper2/Area2D" method="_on_newspaper1_hide"]
+
+[connection signal="hide" from="newspaper2" to="Hotspots" method="_on_newspaper1_hide"]
 
 [connection signal="input_event" from="newspaper2/Area2D" to="newspaper2" method="_on_Area2D_input_event"]
 

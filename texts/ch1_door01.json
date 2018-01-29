@@ -1,6 +1,6 @@
 {
 	"name": "Porte d'entrée",
-	"examine": ["Elle est renforcée par de lourdes plaques d'acier", "Elle à l'air plutôt solide"],
+	"examine": ["Elle est renforcée par de","lourdes plaques d'acier", "Elle à l'air plutôt solide"],
 	"take": ["C'est une feuille !", "Ramassons la !"],
 	"take_used": ["J'ai déjà toutes les feuilles", "dont j'ai besoin !"],
 	"contains": ["feuille"]
