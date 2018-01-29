@@ -358,6 +358,7 @@ params/stretch_mode = 0
 
 [node name="newspaper2" type="Sprite" parent="."]
 
+editor/display_folded = true
 visibility/visible = false
 transform/pos = Vector2( 1396.51, 529.239 )
 transform/scale = Vector2( 1.35287, 1.41752 )
@@ -402,10 +403,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 114.0
-margin/top = -323.0
-margin/right = 414.0
-margin/bottom = -23.0
+margin/left = -1015.0
+margin/top = -296.0
+margin/right = -715.0
+margin/bottom = 4.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -415,6 +416,7 @@ params/stretch_mode = 0
 
 [node name="Hotspots" type="Node2D" parent="."]
 
+editor/display_folded = true
 script/script = SubResource( 3 )
 
 [node name="door" type="Area2D" parent="Hotspots"]
@@ -777,6 +779,7 @@ autostart = false
 
 [node name="trashcan" type="Area2D" parent="Hotspots"]
 
+editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 15 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -807,6 +810,7 @@ softness = 0.0
 
 [node name="book" type="Area2D" parent="Hotspots"]
 
+editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 16 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -939,6 +943,15 @@ stream/autoplay = false
 stream/paused = false
 stream/loop_restart_time = 0.0
 stream/buffering_ms = 500
+
+[node name="StartPoint" type="PinJoint2D" parent="."]
+
+transform/pos = Vector2( 377.3, 928.897 )
+node_a = NodePath("")
+node_b = NodePath("")
+bias/bias = 0.0
+collision/exclude_nodes = true
+softness = 0.0
 
 [connection signal="draw" from="Computer" to="Hotspots" method="_on_Computer_draw"]
 

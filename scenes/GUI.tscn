@@ -768,6 +768,8 @@ autostart = false
 
 [node name="portraits" type="Node2D" parent="Dialogue/Sprite"]
 
+editor/display_folded = true
+
 [node name="stanley" type="Sprite" parent="Dialogue/Sprite/portraits"]
 
 visibility/visible = false

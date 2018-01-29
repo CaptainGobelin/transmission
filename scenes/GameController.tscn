@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=1]
+[gd_scene load_steps=20 format=1]
 
 [ext_resource path="res://levels/chap1/Chap1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -7,6 +7,19 @@
 [ext_resource path="res://assets/fonts/vcr_osd_32.fnt" type="BitmapFont" id=5]
 [ext_resource path="res://scenes/Doorunlock.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/DoorunlockDC.tscn" type="PackedScene" id=7]
+
+[sub_resource type="GDScript" id=12]
+
+script/source = "extends Node2D
+
+var streamPlayer
+
+func _on_DoorunlockRM_draw():
+	streamPlayer.stop()
+
+
+func _on_DoorunlockDC_draw():
+	streamPlayer.stop()"
 
 [sub_resource type="GDScript" id=1]
 
@@ -330,6 +343,8 @@ tracks/2/keys = {
 
 [node name="GameController" type="Node2D"]
 
+script/script = SubResource( 12 )
+
 [node name="Chap1" parent="." instance=ExtResource( 1 )]
 
 min_scale = 1.0
@@ -351,13 +366,14 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 264.0
+margin/left = 121.0
 margin/top = 988.0
-margin/right = 1686.0
+margin/right = 1834.0
 margin/bottom = 1063.0
 custom_fonts/font = ExtResource( 3 )
 align = 1
 valign = 1
+clip_text = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -430,7 +446,7 @@ autoplay = ""
 process_mode = 1
 wait_time = 6.0
 one_shot = true
-autostart = false
+autostart = true
 script/script = SubResource( 4 )
 ui_path = NodePath("../DoorunlockRM")
 
@@ -446,7 +462,7 @@ ui_path = NodePath("../DoorunlockDC")
 [node name="Timerto3" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 10.0
+wait_time = 8.0
 one_shot = true
 autostart = false
 script/script = SubResource( 6 )
@@ -461,12 +477,12 @@ script/script = SubResource( 7 )
 
 [node name="DoorunlockRM" parent="." instance=ExtResource( 6 )]
 
+editor/display_folded = true
 visibility/visible = false
 z/z = 1050
 
 [node name="ColorF" type="ColorFrame" parent="DoorunlockRM"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -528,6 +544,7 @@ autoplay = ""
 
 [node name="DoorunlockDC" parent="." instance=ExtResource( 7 )]
 
+editor/display_folded = true
 visibility/visible = false
 z/z = 1000
 
@@ -594,9 +611,13 @@ autoplay = ""
 
 [connection signal="finished" from="ColorFrame/AnimFade1" to="ColorFrame" method="_on_AnimFade1_finished"]
 
+[connection signal="draw" from="DoorunlockRM" to="." method="_on_DoorunlockRM_draw"]
+
 [connection signal="draw" from="DoorunlockRM" to="DoorunlockRM/ColorF" method="_on_DoorunlockRM_draw"]
 
 [connection signal="finished" from="DoorunlockRM/ColorF/AnimFade2" to="DoorunlockRM/ColorF" method="_on_AnimFade2_finished"]
+
+[connection signal="draw" from="DoorunlockDC" to="." method="_on_DoorunlockDC_draw"]
 
 [connection signal="draw" from="DoorunlockDC" to="DoorunlockDC/ColorDC" method="_on_DoorunlockDC_draw"]
 

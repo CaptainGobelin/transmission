@@ -1,7 +1,4 @@
 {
 	"name": "Flyer de propagande",
-	"examine": ["Et si vous pensiez par vous-même ?", "N’en avez-vous pas assez de vous sentir contrôlés ? ", "Rejoignez la Résistance !", "Débranchez-vous : revivez !", "Renseignez-vous sur heidiestnotresalut.org"],
-	"take": ["", ""],
-	"take_used": ["", ""],
-	"contains": [""]
+	"examine": "Et si vous pensiez par vous-même ?\nN’en avez-vous pas assez de vous sentir contrôlés ? \n\nRejoignez la Résistance !\nDébranchez-vous : revivez !\n\nRenseignez-vous sur heidiestnotresalut.org"
 }
