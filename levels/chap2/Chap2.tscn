@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=1]
+[gd_scene load_steps=24 format=1]
 
 [ext_resource path="res://scripts/LevelController.gd" type="Script" id=1]
 [ext_resource path="res://assets/chambre_keithv2.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/close_paper.png" type="Texture" id=6]
 [ext_resource path="res://scripts/HotspotController.gd" type="Script" id=7]
 [ext_resource path="res://scenes/NewspaperController.gd" type="Script" id=8]
+[ext_resource path="res://assets/music/scene2.ogg" type="AudioStream" id=9]
 
 [sub_resource type="NavigationPolygon" id=1]
 
@@ -198,7 +199,6 @@ z/z = -1
 script/script = ExtResource( 1 )
 min_scale = 0.2
 max_scale = 2.7
-music = "scene2"
 
 [node name="Sprite" type="Sprite" parent="."]
 
@@ -207,6 +207,8 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
+
+editor/display_folded = true
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
 
@@ -222,6 +224,7 @@ json_path = "res://texts/Computer_1.json"
 
 [node name="newspaper2" type="Sprite" parent="."]
 
+editor/display_folded = true
 visibility/visible = false
 transform/pos = Vector2( 1212.69, 555.802 )
 transform/scale = Vector2( 1.35287, 1.41752 )
@@ -289,6 +292,7 @@ _update_shape_index = 0
 
 [node name="Hotspots" type="Node2D" parent="."]
 
+editor/display_folded = true
 script/script = SubResource( 5 )
 
 [node name="computer" type="Area2D" parent="Hotspots"]
@@ -683,15 +687,26 @@ bias/bias = 0.0
 collision/exclude_nodes = true
 softness = 0.0
 
-[connection signal="notification_read" from="Computer" to="Hotspots/sortie" method="_on_Computer_notification_read"]
+[node name="StreamPlayer" type="StreamPlayer" parent="."]
 
-[connection signal="draw" from="newspaper2" to="newspaper2/Area2D" method="_on_newspaper1_draw"]
+stream/stream = ExtResource( 9 )
+stream/play = false
+stream/loop = false
+stream/volume_db = 0.0
+stream/autoplay = false
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
+
+[connection signal="notification_read" from="Computer" to="Hotspots/sortie" method="_on_Computer_notification_read"]
 
 [connection signal="draw" from="newspaper2" to="Hotspots" method="_on_newspaper1_draw"]
 
-[connection signal="hide" from="newspaper2" to="newspaper2/Area2D" method="_on_newspaper1_hide"]
+[connection signal="draw" from="newspaper2" to="newspaper2/Area2D" method="_on_newspaper1_draw"]
 
 [connection signal="hide" from="newspaper2" to="Hotspots" method="_on_newspaper1_hide"]
+
+[connection signal="hide" from="newspaper2" to="newspaper2/Area2D" method="_on_newspaper1_hide"]
 
 [connection signal="input_event" from="newspaper2/Area2D" to="newspaper2" method="_on_Area2D_input_event"]
 

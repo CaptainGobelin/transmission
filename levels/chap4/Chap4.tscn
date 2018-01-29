@@ -1,12 +1,13 @@
-[gd_scene load_steps=24 format=1]
+[gd_scene load_steps=25 format=1]
 
 [ext_resource path="res://scripts/LevelController.gd" type="Script" id=1]
-[ext_resource path="res://assets/bureau1v5.png" type="Texture" id=2]
+[ext_resource path="res://assets/bureau1_v5.png" type="Texture" id=2]
 [ext_resource path="res://assets/newspaper.png" type="Texture" id=3]
 [ext_resource path="res://assets/fonts/font_examine.fnt" type="BitmapFont" id=4]
 [ext_resource path="res://assets/close_paper.png" type="Texture" id=5]
 [ext_resource path="res://scripts/HotspotController.gd" type="Script" id=6]
 [ext_resource path="res://scenes/NewspaperController.gd" type="Script" id=7]
+[ext_resource path="res://assets/music/scene4.ogg" type="AudioStream" id=8]
 
 [sub_resource type="GDScript" id=1]
 
@@ -124,7 +125,6 @@ z/z = -1
 script/script = ExtResource( 1 )
 min_scale = 1.0
 max_scale = 1.5
-music = "scene4"
 
 [node name="Sprite" type="Sprite" parent="."]
 
@@ -134,6 +134,7 @@ centered = false
 
 [node name="newspaper1" type="Sprite" parent="."]
 
+editor/display_folded = true
 visibility/visible = false
 transform/pos = Vector2( 1212.69, 555.802 )
 transform/scale = Vector2( 1.35287, 1.41752 )
@@ -195,6 +196,8 @@ centered = false
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
 
+editor/display_folded = true
+
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
 
 navpoly = SubResource( 3 )
@@ -202,6 +205,7 @@ enabled = true
 
 [node name="Hotspots" type="Node2D" parent="."]
 
+editor/display_folded = true
 z/z = 5
 script/script = SubResource( 4 )
 
@@ -631,5 +635,16 @@ process_mode = 1
 wait_time = 2.0
 one_shot = true
 autostart = false
+
+[node name="StreamPlayer" type="StreamPlayer" parent="."]
+
+stream/stream = ExtResource( 8 )
+stream/play = false
+stream/loop = false
+stream/volume_db = 0.0
+stream/autoplay = false
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
 
 

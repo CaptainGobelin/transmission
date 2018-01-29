@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=1]
+[gd_scene load_steps=16 format=1]
 
 [ext_resource path="res://scripts/LevelController.gd" type="Script" id=1]
 [ext_resource path="res://assets/ruelle_v1.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/PNJ_FemmeFatale.png" type="Texture" id=6]
 [ext_resource path="res://assets/Indic.png" type="Texture" id=7]
 [ext_resource path="res://assets/PNJ_RandomJohnny.png" type="Texture" id=8]
+[ext_resource path="res://assets/music/scene3.ogg" type="AudioStream" id=9]
 
 [sub_resource type="NavigationPolygon" id=1]
 
@@ -174,7 +175,6 @@ z/z = -1
 script/script = ExtResource( 1 )
 min_scale = 1.0
 max_scale = 1.0
-music = "scene3"
 
 [node name="Sprite" type="Sprite" parent="."]
 
@@ -271,5 +271,16 @@ script/script = SubResource( 6 )
 json_path = "res://texts/ch3_man.json"
 texture = ExtResource( 8 )
 level_path = NodePath("..")
+
+[node name="StreamPlayer" type="StreamPlayer" parent="."]
+
+stream/stream = ExtResource( 9 )
+stream/play = false
+stream/loop = false
+stream/volume_db = 0.0
+stream/autoplay = false
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
 
 
