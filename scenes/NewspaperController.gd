@@ -3,7 +3,6 @@ extends Area2D
 export(String,FILE) var json_path
 export(NodePath) var sprite
 onready var player = get_node("../../../Player")
-onready var timer = get_node("Timer")
 var is_cursor_on = false
 var data = {}
 var gui_label

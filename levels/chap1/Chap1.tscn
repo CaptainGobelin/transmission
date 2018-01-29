@@ -358,7 +358,6 @@ params/stretch_mode = 0
 
 [node name="newspaper2" type="Sprite" parent="."]
 
-editor/display_folded = true
 visibility/visible = false
 transform/pos = Vector2( 1396.51, 529.239 )
 transform/scale = Vector2( 1.35287, 1.41752 )
@@ -416,7 +415,6 @@ params/stretch_mode = 0
 
 [node name="Hotspots" type="Node2D" parent="."]
 
-editor/display_folded = true
 script/script = SubResource( 3 )
 
 [node name="door" type="Area2D" parent="Hotspots"]
@@ -779,7 +777,6 @@ autostart = false
 
 [node name="trashcan" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 15 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -810,7 +807,6 @@ softness = 0.0
 
 [node name="book" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 16 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -841,7 +837,6 @@ softness = 0.0
 
 [node name="window" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 17 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )

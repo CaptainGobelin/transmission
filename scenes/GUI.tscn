@@ -768,41 +768,34 @@ autostart = false
 
 [node name="portraits" type="Node2D" parent="Dialogue/Sprite"]
 
-transform/scale = Vector2( 1, 1 )
-
 [node name="stanley" type="Sprite" parent="Dialogue/Sprite/portraits"]
 
 visibility/visible = false
 transform/pos = Vector2( -538.129, 11.5242 )
-transform/scale = Vector2( 1, 1 )
 texture = ExtResource( 10 )
 
 [node name="lewis" type="Sprite" parent="Dialogue/Sprite/portraits"]
 
 visibility/visible = false
 transform/pos = Vector2( -538.129, 11.5242 )
-transform/scale = Vector2( 1, 1 )
 texture = ExtResource( 11 )
 
 [node name="johnny" type="Sprite" parent="Dialogue/Sprite/portraits"]
 
 visibility/visible = false
 transform/pos = Vector2( -538.129, 11.5242 )
-transform/scale = Vector2( 1, 1 )
 texture = ExtResource( 12 )
 
 [node name="fatale" type="Sprite" parent="Dialogue/Sprite/portraits"]
 
 visibility/visible = false
 transform/pos = Vector2( -538.129, 11.5242 )
-transform/scale = Vector2( 1, 1 )
 texture = ExtResource( 13 )
 
 [node name="jade" type="Sprite" parent="Dialogue/Sprite/portraits"]
 
 visibility/visible = false
 transform/pos = Vector2( -538.129, 11.5242 )
-transform/scale = Vector2( 1, 1 )
 texture = ExtResource( 14 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Dialogue"]

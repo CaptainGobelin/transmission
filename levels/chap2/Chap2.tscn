@@ -1,10 +1,10 @@
-[gd_scene load_steps=24 format=1]
+[gd_scene load_steps=27 format=1]
 
 [ext_resource path="res://scripts/LevelController.gd" type="Script" id=1]
 [ext_resource path="res://assets/chambre_keithv2.png" type="Texture" id=2]
 [ext_resource path="res://scenes/Computer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/newspaper.png" type="Texture" id=4]
-[ext_resource path="res://assets/fonts/font_examine.fnt" type="BitmapFont" id=5]
+[ext_resource path="res://assets/fonts/vcr_osd_32.fnt" type="BitmapFont" id=5]
 [ext_resource path="res://assets/close_paper.png" type="Texture" id=6]
 [ext_resource path="res://scripts/HotspotController.gd" type="Script" id=7]
 [ext_resource path="res://scenes/NewspaperController.gd" type="Script" id=8]
@@ -12,9 +12,9 @@
 
 [sub_resource type="NavigationPolygon" id=1]
 
-vertices = Vector2Array( 1910.53, 1059.85, -4.68182, 1057.8, 637.139, 778.926, 753.636, 732.363, 916.013, 742.016, 1086.21, 684.601, 1225.06, 670.993, 1898.22, 807.634 )
-polygons = [ IntArray( 0, 1, 2, 3, 4 ), IntArray( 0, 4, 5, 6, 7 ) ]
-outlines = [ Vector2Array( 1910.53, 1059.85, 1898.22, 807.634, 1225.06, 670.993, 1086.21, 684.601, 916.013, 742.016, 753.636, 732.363, 637.139, 778.926, -4.68182, 1057.8 ) ]
+vertices = Vector2Array( 1910.53, 1059.85, 97.4787, 1069.24, 345.286, 1024.1, 567.95, 928.67, 732.241, 628.788, 798.863, 643.593, 765.552, 658.398, 684.125, 693.56, 1898.22, 807.634, 497.515, 853.691, 637.139, 778.926, 922.854, 758.332, 753.636, 732.363, 630.457, 699.112, 1120.87, 713.917, 1225.06, 670.993 )
+polygons = [ IntArray( 0, 1, 2 ), IntArray( 0, 2, 3 ), IntArray( 4, 5, 6, 7 ), IntArray( 8, 0, 3, 9, 10, 11 ), IntArray( 7, 6, 12, 10 ), IntArray( 10, 13, 7 ), IntArray( 14, 15, 8 ), IntArray( 10, 12, 11 ), IntArray( 8, 11, 14 ) ]
+outlines = [ Vector2Array( 1910.53, 1059.85, 1898.22, 807.634, 1225.06, 670.993, 1120.87, 713.917, 922.854, 758.332, 753.636, 732.363, 765.552, 658.398, 798.863, 643.593, 732.241, 628.788, 684.125, 693.56, 630.457, 699.112, 637.139, 778.926, 497.515, 853.691, 567.95, 928.67, 345.286, 1024.1, 97.4787, 1069.24 ) ]
 
 [sub_resource type="GDScript" id=2]
 
@@ -67,25 +67,40 @@ func _on_newspaper1_hide():
 custom_solver_bias = 0.0
 points = Vector2Array( 1580.39, 184.268, 1877.72, 182.217, 1869.52, 338.059, 1572.19, 336.008 )
 
-[sub_resource type="ConvexPolygonShape2D" id=7]
+[sub_resource type="ConvexPolygonShape2D" id=15]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 1381.28, 233.04, 1562.59, 224.671, 1562.59, 372.515, 1294.8, 380.884 )
+points = Vector2Array( 1378.07, 381.227, 1264.04, 360.05, 1309.65, 349.461 )
 
-[sub_resource type="ConvexPolygonShape2D" id=8]
+[sub_resource type="ConvexPolygonShape2D" id=16]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 555.581, 553.834, 675.53, 570.571, 569.529, 637.519, 485.843, 609.624 )
+points = Vector2Array( 1378.07, 381.227, 1309.65, 349.461, 1358.52, 325.841 )
+
+[sub_resource type="ConvexPolygonShape2D" id=17]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1389.47, 231.358, 1567.85, 239.503, 1562.59, 372.515, 1504.32, 386.114, 1378.07, 381.227, 1358.52, 325.841 )
+
+[sub_resource type="ConvexPolygonShape2D" id=20]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 321.403, 824.954, 426.889, 934.14, 195.561, 1006.31, 104.881, 882.323 )
 
 [sub_resource type="ConvexPolygonShape2D" id=9]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 125.997, 241.409, 195.734, 238.619, 190.155, 299.988, 123.207, 302.778 )
 
-[sub_resource type="ConvexPolygonShape2D" id=10]
+[sub_resource type="ConvexPolygonShape2D" id=22]
 
 custom_solver_bias = 0.0
-points = Vector2Array( -0.822571, 989.536, 1046.63, 909.959, 1698.04, 1059.86, -2.67319, 1061.71 )
+points = Vector2Array( 1046.63, 909.959, 1372.86, 1053.67, 988.877, 1055.95, 741.221, 996.872 )
+
+[sub_resource type="ConvexPolygonShape2D" id=23]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 743.493, 1067.31, 741.221, 996.872, 988.877, 1055.95 )
 
 [sub_resource type="GDScript" id=11]
 
@@ -183,15 +198,15 @@ func _on_Computer_notification_read():
 custom_solver_bias = 0.0
 points = Vector2Array( 166.982, 169.953, 257.206, 172.003, 261.307, 231.469, 160.83, 233.52 )
 
-[sub_resource type="ConvexPolygonShape2D" id=13]
+[sub_resource type="ConvexPolygonShape2D" id=21]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 998.035, 672.298, 1073.91, 686.652, 971.378, 717.41, 866.8, 698.955 )
+points = Vector2Array( 1000.58, 663.95, 1080.16, 693.56, 963.568, 728.722, 852.531, 699.112, 921.004, 671.353 )
 
-[sub_resource type="ConvexPolygonShape2D" id=14]
+[sub_resource type="ConvexPolygonShape2D" id=24]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 368.809, 764.602, 560.141, 752.014, 497.203, 900.549, 414.125, 860.268 )
+points = Vector2Array( 415.785, 730.572, 591.594, 754.63, 500.913, 817.551, 339.91, 802.746 )
 
 [node name="Chap2" type="Node2D"]
 
@@ -200,6 +215,8 @@ script/script = ExtResource( 1 )
 min_scale = 0.2
 max_scale = 2.7
 
+[node name="EndingController" type="Node2D" parent="."]
+
 [node name="Sprite" type="Sprite" parent="."]
 
 transform/pos = Vector2( -0.0411377, 0.256958 )
@@ -207,8 +224,6 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
-
-editor/display_folded = true
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
 
@@ -224,7 +239,6 @@ json_path = "res://texts/Computer_1.json"
 
 [node name="newspaper2" type="Sprite" parent="."]
 
-editor/display_folded = true
 visibility/visible = false
 transform/pos = Vector2( 1212.69, 555.802 )
 transform/scale = Vector2( 1.35287, 1.41752 )
@@ -292,12 +306,11 @@ _update_shape_index = 0
 
 [node name="Hotspots" type="Node2D" parent="."]
 
-editor/display_folded = true
 script/script = SubResource( 5 )
 
 [node name="computer" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
+z/z = 500
 input/pickable = true
 shapes/0/shape = SubResource( 6 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -352,11 +365,17 @@ autostart = false
 
 [node name="poster" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
+z/z = 500
 input/pickable = true
-shapes/0/shape = SubResource( 7 )
+shapes/0/shape = SubResource( 15 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
+shapes/1/shape = SubResource( 16 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/1/trigger = false
+shapes/2/shape = SubResource( 17 )
+shapes/2/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/2/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
@@ -369,8 +388,8 @@ can_take = null
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/poster"]
 
 build_mode = 0
-polygon = Vector2Array( 1381.28, 233.04, 1562.59, 224.671, 1562.59, 372.515, 1294.8, 380.884 )
-shape_range = Vector2( 0, 0 )
+polygon = Vector2Array( 1389.47, 231.358, 1567.85, 239.503, 1562.59, 372.515, 1504.32, 386.114, 1378.07, 381.227, 1264.04, 360.05, 1309.65, 349.461, 1358.52, 325.841 )
+shape_range = Vector2( 0, 2 )
 trigger = false
 
 [node name="Label" type="Label" parent="Hotspots/poster"]
@@ -379,10 +398,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 809.0
-margin/top = 7.0
-margin/right = 1462.0
-margin/bottom = 74.0
+margin/left = 820.0
+margin/top = 27.0
+margin/right = 1473.0
+margin/bottom = 94.0
 custom_fonts/font = ExtResource( 5 )
 align = 1
 percent_visible = 1.0
@@ -407,9 +426,9 @@ softness = 0.0
 
 [node name="flyer" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
+z/z = 500
 input/pickable = true
-shapes/0/shape = SubResource( 8 )
+shapes/0/shape = SubResource( 20 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -424,13 +443,13 @@ can_take = null
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/flyer"]
 
 build_mode = 0
-polygon = Vector2Array( 555.581, 553.834, 675.53, 570.571, 569.529, 637.519, 485.843, 609.624 )
+polygon = Vector2Array( 321.403, 824.954, 426.889, 934.14, 195.561, 1006.31, 104.881, 882.323 )
 shape_range = Vector2( 0, 0 )
 trigger = false
 
 [node name="goToPoint" type="PinJoint2D" parent="Hotspots/flyer"]
 
-transform/pos = Vector2( 754.561, 740.432 )
+transform/pos = Vector2( 406.078, 1016.95 )
 node_a = NodePath("")
 node_b = NodePath("")
 bias/bias = 0.0
@@ -462,7 +481,7 @@ autostart = false
 
 [node name="photo" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
+z/z = 500
 input/pickable = true
 shapes/0/shape = SubResource( 9 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -508,7 +527,7 @@ autostart = false
 
 [node name="goToPoint" type="PinJoint2D" parent="Hotspots/photo"]
 
-transform/pos = Vector2( 598.474, 833.581 )
+transform/pos = Vector2( 650, 715 )
 node_a = NodePath("")
 node_b = NodePath("")
 bias/bias = 0.0
@@ -517,11 +536,14 @@ softness = 0.0
 
 [node name="sortie" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
+z/z = 500
 input/pickable = true
-shapes/0/shape = SubResource( 10 )
+shapes/0/shape = SubResource( 22 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
+shapes/1/shape = SubResource( 23 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/1/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
@@ -534,8 +556,8 @@ can_take = null
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/sortie"]
 
 build_mode = 0
-polygon = Vector2Array( -0.822571, 989.536, 1046.63, 909.959, 1698.04, 1059.86, -2.67319, 1061.71 )
-shape_range = Vector2( 0, 0 )
+polygon = Vector2Array( 741.221, 996.872, 1046.63, 909.959, 1372.86, 1053.67, 988.877, 1055.95, 743.493, 1067.31 )
+shape_range = Vector2( 0, 1 )
 trigger = false
 
 [node name="Label" type="Label" parent="Hotspots/sortie"]
@@ -544,10 +566,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 16.0
-margin/top = 38.0
-margin/right = 669.0
-margin/bottom = 105.0
+margin/left = 259.0
+margin/top = 56.0
+margin/right = 912.0
+margin/bottom = 123.0
 custom_fonts/font = ExtResource( 5 )
 align = 1
 percent_visible = 1.0
@@ -563,7 +585,7 @@ autostart = false
 
 [node name="goToPoint" type="PinJoint2D" parent="Hotspots/sortie"]
 
-transform/pos = Vector2( 554.059, 990.883 )
+transform/pos = Vector2( 1155.51, 1009.39 )
 node_a = NodePath("")
 node_b = NodePath("")
 bias/bias = 0.0
@@ -572,7 +594,7 @@ softness = 0.0
 
 [node name="photo1" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
+z/z = 50
 input/pickable = true
 shapes/0/shape = SubResource( 12 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -595,7 +617,7 @@ trigger = false
 
 [node name="goToPoint" type="PinJoint2D" parent="Hotspots/photo1"]
 
-transform/pos = Vector2( 764.631, 773.16 )
+transform/pos = Vector2( 650, 715 )
 node_a = NodePath("")
 node_b = NodePath("")
 bias/bias = 0.0
@@ -608,10 +630,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 1209.0
-margin/top = 427.0
-margin/right = 1862.0
-margin/bottom = 494.0
+margin/left = 16.0
+margin/top = 38.0
+margin/right = 669.0
+margin/bottom = 105.0
 custom_fonts/font = ExtResource( 5 )
 align = 1
 percent_visible = 1.0
@@ -627,9 +649,8 @@ autostart = false
 
 [node name="journal1" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 13 )
+shapes/0/shape = SubResource( 21 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -643,13 +664,13 @@ sprite = NodePath("../../newspaper2")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/journal1"]
 
 build_mode = 0
-polygon = Vector2Array( 998.035, 672.298, 1073.91, 686.652, 971.378, 717.41, 866.8, 698.955 )
+polygon = Vector2Array( 1000.58, 663.95, 1080.16, 693.56, 963.568, 728.722, 852.531, 699.112, 921.004, 671.353 )
 shape_range = Vector2( 0, 0 )
 trigger = false
 
 [node name="goToPoint" type="PinJoint2D" parent="Hotspots/journal1"]
 
-transform/pos = Vector2( 1034.15, 725.622 )
+transform/pos = Vector2( 1069.31, 751.531 )
 node_a = NodePath("")
 node_b = NodePath("")
 bias/bias = 0.0
@@ -658,9 +679,8 @@ softness = 0.0
 
 [node name="journal2" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 14 )
+shapes/0/shape = SubResource( 24 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -674,13 +694,13 @@ sprite = NodePath("../../newspaper2")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/journal2"]
 
 build_mode = 0
-polygon = Vector2Array( 368.809, 764.602, 560.141, 752.014, 497.203, 900.549, 414.125, 860.268 )
+polygon = Vector2Array( 415.785, 730.572, 591.594, 754.63, 500.913, 817.551, 339.91, 802.746 )
 shape_range = Vector2( 0, 0 )
 trigger = false
 
 [node name="goToPoint" type="PinJoint2D" parent="Hotspots/journal2"]
 
-transform/pos = Vector2( 550.789, 861.569 )
+transform/pos = Vector2( 582.249, 833.81 )
 node_a = NodePath("")
 node_b = NodePath("")
 bias/bias = 0.0
