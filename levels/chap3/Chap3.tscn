@@ -72,10 +72,12 @@ func _input(event):
 
 func _on_Area2D_mouse_exit():
 	is_mouse_on = false
+	get_node(\"../../Label\").text = \"\"
 
 
 func _on_Area2D_mouse_enter():
 	is_mouse_on = true
+	get_node(\"../../Label\").text = data.name
 "
 
 [sub_resource type="GDScript" id=5]
@@ -113,10 +115,12 @@ func _input(event):
 
 func _on_Area2D_mouse_exit():
 	is_mouse_on = false
+	get_node(\"../../Label\").text = \"\"
 
 
 func _on_Area2D_mouse_enter():
 	is_mouse_on = true
+	get_node(\"../../Label\").text = data.name
 "
 
 [sub_resource type="GDScript" id=6]
@@ -154,10 +158,14 @@ func _input(event):
 
 func _on_Area2D_mouse_exit():
 	is_mouse_on = false
+	get_node(\"../../Label\").text = \"\"
+
 
 
 func _on_Area2D_mouse_enter():
 	is_mouse_on = true
+	get_node(\"../../Label\").text = data.name
+
 "
 
 [node name="Chap3" type="Node2D"]
@@ -182,6 +190,7 @@ enabled = true
 
 [node name="Hotspots" type="Node2D" parent="."]
 
+editor/display_folded = true
 script/script = SubResource( 2 )
 
 [node name="Poster" type="Area2D" parent="Hotspots"]
@@ -243,7 +252,7 @@ autostart = false
 
 transform/pos = Vector2( 547.804, 962.493 )
 script/script = SubResource( 4 )
-json_path = "res://texts/ch3_lady_fr.json"
+json_path = "res://texts/ch3_lady.json"
 texture = ExtResource( 6 )
 level_path = NodePath("..")
 
@@ -259,7 +268,7 @@ level_path = NodePath("..")
 
 transform/pos = Vector2( 185.829, 965.286 )
 script/script = SubResource( 6 )
-json_path = "res://texts/ch3_man_fr.json"
+json_path = "res://texts/ch3_man.json"
 texture = ExtResource( 8 )
 level_path = NodePath("..")
 

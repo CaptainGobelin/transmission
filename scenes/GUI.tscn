@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=1]
+[gd_scene load_steps=33 format=1]
 
 [ext_resource path="res://assets/inventory.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Item.tscn" type="PackedScene" id=2]
@@ -11,6 +11,9 @@
 [ext_resource path="res://assets/cross_dialog.png" type="Texture" id=9]
 [ext_resource path="res://assets/portraits/Stanley_icon.png" type="Texture" id=10]
 [ext_resource path="res://assets/portraits/Lewis_icon.png" type="Texture" id=11]
+[ext_resource path="res://assets/portraits/Johnny_icon.png" type="Texture" id=12]
+[ext_resource path="res://assets/portraits/FemmeFatale_icon.png" type="Texture" id=13]
+[ext_resource path="res://assets/portraits/Indic_icon.png" type="Texture" id=14]
 
 [sub_resource type="GDScript" id=1]
 
@@ -128,6 +131,7 @@ script/source = "extends Control
 export(Color) var fontColor
 
 onready var timer = get_node(\"Sprite/Timer\")
+onready var portraits = get_node(\"Sprite/portraits\")
 
 var is_closed = true
 var labels = {}
@@ -136,6 +140,7 @@ var queue = {}
 var choice = \"\"
 var data = null
 var to_play = null
+var current_key
 var line = 0
 var termnode = \"\"
 var termfunction = \"\"
@@ -178,14 +183,19 @@ func play_dialog(dialog,key=\"dialog\"):
 	get_node(\"Sprite/TextureButton\").set_normal_texture(get_node(\"Sprite/TextureButton\").original)
 	ended = false
 	data = dialog
-	to_play = data[key]
+	current_key = key
+	to_play = data[key].text
 	play_lines(0)
 	
 func play_lines(n):
+	for p in portraits.get_children():
+		p.hide()
 	labels[0].text = \"\"
 	labels[1].text = \"\"
 	labels[2].text = \"\"
 	if (n < to_play.size()):
+		var name = data[current_key].portrait[n/3]
+		get_node(\"Sprite/portraits/\"+name).show()
 		line = n+3
 		queue[0] = to_play[n]
 		queue[1] = to_play[n+1]
@@ -773,6 +783,27 @@ visibility/visible = false
 transform/pos = Vector2( -538.129, 11.5242 )
 transform/scale = Vector2( 1, 1 )
 texture = ExtResource( 11 )
+
+[node name="johnny" type="Sprite" parent="Dialogue/Sprite/portraits"]
+
+visibility/visible = false
+transform/pos = Vector2( -538.129, 11.5242 )
+transform/scale = Vector2( 1, 1 )
+texture = ExtResource( 12 )
+
+[node name="fatale" type="Sprite" parent="Dialogue/Sprite/portraits"]
+
+visibility/visible = false
+transform/pos = Vector2( -538.129, 11.5242 )
+transform/scale = Vector2( 1, 1 )
+texture = ExtResource( 13 )
+
+[node name="jade" type="Sprite" parent="Dialogue/Sprite/portraits"]
+
+visibility/visible = false
+transform/pos = Vector2( -538.129, 11.5242 )
+transform/scale = Vector2( 1, 1 )
+texture = ExtResource( 14 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Dialogue"]
 

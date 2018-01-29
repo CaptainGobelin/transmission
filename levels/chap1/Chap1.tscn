@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=1]
+[gd_scene load_steps=32 format=1]
 
 [ext_resource path="res://scripts/LevelController.gd" type="Script" id=1]
 [ext_resource path="res://assets/bureau1v5.png" type="Texture" id=2]
@@ -14,9 +14,9 @@
 
 [sub_resource type="NavigationPolygon" id=1]
 
-vertices = Vector2Array( 1545.69, 989.717, 1607.21, 1047.13, 122.665, 1048.46, 1286.5, 990.458, 423.932, 878.302, 526.279, 881.505, 495.814, 942.555, 1444.77, 943.73, 1423.67, 883.436, 1508.14, 886.997, 538.713, 969.627, 679.046, 975.384 )
-polygons = [ IntArray( 0, 1, 2, 3 ), IntArray( 4, 5, 6, 2 ), IntArray( 7, 8, 9, 0 ), IntArray( 2, 6, 10 ), IntArray( 3, 7, 0 ), IntArray( 11, 3, 2 ), IntArray( 11, 2, 10 ) ]
-outlines = [ Vector2Array( 1607.21, 1047.13, 1545.69, 989.717, 1508.14, 886.997, 1423.67, 883.436, 1444.77, 943.73, 1286.5, 990.458, 679.046, 975.384, 538.713, 969.627, 495.814, 942.555, 526.279, 881.505, 423.932, 878.302, 122.665, 1048.46 ) ]
+vertices = Vector2Array( 1518.37, 993.759, 1592.23, 1052.55, 122.665, 1048.46, 1286.5, 990.458, 423.932, 878.302, 526.279, 881.505, 495.814, 942.555, 1444.77, 943.73, 1423.67, 883.436, 1508.14, 886.997, 679.046, 975.384, 538.713, 969.627 )
+polygons = [ IntArray( 0, 1, 2, 3 ), IntArray( 4, 5, 6, 2 ), IntArray( 7, 8, 9, 0 ), IntArray( 3, 7, 0 ), IntArray( 10, 3, 2 ), IntArray( 11, 10, 2 ), IntArray( 11, 2, 6 ) ]
+outlines = [ Vector2Array( 1592.23, 1052.55, 1518.37, 993.759, 1508.14, 886.997, 1423.67, 883.436, 1444.77, 943.73, 1286.5, 990.458, 679.046, 975.384, 538.713, 969.627, 495.814, 942.555, 526.279, 881.505, 423.932, 878.302, 122.665, 1048.46 ) ]
 
 [sub_resource type="GDScript" id=2]
 
@@ -73,6 +73,92 @@ func _on_newspaper2_hide():
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1737.62, 317.14, 1755.25, 382.596, 1752.73, 1011.98, 1664.62, 956.593, 1664.62, 541.201, 1669.65, 415.324, 1679.72, 334.763 )
+
+[sub_resource type="GDScript" id=20]
+
+script/source = "extends Node2D
+
+export(String,FILE) var json_path
+onready var player = get_node(\"../../../Player\")
+onready var label = get_node(\"Label\")
+onready var timer = get_node(\"Timer\")
+export(NodePath) var ui_path
+var ui
+var data = {}
+var gui_label
+var is_cursor_on = false
+var dialogue = null
+var next_dialogue = 0
+var take_used = false
+var first_try = true
+export(bool) var can_take
+
+func _ready():
+	if ui_path:
+		ui = get_node(ui_path)
+	gui_label = get_node(\"../../../Label\")
+	var file = File.new()
+	file.open(json_path, File.READ)
+	var json_str = file.get_as_text()
+	file.close()
+	data.parse_json(json_str)
+	connect(\"mouse_enter\", self, \"on_mouse_enter_object\", [data.name])
+	connect(\"mouse_exit\", self, \"on_mouse_exit_object\")
+	timer.connect(\"timeout\", self, \"play_dialogue\")
+	set_process_input(true)
+
+func play_dialogue(n=next_dialogue, texts=null):
+	label.text = \"\"
+	if (texts != null):
+		dialogue = texts
+	if (n < dialogue.size()):
+		label.text = dialogue[n]
+		next_dialogue = n + 1
+		timer.set_wait_time(1.5)
+		timer.start()
+	else:
+		next_dialogue = 0
+
+func cut_dialogue():
+	timer.stop()
+	next_dialogue = 0
+	label.text = \"\"
+
+func _input(event):
+	if (is_cursor_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_LEFT):
+		player.go_to(get_node(\"goToPoint\").get_global_pos(), get_path(), false)
+		first_try = false
+	else:
+		if (is_cursor_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_RIGHT):
+			if (ui_path != null):
+				is_cursor_on = false
+				open_ui()
+			else:
+				if (first_try or not can_take):
+					player.go_to(get_node(\"goToPoint\").get_global_pos(), get_path(), false)
+					first_try = false
+				else:
+					player.go_to(get_node(\"goToPoint\").get_global_pos(), get_path(), true)
+
+func on_mouse_enter_object(object_name):
+	gui_label.text = object_name
+	is_cursor_on = true
+
+func on_mouse_exit_object():
+	gui_label.text = \"\"
+	is_cursor_on = false
+
+func open_ui(node = \"\", function = \"\"):
+	if ui:
+		if not ui.get(\"termnode\") == null:
+			ui.termnode = node
+			ui.termfunction = function
+		ui.show()
+		player.set_process_input(false)
+
+func _on_Stanley_draw():
+	hide()
+"
 
 [sub_resource type="ConvexPolygonShape2D" id=5]
 
@@ -339,10 +425,10 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
+script/script = SubResource( 20 )
 json_path = "res://texts/ch1_door01.json"
-ui_path = NodePath("")
-can_take = true
+ui_path = null
+can_take = null
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hotspots/door"]
 
@@ -567,6 +653,7 @@ autostart = false
 
 [node name="safe" type="Area2D" parent="Hotspots"]
 
+editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 9 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -622,6 +709,7 @@ autostart = false
 
 [node name="computer" type="Area2D" parent="Hotspots"]
 
+editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 10 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -686,6 +774,7 @@ autostart = false
 
 [node name="trashcan" type="Area2D" parent="Hotspots"]
 
+editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 14 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -747,6 +836,7 @@ softness = 0.0
 
 [node name="window" type="Area2D" parent="Hotspots"]
 
+editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 16 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -802,12 +892,13 @@ autostart = false
 [node name="Stanley" parent="." instance=ExtResource( 10 )]
 
 visibility/visible = false
-transform/pos = Vector2( 1715.63, 1018.28 )
+transform/pos = Vector2( 1629.71, 997.177 )
 texture = ExtResource( 11 )
 level_path = NodePath("..")
 
 [node name="Node2D" type="Node2D" parent="."]
 
+editor/display_folded = true
 z/z = 1000
 z/relative = false
 
@@ -855,6 +946,8 @@ autoplay = ""
 [connection signal="hide" from="newspaper2" to="Hotspots" method="_on_newspaper2_hide"]
 
 [connection signal="pressed" from="newspaper2/TextureButton" to="newspaper2" method="_on_TextureButton_pressed"]
+
+[connection signal="draw" from="Stanley" to="Hotspots/door" method="_on_Stanley_draw"]
 
 [connection signal="animation_started" from="Node2D/ColorFrame/AnimationPlayer" to="Node2D/ColorFrame" method="_on_AnimationPlayer_animation_started"]
 

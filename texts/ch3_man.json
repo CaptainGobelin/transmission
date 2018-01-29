@@ -1,0 +1,6 @@
+{
+	"name": "Dealer",
+	"dialog": {
+		"portrait": ["johnny"],
+		"text": ["Dealer: T'en veux ?", "", ""]
+}

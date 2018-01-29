@@ -1,4 +1,5 @@
 {
+	"name": "Stanley Benett",
 	"dialog": {
 		"portrait": ["stanley","lewis","stanley","stanley","stanley","lewis","stanley","lewis","stanley"],
 		"text": ["Stanley Benett: J'ai de votre aide Lewis!", "C'est mon frère Keith.", "il a disparu, je... je crois qu'il a été déconnecté !", "Lewis: Qu'est-ce qui vous fait dire ça?","","","Stanley Benett: Il n'est pas venu au travail depuis 3 jours.", "Il ne répond ni à son téléphone, ni à son implant...","il était obsédé par les affaires de déconnexion.","Je me suis rendu à son appartement en personne...","Aidez moi, je suis désespéré.","","...","...","","Lewis: Les affaires de déconnexion sont dangeureuses...","Vous avez de quoi payer?","","Stanley Benett: J'ai de quoi payer si vous le retrouvez !","","","Lewis: Votre frère est mort, on ne paie pas pour un cadavre !","","","Stanley Benett: Et si je paie d'avance?","",""]

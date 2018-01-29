@@ -38,26 +38,28 @@ func _input(event):
 
 func _on_Area2D_mouse_exit():
 	is_mouse_on = false
+	get_node(\"../../Label\").text = \"\"
 
 
 func _on_Area2D_mouse_enter():
 	is_mouse_on = true
+	get_node(\"../../Label\").text = data.name
 "
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 
 custom_solver_bias = 0.0
-points = Vector2Array( -25.1394, -335.651, 8.33472, -363.546, 30.6508, -330.072, -25.1394, -316.124 )
+points = Vector2Array( 56.1479, -70.8177, 58.5914, 0.0443115, -50.245, -0.90979, -54.6249, -87.1079 )
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 50.1774, -73.437, 39.0193, 4.66925, -50.245, -0.90979, -41.8765, -87.3846, 44.5983, -179.438 )
+points = Vector2Array( 29.2692, -301.323, 55.3334, -289.92, 57.7769, -175.889, 56.1479, -70.8177, -54.6249, -87.1079, -52.9959, -273.63, -25.1394, -316.124 )
 
 [sub_resource type="ConvexPolygonShape2D" id=4]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 64.1249, -291.019, 44.5983, -179.438, -41.8765, -87.3846, -47.4556, -271.492, -25.1394, -316.124, 30.6508, -330.072 )
+points = Vector2Array( 38.2288, -352.637, 29.2692, -301.323, -25.1394, -316.124, -23.6737, -363.226, 7.27753, -385.217 )
 
 [node name="Stanley" type="Node2D"]
 
@@ -92,7 +94,7 @@ angular_damp = 1.0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 
 build_mode = 0
-polygon = Vector2Array( 8.33472, -363.546, -25.1394, -335.651, -25.1394, -316.124, -47.4556, -271.492, -41.8765, -87.3846, -50.245, -0.90979, 39.0193, 4.66925, 50.1774, -73.437, 44.5983, -179.438, 64.1249, -291.019, 30.6508, -330.072 )
+polygon = Vector2Array( 7.27753, -385.217, -23.6737, -363.226, -25.1394, -316.124, -52.9959, -273.63, -54.6249, -87.1079, -50.245, -0.90979, 58.5914, 0.0443115, 56.1479, -70.8177, 57.7769, -175.889, 55.3334, -289.92, 29.2692, -301.323, 38.2288, -352.637 )
 shape_range = Vector2( 0, 2 )
 trigger = false
 
