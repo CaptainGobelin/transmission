@@ -27,7 +27,7 @@ onready var area2D = get_node(\"Area2D\")
 onready var choices = get_node(\"Choices\")
 onready var text = get_node(\"Text\")
 onready var password = get_node(\"Password\")
-onready var password_input = get_node(\"PasswordInput\")
+onready var password_input = get_node(\"Password/PasswordInput\")
 onready var timer = get_node(\"Timer\")
 var is_choice_page = false
 var prepare_signal = false
@@ -163,7 +163,7 @@ func show_next_text_page():
 		reset()
 "
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=2]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -273,7 +273,7 @@ margin/left = 291.0
 margin/top = 133.0
 margin/right = 1711.0
 margin/bottom = 967.0
-custom_styles/panel = SubResource( 7 )
+custom_styles/panel = SubResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
 

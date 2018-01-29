@@ -8,7 +8,7 @@
 [ext_resource path="res://scenes/Doorunlock.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/DoorunlockDC.tscn" type="PackedScene" id=7]
 
-[sub_resource type="GDScript" id=12]
+[sub_resource type="GDScript" id=1]
 
 script/source = "extends Node2D
 
@@ -17,11 +17,10 @@ var streamPlayer
 func _on_DoorunlockRM_draw():
 	streamPlayer.stop()
 
-
 func _on_DoorunlockDC_draw():
 	streamPlayer.stop()"
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id=2]
 
 script/source = "extends Node2D
 
@@ -38,7 +37,7 @@ func _draw():
 			if i > 0:
 				draw_line(points[i-1], points[i], Color(i*0.1, 0, 0)) # draw lines"
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=3]
 
 script/source = "extends ColorFrame
 
@@ -53,9 +52,8 @@ func _on_AnimFade1_finished():
 	hide()
 "
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 
-resource/name = "fade"
 length = 5.0
 loop = false
 step = 1.0
@@ -90,7 +88,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=5]
 
 script/source = "extends Timer
 
@@ -133,7 +131,7 @@ func open_ui(node = \"\", function = \"\"):
 		ui.show()
 "
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=6]
 
 script/source = "extends Timer
 
@@ -177,7 +175,7 @@ func open_ui(node = \"\", function = \"\"):
 		ui.show()
 "
 
-[sub_resource type="GDScript" id=6]
+[sub_resource type="GDScript" id=7]
 
 script/source = "extends Timer
 
@@ -208,7 +206,7 @@ func testing():
 	get_node(\"../Chap3/Hotspots\").show()
 "
 
-[sub_resource type="GDScript" id=7]
+[sub_resource type="GDScript" id=8]
 
 script/source = "extends Timer
 
@@ -235,7 +233,7 @@ func testing():
 	player.nav_2d = player.current_level.get_node(\"Navigation2D\")
 	player.update_scale()"
 
-[sub_resource type="GDScript" id=8]
+[sub_resource type="GDScript" id=9]
 
 script/source = "extends ColorFrame
 
@@ -250,9 +248,8 @@ func _on_AnimFade2_finished():
 	get_node(\"../../GUI\").set_process_input(true)
 	hide()"
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 
-resource/name = "fade"
 length = 5.0
 loop = false
 step = 1.0
@@ -287,7 +284,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="GDScript" id=10]
+[sub_resource type="GDScript" id=11]
 
 script/source = "extends ColorFrame
 
@@ -304,9 +301,8 @@ func _on_AnimFade4_finished():
 	hide()
 "
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=12]
 
-resource/name = "fade"
 length = 5.0
 loop = false
 step = 1.0
@@ -343,7 +339,7 @@ tracks/2/keys = {
 
 [node name="GameController" type="Node2D"]
 
-script/script = SubResource( 12 )
+script/script = SubResource( 1 )
 
 [node name="Chap1" parent="." instance=ExtResource( 1 )]
 
@@ -352,7 +348,7 @@ max_scale = 1.5
 
 [node name="DebugNode" type="Node2D" parent="."]
 
-script/script = SubResource( 1 )
+script/script = SubResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
@@ -392,7 +388,7 @@ margin/top = 0.0
 margin/right = 1985.0
 margin/bottom = 1124.0
 color = Color( 0, 0, 0, 0 )
-script/script = SubResource( 2 )
+script/script = SubResource( 3 )
 
 [node name="Label" type="Label" parent="ColorFrame"]
 
@@ -435,7 +431,7 @@ max_lines_visible = -1
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/fade = SubResource( 3 )
+anims/fade = SubResource( 4 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -446,8 +442,8 @@ autoplay = ""
 process_mode = 1
 wait_time = 6.0
 one_shot = true
-autostart = true
-script/script = SubResource( 4 )
+autostart = false
+script/script = SubResource( 5 )
 ui_path = NodePath("../DoorunlockRM")
 
 [node name="Timertobientot3" type="Timer" parent="."]
@@ -456,7 +452,7 @@ process_mode = 1
 wait_time = 6.0
 one_shot = true
 autostart = false
-script/script = SubResource( 5 )
+script/script = SubResource( 6 )
 ui_path = NodePath("../DoorunlockDC")
 
 [node name="Timerto3" type="Timer" parent="."]
@@ -465,7 +461,7 @@ process_mode = 1
 wait_time = 8.0
 one_shot = true
 autostart = false
-script/script = SubResource( 6 )
+script/script = SubResource( 7 )
 
 [node name="Timerto4" type="Timer" parent="."]
 
@@ -473,7 +469,7 @@ process_mode = 1
 wait_time = 65.0
 one_shot = true
 autostart = false
-script/script = SubResource( 7 )
+script/script = SubResource( 8 )
 
 [node name="DoorunlockRM" parent="." instance=ExtResource( 6 )]
 
@@ -492,7 +488,7 @@ margin/top = 0.0
 margin/right = 1948.0
 margin/bottom = 1099.0
 color = Color( 0, 0, 0, 1 )
-script/script = SubResource( 8 )
+script/script = SubResource( 9 )
 
 [node name="LabelRM" type="Label" parent="DoorunlockRM/ColorF"]
 
@@ -536,7 +532,7 @@ max_lines_visible = -1
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/fade = SubResource( 9 )
+anims/fade = SubResource( 10 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -559,7 +555,7 @@ margin/top = 0.0
 margin/right = 1963.0
 margin/bottom = 1112.0
 color = Color( 0, 0, 0, 0 )
-script/script = SubResource( 10 )
+script/script = SubResource( 11 )
 
 [node name="LabelDC" type="Label" parent="DoorunlockDC/ColorDC"]
 
@@ -603,7 +599,7 @@ max_lines_visible = -1
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/fade = SubResource( 11 )
+anims/fade = SubResource( 12 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -611,15 +607,15 @@ autoplay = ""
 
 [connection signal="finished" from="ColorFrame/AnimFade1" to="ColorFrame" method="_on_AnimFade1_finished"]
 
-[connection signal="draw" from="DoorunlockRM" to="." method="_on_DoorunlockRM_draw"]
-
 [connection signal="draw" from="DoorunlockRM" to="DoorunlockRM/ColorF" method="_on_DoorunlockRM_draw"]
+
+[connection signal="draw" from="DoorunlockRM" to="." method="_on_DoorunlockRM_draw"]
 
 [connection signal="finished" from="DoorunlockRM/ColorF/AnimFade2" to="DoorunlockRM/ColorF" method="_on_AnimFade2_finished"]
 
-[connection signal="draw" from="DoorunlockDC" to="." method="_on_DoorunlockDC_draw"]
-
 [connection signal="draw" from="DoorunlockDC" to="DoorunlockDC/ColorDC" method="_on_DoorunlockDC_draw"]
+
+[connection signal="draw" from="DoorunlockDC" to="." method="_on_DoorunlockDC_draw"]
 
 [connection signal="finished" from="DoorunlockDC/ColorDC/AnimFade4" to="DoorunlockDC/ColorDC" method="_on_AnimFade4_finished"]
 
