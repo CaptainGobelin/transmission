@@ -1,0 +1,8 @@
+{
+	"name": "Vieil homme",
+	"dialog": {
+		"portrait": ["gandalf"],
+		"text": ["Gandalf: 40 years old and I am still in this insane lowlands", "", ""]
+	}
+}
+

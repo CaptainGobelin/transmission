@@ -1,0 +1,383 @@
+[gd_scene load_steps=18 format=1]
+
+[ext_resource path="res://scripts/LevelController.gd" type="Script" id=1]
+[ext_resource path="res://assets/banlieuev1.png" type="Texture" id=2]
+[ext_resource path="res://assets/music/scene5.ogg" type="AudioStream" id=3]
+[ext_resource path="res://scenes/Stanley.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/PNJ_RandomJohnetteV2.png" type="Texture" id=5]
+[ext_resource path="res://assets/PNJ_RandomJohnny.png" type="Texture" id=6]
+[ext_resource path="res://assets/PNJ_GandalfV2.png" type="Texture" id=7]
+[ext_resource path="res://assets/PNJ_Keith.png" type="Texture" id=8]
+[ext_resource path="res://assets/fonts/vcr_osd_64.fnt" type="BitmapFont" id=9]
+[ext_resource path="res://assets/fonts/vcr_osd_32.fnt" type="BitmapFont" id=10]
+
+[sub_resource type="NavigationPolygon" id=1]
+
+vertices = Vector2Array( 86.3584, 1056.26, 84.5843, 900.261, 201.912, 969.998, 519.747, 894.128, 462.607, 796.014, 456.577, 767.375, 571.01, 771.095, 591.516, 820.308, 1267.13, 952.078, 1874.13, 948.377, 1874.13, 1053.86, 1161.64, 907.663, 492.753, 985.939, 931.39, 838.22, 1141.29, 837.34, 780.655, 836.713, 806.28, 776.419, 890.896, 779.297, 339.299, 980.251 )
+polygons = [ IntArray( 0, 1, 2 ), IntArray( 3, 4, 5, 6, 7 ), IntArray( 8, 9, 10, 0 ), IntArray( 11, 8, 0, 12 ), IntArray( 13, 14, 11, 12 ), IntArray( 15, 16, 17, 13 ), IntArray( 3, 7, 15, 12 ), IntArray( 0, 2, 18 ), IntArray( 12, 15, 13 ), IntArray( 12, 0, 18 ) ]
+outlines = [ Vector2Array( 931.39, 838.22, 890.896, 779.297, 806.28, 776.419, 780.655, 836.713, 591.516, 820.308, 571.01, 771.095, 456.577, 767.375, 462.607, 796.014, 519.747, 894.128, 492.753, 985.939, 339.299, 980.251, 201.912, 969.998, 84.5843, 900.261, 86.3584, 1056.26, 1874.13, 1053.86, 1874.13, 948.377, 1267.13, 952.078, 1161.64, 907.663, 1141.29, 837.34 ) ]
+
+[sub_resource type="GDScript" id=2]
+
+script/source = "extends Node2D
+onready var gui_dialogue = get_node(\"../../GUI/Dialogue\")
+export(String,FILE) var json_path
+export(Texture) var texture
+export(NodePath) var level_path
+var current_level
+var data = {}
+var is_mouse_on = false
+
+func _ready():
+	current_level = get_node(\"..\")
+	print(\"jeu\")
+	print(current_level.get_name())
+	get_node(\"Sprite\").texture = texture
+	var file = File.new()
+	file.open(json_path, File.READ)
+	var json_str = file.get_as_text()
+	file.close()
+	data.parse_json(json_str)
+	set_process_input(true)
+
+func _input(event):
+	if (is_mouse_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_LEFT):
+		gui_dialogue.open()
+		gui_dialogue.termnode = \"\"
+		gui_dialogue.termfunction = \"\"
+		gui_dialogue.play_dialog(data)
+		get_node(\"../../Player\").go_to(get_node(\"PinJoint2D\").get_global_pos(), null, false)
+		is_mouse_on = false
+
+func _on_Area2D_mouse_exit():
+	is_mouse_on = false
+	get_node(\"../../Label\").text = \"\"
+
+
+func _on_Area2D_mouse_enter():
+	is_mouse_on = true
+	get_node(\"../../Label\").text = data.name
+"
+
+[sub_resource type="GDScript" id=3]
+
+script/source = "extends Node2D
+onready var gui_dialogue = get_node(\"../../GUI/Dialogue\")
+export(String,FILE) var json_path
+export(Texture) var texture
+export(NodePath) var level_path
+var current_level
+var data = {}
+var is_mouse_on = false
+
+func _ready():
+	current_level = get_node(\"..\")
+	print(\"jeu\")
+	print(current_level.get_name())
+	get_node(\"Sprite\").texture = texture
+	var file = File.new()
+	file.open(json_path, File.READ)
+	var json_str = file.get_as_text()
+	file.close()
+	data.parse_json(json_str)
+	set_process_input(true)
+
+func _input(event):
+	if (is_mouse_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_LEFT):
+		gui_dialogue.open()
+		gui_dialogue.termnode = \"\"
+		gui_dialogue.termfunction = \"\"
+		gui_dialogue.play_dialog(data)
+		get_node(\"../../Player\").go_to(get_node(\"PinJoint2D\").get_global_pos(), null, false)
+		is_mouse_on = false
+
+func _on_Area2D_mouse_exit():
+	is_mouse_on = false
+	get_node(\"../../Label\").text = \"\"
+
+
+func _on_Area2D_mouse_enter():
+	is_mouse_on = true
+	get_node(\"../../Label\").text = data.name
+"
+
+[sub_resource type="GDScript" id=4]
+
+script/source = "extends Node2D
+onready var gui_dialogue = get_node(\"../../GUI/Dialogue\")
+export(String,FILE) var json_path
+export(Texture) var texture
+export(NodePath) var level_path
+var current_level
+var data = {}
+var is_mouse_on = false
+
+func _ready():
+	current_level = get_node(\"..\")
+	print(\"jeu\")
+	print(current_level.get_name())
+	get_node(\"Sprite\").texture = texture
+	var file = File.new()
+	file.open(json_path, File.READ)
+	var json_str = file.get_as_text()
+	file.close()
+	data.parse_json(json_str)
+	set_process_input(true)
+
+func _input(event):
+	if (is_mouse_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_LEFT):
+		gui_dialogue.open()
+		gui_dialogue.termnode = \"\"
+		gui_dialogue.termfunction = \"\"
+		gui_dialogue.play_dialog(data)
+		get_node(\"../../Player\").go_to(get_node(\"PinJoint2D\").get_global_pos(), null, false)
+		is_mouse_on = false
+
+func _on_Area2D_mouse_exit():
+	is_mouse_on = false
+	get_node(\"../../Label\").text = \"\"
+
+
+func _on_Area2D_mouse_enter():
+	is_mouse_on = true
+	get_node(\"../../Label\").text = data.name
+"
+
+[sub_resource type="GDScript" id=5]
+
+script/source = "extends Node2D
+onready var gui_dialogue = get_node(\"../../GUI/Dialogue\")
+export(String,FILE) var json_path
+export(Texture) var texture
+export(NodePath) var level_path
+var current_level
+var data = {}
+var is_mouse_on = false
+
+func _ready():
+	current_level = get_node(\"..\")
+	print(\"jeu\")
+	print(current_level.get_name())
+	get_node(\"Sprite\").texture = texture
+	var file = File.new()
+	file.open(json_path, File.READ)
+	var json_str = file.get_as_text()
+	file.close()
+	data.parse_json(json_str)
+	set_process_input(true)
+
+func _input(event):
+	if (is_mouse_on and event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_LEFT):
+		gui_dialogue.open()
+		gui_dialogue.termnode = \"GameController/Timerto6\"
+		gui_dialogue.termfunction = \"testing\"
+		gui_dialogue.play_dialog(data)
+		get_node(\"../../Player\").go_to(get_node(\"PinJoint2D\").get_global_pos(), null, false)
+		is_mouse_on = false
+
+func _on_Area2D_mouse_exit():
+	is_mouse_on = false
+	get_node(\"../../Label\").text = \"\"
+
+
+func _on_Area2D_mouse_enter():
+	is_mouse_on = true
+	get_node(\"../../Label\").text = data.name
+"
+
+[sub_resource type="GDScript" id=7]
+
+script/source = "extends Node2D
+
+func _ready():
+	get_node(\"../../Player\").set_process_input(false)
+	get_node(\"../../GUI\").set_process_input(false)
+	get_node(\"ColorFrame/AnimationPlayer\").play(\"fade\")
+
+
+func _on_AnimationPlayer_finished():
+	get_node(\"../../Player\").set_process_input(true)
+	get_node(\"../../GUI\").set_process_input(true)
+	hide()
+"
+
+[sub_resource type="Animation" id=6]
+
+resource/name = "fade"
+length = 5.0
+loop = false
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 3, 5 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:custom_colors/font_color")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 3, 5 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Label 2:custom_colors/font_color")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 0, 3, 5 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="Chap5" type="Node2D"]
+
+script/script = ExtResource( 1 )
+min_scale = 0.8
+max_scale = 1.2
+
+[node name="Sprite" type="Sprite" parent="."]
+
+z/z = -1100
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+
+editor/display_folded = true
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+
+navpoly = SubResource( 1 )
+enabled = true
+
+[node name="Hotspots" type="Node2D" parent="."]
+
+[node name="StreamPlayer" type="StreamPlayer" parent="."]
+
+stream/stream = ExtResource( 3 )
+stream/play = false
+stream/loop = false
+stream/volume_db = 0.0
+stream/autoplay = false
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
+
+[node name="Stanley" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 433, 966 )
+script/script = SubResource( 2 )
+json_path = "res://texts/ch5_johnnette_fr.json"
+texture = ExtResource( 5 )
+level_path = NodePath("..")
+
+[node name="Stanley1" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 274.411, 928.969 )
+script/script = SubResource( 3 )
+json_path = "res://texts/ch5_johnny_fr.json"
+texture = ExtResource( 6 )
+level_path = NodePath("..")
+
+[node name="Stanley2" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 687.286, 790.505 )
+script/script = SubResource( 4 )
+json_path = "res://texts/ch5_gandalf_fr.json"
+texture = ExtResource( 7 )
+level_path = NodePath("..")
+
+[node name="Stanley3" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 1039.74, 800.575 )
+script/script = SubResource( 5 )
+json_path = "res://texts/ch5_keith_lewis_fr.json"
+texture = ExtResource( 8 )
+level_path = NodePath("..")
+
+[node name="StartPoint" type="PinJoint2D" parent="."]
+
+transform/pos = Vector2( 1789.95, 1003.6 )
+node_a = NodePath("")
+node_b = NodePath("")
+bias/bias = 0.0
+collision/exclude_nodes = true
+softness = 0.0
+
+[node name="Fade" type="Node2D" parent="."]
+
+z/z = 2000
+script/script = SubResource( 7 )
+
+[node name="ColorFrame" type="ColorFrame" parent="Fade"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1930.0
+margin/bottom = 1100.0
+color = Color( 0, 0, 0, 0 )
+
+[node name="Label" type="Label" parent="Fade/ColorFrame"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 114.0
+margin/top = 323.0
+margin/right = 1842.0
+margin/bottom = 642.0
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 1, 1, 1, 0 )
+text = "Chapitre 4: Les Bas-fonds"
+valign = 2
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label 2" type="Label" parent="Fade/ColorFrame"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 125.0
+margin/top = 669.0
+margin/right = 1605.0
+margin/bottom = 839.0
+custom_fonts/font = ExtResource( 10 )
+custom_colors/font_color = Color( 1, 1, 1, 0 )
+text = "S'échappant de son propre bureau, le détective Richards s'est rendu dans les bas-fond afin de retrouver Keith Benett."
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Fade/ColorFrame"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/fade = SubResource( 6 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[connection signal="finished" from="Fade/ColorFrame/AnimationPlayer" to="Fade" method="_on_AnimationPlayer_finished"]
+
+

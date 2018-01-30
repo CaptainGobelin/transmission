@@ -9,7 +9,7 @@ func _fixed_process(delta):
 	set_fixed_process(false)
 	
 func update_z():
-	set_z(get_global_pos().y/1000)
+	set_z(get_global_pos().y+181)
 
 func update_scale():
 	var z = 1 - get_global_pos().y / Globals.get("display/height")

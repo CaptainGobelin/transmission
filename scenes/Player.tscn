@@ -78,7 +78,7 @@ func _input(event):
 	if borne:
 		borne = false
 		return
-	if (event.type==InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==BUTTON_LEFT):
+	if (event.type==InputEvent.MOUSE_BUTTON and event.pressed and (event.button_index==BUTTON_LEFT or event.button_index==BUTTON_RIGHT)):
 		if (not gui.is_mouse_on_gui):
 			go_to(event.global_pos, null, false)
 			if (debug):
@@ -98,7 +98,7 @@ func go_to(point, hotspot, to_take):
 	take_target = to_take
 
 func update_z():
-	set_z(get_global_pos().y/1000)
+	set_z(get_global_pos().y)
 
 func update_scale():
 	#var z = (1 - get_global_pos().y / Globals.get(\"display/height\")) * 100

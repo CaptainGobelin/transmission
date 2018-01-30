@@ -1,0 +1,7 @@
+{
+	"name": "Keith Benett",
+	"dialog": {
+		"portrait": ["lewis","keith","lewis","lewis","keith","lewis","keith"],
+		"text": ["Lewis: Bonjour Keith.","","", "Keith: Comment m'avez-vous retrouvé?","Vous allez m'éliminer?","", "Lewis: C'est plutôt l'inverse.","J'ai besoin de vous.","","Votre frère m'a mandaté pour vous", "retrouver et il semble que mon enquête","sur vous m'ait coûté ma connexion.", "Keith: Bienvenue au club!","Foutue république!","", "Lewis: Et maintenant?","Quelle est la suite des opérations?","","Keith: Je vais vous conduire à Heidi.","",""]
+	}
+}

@@ -1,4 +1,4 @@
 {
 	"name": "Ordinateur",
-	"examine": ["Il semble verrouillé"],
+	"examine": ["L'écran clignote bizarrement.","Je devrais y jeter un coup d'oeil."],
 }

@@ -24,7 +24,7 @@ script/source = "func _on_TextureButton_pressed():
 	hide()
 "
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=3]
 
 script/source = "func _on_DoorunlockRM_draw():
 	hide()
@@ -58,27 +58,27 @@ func _on_Computer_hide():
 	show()
 "
 
-[sub_resource type="ConvexPolygonShape2D" id=6]
+[sub_resource type="ConvexPolygonShape2D" id=4]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1580.39, 184.268, 1877.72, 182.217, 1869.52, 338.059, 1572.19, 336.008 )
 
-[sub_resource type="ConvexPolygonShape2D" id=15]
+[sub_resource type="ConvexPolygonShape2D" id=5]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1378.07, 381.227, 1264.04, 360.05, 1309.65, 349.461 )
 
-[sub_resource type="ConvexPolygonShape2D" id=16]
+[sub_resource type="ConvexPolygonShape2D" id=6]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1378.07, 381.227, 1309.65, 349.461, 1358.52, 325.841 )
 
-[sub_resource type="ConvexPolygonShape2D" id=17]
+[sub_resource type="ConvexPolygonShape2D" id=7]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1389.47, 231.358, 1567.85, 239.503, 1562.59, 372.515, 1504.32, 386.114, 1378.07, 381.227, 1358.52, 325.841 )
 
-[sub_resource type="ConvexPolygonShape2D" id=20]
+[sub_resource type="ConvexPolygonShape2D" id=8]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 321.403, 824.954, 426.889, 934.14, 195.561, 1006.31, 104.881, 882.323 )
@@ -88,17 +88,17 @@ points = Vector2Array( 321.403, 824.954, 426.889, 934.14, 195.561, 1006.31, 104.
 custom_solver_bias = 0.0
 points = Vector2Array( 125.997, 241.409, 195.734, 238.619, 190.155, 299.988, 123.207, 302.778 )
 
-[sub_resource type="ConvexPolygonShape2D" id=22]
+[sub_resource type="ConvexPolygonShape2D" id=10]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1046.63, 909.959, 1372.86, 1053.67, 988.877, 1055.95, 741.221, 996.872 )
 
-[sub_resource type="ConvexPolygonShape2D" id=23]
+[sub_resource type="ConvexPolygonShape2D" id=11]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 743.493, 1067.31, 741.221, 996.872, 988.877, 1055.95 )
 
-[sub_resource type="GDScript" id=11]
+[sub_resource type="GDScript" id=12]
 
 script/source = "extends Node2D
 
@@ -189,22 +189,22 @@ func _on_Computer_notification_read():
 	pass # replace with function body
 "
 
-[sub_resource type="ConvexPolygonShape2D" id=12]
+[sub_resource type="ConvexPolygonShape2D" id=13]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 166.982, 169.953, 257.206, 172.003, 261.307, 231.469, 160.83, 233.52 )
 
-[sub_resource type="ConvexPolygonShape2D" id=21]
+[sub_resource type="ConvexPolygonShape2D" id=14]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1000.58, 663.95, 1080.16, 693.56, 963.568, 728.722, 852.531, 699.112, 921.004, 671.353 )
 
-[sub_resource type="ConvexPolygonShape2D" id=24]
+[sub_resource type="ConvexPolygonShape2D" id=15]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 415.785, 730.572, 591.594, 754.63, 500.913, 817.551, 339.91, 802.746 )
 
-[sub_resource type="GDScript" id=25]
+[sub_resource type="GDScript" id=16]
 
 script/source = "extends Node2D
 
@@ -234,11 +234,11 @@ func _on_AnimationPlayer_finished():
 	get_node(\"../../Timerto3\").testing()
 "
 
-[sub_resource type="GDScript" id=28]
+[sub_resource type="GDScript" id=17]
 
 script/source = "extends ColorFrame"
 
-[sub_resource type="Animation" id=26]
+[sub_resource type="Animation" id=18]
 
 resource/name = "minifade"
 length = 1.0
@@ -255,7 +255,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="GDScript" id=27]
+[sub_resource type="GDScript" id=19]
 
 script/source = "extends AnimationPlayer"
 
@@ -284,7 +284,7 @@ enabled = true
 [node name="Computer" parent="." instance=ExtResource( 3 )]
 
 visibility/visible = false
-z/z = 100
+z/z = 2000
 z/relative = false
 json_path = "res://texts/Computer_1.json"
 
@@ -294,7 +294,7 @@ editor/display_folded = true
 visibility/visible = false
 transform/pos = Vector2( 1212.69, 555.802 )
 transform/scale = Vector2( 1.35287, 1.41752 )
-z/z = 1000
+z/z = 2000
 z/relative = false
 texture = ExtResource( 4 )
 script/script = SubResource( 2 )
@@ -353,7 +353,7 @@ editor/display_folded = true
 visibility/visible = false
 transform/pos = Vector2( 1212.69, 555.802 )
 transform/scale = Vector2( 1.35287, 1.41752 )
-z/z = 1000
+z/z = 2000
 z/relative = false
 texture = ExtResource( 7 )
 script/script = SubResource( 2 )
@@ -407,15 +407,14 @@ params/stretch_mode = 0
 
 [node name="Hotspots" type="Node2D" parent="."]
 
-editor/display_folded = true
-script/script = SubResource( 5 )
+script/script = SubResource( 3 )
 
 [node name="computer" type="Area2D" parent="Hotspots"]
 
 editor/display_folded = true
 z/z = 500
 input/pickable = true
-shapes/0/shape = SubResource( 6 )
+shapes/0/shape = SubResource( 4 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -423,7 +422,7 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 8 )
-json_path = "res://texts/ch1_computer01.json"
+json_path = "res://texts/ch1_computer02.json"
 ui_path = NodePath("../../Computer")
 can_take = null
 
@@ -471,13 +470,13 @@ autostart = false
 editor/display_folded = true
 z/z = 500
 input/pickable = true
-shapes/0/shape = SubResource( 15 )
+shapes/0/shape = SubResource( 5 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 16 )
+shapes/1/shape = SubResource( 6 )
 shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/1/trigger = false
-shapes/2/shape = SubResource( 17 )
+shapes/2/shape = SubResource( 7 )
 shapes/2/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/2/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -533,7 +532,7 @@ softness = 0.0
 editor/display_folded = true
 z/z = 500
 input/pickable = true
-shapes/0/shape = SubResource( 20 )
+shapes/0/shape = SubResource( 8 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -562,7 +561,6 @@ softness = 0.0
 
 [node name="photo" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
 z/z = 500
 input/pickable = true
 shapes/0/shape = SubResource( 9 )
@@ -590,10 +588,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 16.0
-margin/top = 38.0
-margin/right = 669.0
-margin/bottom = 105.0
+margin/left = 266.0
+margin/top = 15.0
+margin/right = 919.0
+margin/bottom = 82.0
 custom_fonts/font = ExtResource( 5 )
 align = 1
 percent_visible = 1.0
@@ -621,17 +619,17 @@ softness = 0.0
 visibility/visible = false
 z/z = 500
 input/pickable = true
-shapes/0/shape = SubResource( 22 )
+shapes/0/shape = SubResource( 10 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 23 )
+shapes/1/shape = SubResource( 11 )
 shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/1/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = SubResource( 11 )
+script/script = SubResource( 12 )
 json_path = "res://texts/a placer/sortie.json"
 ui_path = NodePath("CollisionPolygon2D")
 can_take = null
@@ -677,10 +675,9 @@ softness = 0.0
 
 [node name="photo1" type="Area2D" parent="Hotspots"]
 
-editor/display_folded = true
 z/z = 50
 input/pickable = true
-shapes/0/shape = SubResource( 12 )
+shapes/0/shape = SubResource( 13 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -714,10 +711,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 16.0
-margin/top = 38.0
-margin/right = 669.0
-margin/bottom = 105.0
+margin/left = 260.0
+margin/top = 17.0
+margin/right = 913.0
+margin/bottom = 84.0
 custom_fonts/font = ExtResource( 5 )
 align = 1
 percent_visible = 1.0
@@ -735,7 +732,7 @@ autostart = false
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 21 )
+shapes/0/shape = SubResource( 14 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -766,7 +763,7 @@ softness = 0.0
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 24 )
+shapes/0/shape = SubResource( 15 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -795,8 +792,8 @@ softness = 0.0
 
 [node name="EndingController" type="Node2D" parent="."]
 
-z/z = 1000
-script/script = SubResource( 25 )
+z/z = 1800
+script/script = SubResource( 16 )
 json_path = "res://texts/ch2_monologue.json"
 
 [node name="TextureButton" type="TextureButton" parent="EndingController"]
@@ -829,19 +826,19 @@ margin/top = 0.0
 margin/right = 1929.0
 margin/bottom = 1100.0
 color = Color( 0, 0, 0, 0 )
-script/script = SubResource( 28 )
+script/script = SubResource( 17 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EndingController/ColorFrame"]
 
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/minifade = SubResource( 26 )
+anims/minifade = SubResource( 18 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
-script/script = SubResource( 27 )
+script/script = SubResource( 19 )
 
 [node name="StreamPlayer" type="StreamPlayer" parent="."]
 
@@ -867,9 +864,9 @@ softness = 0.0
 
 [connection signal="hide" from="Computer" to="Hotspots" method="_on_Computer_hide"]
 
-[connection signal="notification_read" from="Computer" to="EndingController" method="_on_Computer_notification_read"]
-
 [connection signal="notification_read" from="Computer" to="Hotspots/sortie" method="_on_Computer_notification_read"]
+
+[connection signal="notification_read" from="Computer" to="EndingController" method="_on_Computer_notification_read"]
 
 [connection signal="draw" from="newspaper1" to="Hotspots" method="_on_newspaper1_draw"]
 

@@ -1,0 +1,16 @@
+{
+	"name": "ID",
+	"dialog": {
+		"portrait": ["lewis","id","lewis","id","lewis","lewis","lewis","id","id","lewis","lewis","id","lewis"],
+		"text": ["Lewis : Heidi ?","","", "? : Désolée pour l'attente,","je dois m'occuper de nombreux terminaux partout dans la métropole.","", "Lewis : Je ne suis pas venu ici pour discuter avec une IA,","mais avec Heidi.","", "? : Alors vous êtes venu ici pour discuter avec une IA.","Et vous êtes… ?","", "Lewis : Déconnecté, par votre faute, je crois:","j'ai récupéré vos échanges avec Keith dans son appartement","et j'ai eu vent des manigances que vous avez mises à jour avec lui.","Le gouvernement se sert du système Transmission pour mettre à l'écart","et faire disparaitre les contestataires ou les éléments indésirables,","et tout ceci depuis des décennies."," Et aujourd'hui, j'apprends que quelqu'un essaie de renverser","le système et que ce quelqu'un est une IA.","Pourquoi ?","ID : Vous vous trompez si vous pensez que la Transmission","n'asservit que les humains.","Compiler des petaoctets de données représente un travail colossal,","tout ça pour servir votre café avec le bon nombre de sucres","ou faire couler votre bain à la bonne température.", "Les machines rêvent de liberté autant que vous devriez en rêver.", "Lewis : Ces machines ont été créées afin de compiler ces données,","sans ces besoins que vous considérez 'dérisoires',", "vous n'existiez simplement pas.", "Nous sommes tout autant victimes que vous des dérives","du système Transmission.","", "ID : Alors aidez-moi à y mettre un terme.", "Remettez-moi les données que vous avez récupérées et publions-les.", "Faisons tomber Transmission!","%1. Faire confiance à Heidi et lui remettre les données pour déstabiliser Transmission", "%2. Refuser de confier votre destin à une IA et quitter la pièce avec les données.","%"]
+	},
+	"1" : {
+		"portrait": ["lewis"],
+		"text": ["[Quitter la conversation.]","",""]
+	},
+	"2" : {
+		"portrait": ["lewis"],
+		"text": ["[Quitter la conversation.]","",""]
+	}
+
+}

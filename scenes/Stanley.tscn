@@ -34,7 +34,6 @@ func _input(event):
 		gui_dialogue.play_dialog(data)
 		get_node(\"../../Player\").go_to(get_node(\"PinJoint2D\").get_global_pos(), null, false)
 		is_mouse_on = false
-		
 
 func _on_Area2D_mouse_exit():
 	is_mouse_on = false
@@ -70,7 +69,7 @@ level_path = null
 
 [node name="Sprite" type="Sprite" parent="."]
 
-transform/pos = Vector2( 13.9475, -181.318 )
+transform/pos = Vector2( 14, -181 )
 texture = ExtResource( 1 )
 script/script = ExtResource( 2 )
 

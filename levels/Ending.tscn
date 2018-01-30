@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://assets/EcranDeFin.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Node2D
+
+func _ready():
+    set_process_input(true)
+
+func _input(event):
+	if (event.type==InputEvent.KEY and event.pressed):
+		get_tree().quit()
+	if (event.type==InputEvent.MOUSE_BUTTON and event.pressed):
+		get_tree().quit()"
+
+[node name="Ending" type="Node2D"]
+
+script/script = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+texture = ExtResource( 1 )
+centered = false
+
+

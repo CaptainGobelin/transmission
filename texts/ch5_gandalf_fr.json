@@ -1,0 +1,10 @@
+{
+	"name": "Gandalf",
+	"dialog": {
+		"portrait": ["gandalf"],
+		"text": ["Gandalf: Voilà 40 ans que je suis coincé dans ce foutu Bidonville !", "", ""]
+	}
+}
+
+
+

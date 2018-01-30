@@ -12,7 +12,7 @@ var is_cursor_on = false
 var dialogue = null
 var next_dialogue = 0
 var take_used = false
-var first_try = true
+var first_try = false
 export(bool) var can_take
 
 func _ready():
